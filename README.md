@@ -62,16 +62,8 @@ Para compilar el proyecto para producción:
   vfx/images/
   ```
 
-## Estructura del proyecto
 
-- `src/app/quiz.tsx`: Componente principal del quiz
-- `src/app/components/`: Contiene los componentes utilizados en el quiz
-- `src/app/components/ResultsDisplay.tsx`: Muestra los resultados del quiz
-- `src/app/components/SpecificResult1.tsx` y `SpecificResult2.tsx`: Muestran resultados específicos basados en las respuestas del usuario
-
-
-
-## Si todofalla, ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
+## Si todo falla, ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
 
 ```
 rm -rf .next       
