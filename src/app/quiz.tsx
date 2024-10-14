@@ -229,24 +229,24 @@ function QuizContent() {
   }, [displayResults, iluminacion, soporte, chroma, cameraMovement, reflejoImportante]);
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center p-4 space-y-4">
+      {isFirstQuestion && !showResults && (
+        <div className="w-full max-w-md flex justify-end space-x-2">
+          <button
+            onClick={() => changeLanguage('es')}
+            className={`px-3 py-1 rounded ${language === 'es' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'}`}
+          >
+            Esp
+          </button>
+          <button
+            onClick={() => changeLanguage('en')}
+            className={`px-3 py-1 rounded ${language === 'en' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'}`}
+          >
+            Eng
+          </button>
+        </div>
+      )}
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md overflow-y-auto">
-        {isFirstQuestion && !showResults && (
-          <div className="mb-4 flex justify-end space-x-2">
-            <button
-              onClick={() => changeLanguage('es')}
-              className={`px-3 py-1 rounded ${language === 'es' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-            >
-              Esp
-            </button>
-            <button
-              onClick={() => changeLanguage('en')}
-              className={`px-3 py-1 rounded ${language === 'en' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-            >
-              Eng
-            </button>
-          </div>
-        )}
         <AnimatePresence mode="wait">
           {!showResults ? (
             <motion.div

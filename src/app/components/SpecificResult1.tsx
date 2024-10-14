@@ -23,7 +23,9 @@ export default function SpecificResult1({ soporte, tvOnOff, basePath }: Specific
       <h2 className="result-title text-2xl font-bold mb-6">{t('instructions')}</h2>
       <ol className="list-decimal list-outside space-y-8 ml-5">
         <li>
-          <p className="mb-2 -mt-1"><strong>{t('mainPlate')}:</strong> {t('mainPlateDescription', { soporte: translatedSoporte })}</p>
+          <p className="mb-2 -mt-1">
+            <strong>{t('mainPlate')}:</strong> {t('mainPlateDescription', { soporte: translatedSoporte })} {t('mainPlateAdditional', { soporte: translatedSoporte })}
+          </p>
           <div className="mb-4">
             <ImageViewer src="/images/Negro.jpg" alt={t('black')} width={100} height={100} basePath={basePath} />
           </div>
