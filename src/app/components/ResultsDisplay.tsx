@@ -40,7 +40,7 @@ export default function ResultsDisplay(props: ResultsDisplayProps) {
     return (
       <>
         <SpecificResult1 soporte={soporte} tvOnOff={tvOnOff} basePath={basePath} />
-        <AllVariables />
+        {/* <AllVariables /> */}
       </>
     );
   }
@@ -49,7 +49,7 @@ export default function ResultsDisplay(props: ResultsDisplayProps) {
     return (
       <>
         <SpecificResult2 soporte={soporte} tvOnOff={tvOnOff} basePath={basePath} />
-        <AllVariables />
+        {/* <AllVariables /> */}
       </>
     );
   }
@@ -58,7 +58,7 @@ export default function ResultsDisplay(props: ResultsDisplayProps) {
     return (
       <>
         <SpecificResult3 soporte={soporte} tvOnOff={tvOnOff} reflejoImportante={reflejoImportante} basePath={basePath} />
-        <AllVariables />
+        {/* <AllVariables /> */}
       </>
     );
   }
@@ -67,7 +67,7 @@ export default function ResultsDisplay(props: ResultsDisplayProps) {
     return (
       <>
         <SpecificResult4 soporte={soporte} tvOnOff={tvOnOff} reflejoImportante={reflejoImportante} basePath={basePath} />
-        <AllVariables />
+        {/* <AllVariables /> */}
       </>
     );
   }
@@ -76,7 +76,7 @@ export default function ResultsDisplay(props: ResultsDisplayProps) {
     return (
       <>
         <SpecificResult5 soporte={soporte} tvOnOff={tvOnOff} semitransparente={semitransparente} reflejoImportante={reflejoImportante} basePath={basePath} />
-        <AllVariables />
+        {/* <AllVariables /> */}
       </>
     );
   }
@@ -85,7 +85,7 @@ export default function ResultsDisplay(props: ResultsDisplayProps) {
     return (
       <>
         <SpecificResult6 soporte={soporte} tvOnOff={tvOnOff} semitransparente={semitransparente} reflejoImportante={reflejoImportante} basePath={basePath} />
-        <AllVariables />
+        {/* <AllVariables /> */}
       </>
     );
   }
@@ -94,7 +94,7 @@ export default function ResultsDisplay(props: ResultsDisplayProps) {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-6 text-center">Resultados Generales</h2>
-      <AllVariables />
+      {/* <AllVariables /> */}
     </div>
   );
 }

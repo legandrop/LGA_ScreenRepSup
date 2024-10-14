@@ -1,4 +1,5 @@
 import ImageViewer from './ImageViewer';
+import Link from 'next/link';
 
 type SpecificResult3Props = {
   soporte: string;
@@ -47,14 +48,27 @@ const soporteShort = soporte.startsWith('Monitor/TV') ? 'Monitor/TV' : soporte;
             <ImageViewer src="/images/Referencia.jpg" alt="Referencia" width={100} height={100} basePath={basePath} />
           </div>
         </li>
+
+        {reflejoImportante && (
+          <li>
+            <p className="mb-2 -mt-1"><strong>Plate Reflejo:</strong> Si la imagen usada en la pantalla del Plate principal supera en brillo al reflejo que hay que capturar, filmar un Plate con el {soporteShort} apagado y los reflejos, cuidando que nada tape al reflejo.</p>
+          </li>
+        )}
       </ol>
       
-      {reflejoImportante && (
-        <div className="mt-6 p-4 bg-yellow-100 rounded-md">
-          <p className="font-bold">Plate Reflejo:</p>
-          <p>Si la imagen usada en la pantalla del Plate principal supera en brillo al reflejo que hay que capturar, filmar un Plate con el {soporteShort} apagado y los reflejos, cuidando que nada tape al reflejo. </p>
-        </div>
-      )}
+      {/* Nuevo pie de página */}
+      <footer className="mt-8 pt-4 border-t text-sm text-gray-600">
+        <p>Screen Replacement Supervisor v0.8</p>
+        <p>2024 | Lega Pugliese</p>
+        <p>
+          <Link href="https://www.wanka.tv" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            www.wanka.tv
+          </Link> | {' '}
+          <Link href="https://github.com/legandrop/LGA_ScreenRepSup" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            github
+          </Link>
+        </p>
+      </footer>
     </div>
   );
 }

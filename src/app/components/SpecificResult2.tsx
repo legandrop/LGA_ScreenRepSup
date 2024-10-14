@@ -1,4 +1,5 @@
 import ImageViewer from './ImageViewer';
+import Link from 'next/link';
 
 type SpecificResult2Props = {
   soporte: string;
@@ -55,6 +56,20 @@ export default function SpecificResult2({ soporte, tvOnOff, basePath }: Specific
           </div>
         </li>
       </ol>
+      
+      {/* Nuevo pie de página */}
+      <footer className="mt-8 pt-4 border-t text-sm text-gray-600">
+        <p>Screen Replacement Supervisor v0.8</p>
+        <p>2024 | Lega Pugliese</p>
+        <p>
+          <Link href="https://www.wanka.tv" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            www.wanka.tv
+          </Link> | {' '}
+          <Link href="https://github.com/legandrop/LGA_ScreenRepSup" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            github
+          </Link>
+        </p>
+      </footer>
     </div>
   );
 }
