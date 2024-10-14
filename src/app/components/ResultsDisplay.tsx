@@ -4,6 +4,7 @@ import SpecificResult3 from './SpecificResult3';
 import SpecificResult4 from './SpecificResult4';
 import SpecificResult5 from './SpecificResult5';
 import SpecificResult6 from './SpecificResult6';
+import { useTranslation } from '../../hooks/useTranslation';
 
 type ResultsDisplayProps = {
   cameraMovement: boolean;
@@ -19,82 +20,44 @@ type ResultsDisplayProps = {
 export default function ResultsDisplay(props: ResultsDisplayProps) {
   const { cameraMovement, soporte, chroma, semitransparente, reflejoImportante, iluminacion, tvOnOff, basePath } = props;
 
-  // Componente para mostrar todas las variables
-  const AllVariables = () => (
-    <div className="mt-8 p-4 bg-gray-100 rounded-md">
-      <h3 className="text-xl font-bold mb-4">Todas las variables:</h3>
-      <ul className="space-y-2">
-        <li><strong>CameraMovement:</strong> {cameraMovement.toString()}</li>
-        <li><strong>Soporte:</strong> {soporte}</li>
-        <li><strong>Chroma:</strong> {chroma.toString()}</li>
-        <li><strong>Semitransparente:</strong> {semitransparente.toString()}</li>
-        <li><strong>ReflejoImportante:</strong> {reflejoImportante.toString()}</li>
-        <li><strong>Iluminacion:</strong> {iluminacion}</li>
-        <li><strong>TvOnOff:</strong> {tvOnOff !== null ? tvOnOff.toString() : 'N/A'}</li>
-      </ul>
-    </div>
-  );
+  console.log('ResultsDisplay received props:', props);
 
   // Renderizar el resultado específico si se cumplen las condiciones
   if (iluminacion === 'alta' && chroma === false && cameraMovement === false) {
-    return (
-      <>
-        <SpecificResult1 soporte={soporte} tvOnOff={tvOnOff} basePath={basePath} />
-        {/* <AllVariables /> */}
-      </>
-    );
+    console.log('Rendering SpecificResult1');
+    return <SpecificResult1 soporte={soporte} tvOnOff={tvOnOff} basePath={basePath} />;
   }
 
   if (iluminacion === 'alta' && chroma === false && cameraMovement === true) {
-    return (
-      <>
-        <SpecificResult2 soporte={soporte} tvOnOff={tvOnOff} basePath={basePath} />
-        {/* <AllVariables /> */}
-      </>
-    );
+    console.log('Rendering SpecificResult2');
+    return <SpecificResult2 soporte={soporte} tvOnOff={tvOnOff} basePath={basePath} />;
   }
 
   if ((iluminacion === 'media' || iluminacion === 'baja') && chroma === false && cameraMovement === false) {
-    return (
-      <>
-        <SpecificResult3 soporte={soporte} tvOnOff={tvOnOff} reflejoImportante={reflejoImportante} basePath={basePath} />
-        {/* <AllVariables /> */}
-      </>
-    );
+    console.log('Rendering SpecificResult3');
+    return <SpecificResult3 soporte={soporte} tvOnOff={tvOnOff} reflejoImportante={reflejoImportante} basePath={basePath} />;
   }
 
   if ((iluminacion === 'media' || iluminacion === 'baja') && chroma === false && cameraMovement === true) {
-    return (
-      <>
-        <SpecificResult4 soporte={soporte} tvOnOff={tvOnOff} reflejoImportante={reflejoImportante} basePath={basePath} />
-        {/* <AllVariables /> */}
-      </>
-    );
+    console.log('Rendering SpecificResult4');
+    return <SpecificResult4 soporte={soporte} tvOnOff={tvOnOff} reflejoImportante={reflejoImportante} basePath={basePath} />;
   }
 
   if (chroma === true && cameraMovement === false) {
-    return (
-      <>
-        <SpecificResult5 soporte={soporte} tvOnOff={tvOnOff} semitransparente={semitransparente} reflejoImportante={reflejoImportante} basePath={basePath} />
-        {/* <AllVariables /> */}
-      </>
-    );
+    console.log('Rendering SpecificResult5');
+    return <SpecificResult5 soporte={soporte} tvOnOff={tvOnOff} semitransparente={semitransparente} reflejoImportante={reflejoImportante} basePath={basePath} />;
   }
 
   if (chroma === true && cameraMovement === true) {
-    return (
-      <>
-        <SpecificResult6 soporte={soporte} tvOnOff={tvOnOff} semitransparente={semitransparente} reflejoImportante={reflejoImportante} basePath={basePath} />
-        {/* <AllVariables /> */}
-      </>
-    );
+    console.log('Rendering SpecificResult6');
+    return <SpecificResult6 soporte={soporte} tvOnOff={tvOnOff} semitransparente={semitransparente} reflejoImportante={reflejoImportante} basePath={basePath} />;
   }
 
   // Resultado general
+  console.log('Rendering general result');
   return (
     <div>
       <h2 className="text-2xl font-bold mb-6 text-center">Resultados Generales</h2>
-      {/* <AllVariables /> */}
     </div>
   );
 }

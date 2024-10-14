@@ -19,10 +19,10 @@ Para ejecutar el proyecto localmente:
 1b. Si falla ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
 
    ```
-   Remove-Item -Recurse -Force -ErrorAction SilentlyContinue .\node_modules, .\.next   
+   Remove-Item -Recurse -Force -ErrorAction SilentlyContinue .\node_modules, .\.next
    ```
    ```
-   npm install    
+   npm install
    ```
 
 1c. Se puede probar cambiar de puerto si falla:

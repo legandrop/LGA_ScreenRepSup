@@ -1,4 +1,4 @@
-type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' | 'question2' | 'option2_1' | 'option2_2' | 'option2_3' | 'question3' | 'option3_1' | 'option3_2' | 'question4' | 'option4_1' | 'option4_2' | 'question5' | 'option5_1' | 'option5_2' | 'question6' | 'option6_1' | 'option6_2' | 'question7' | 'option7_1' | 'option7_2' | 'question8' | 'option8_1' | 'option8_2' | 'question9' | 'option9_1' | 'option9_2' | 'question10' | 'option10_1' | 'option10_2' | 'tips' | 'tipsSimple' | 'tipsComplex' | 'instructions' | 'mainPlate' | 'mainPlateDescription' | 'black' | 'crtGridDescription' | 'grayJpgDescription' | 'turnOffText' | 'distortionGrid' | 'gray' | 'refPlateDescription' | 'reference' | 'footerVersion' | 'footerYear' | 'debugInfoTitle' | 'support' | 'illumination' | 'chroma' | 'continue' | 'mainPlateAdditional';
+type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' | 'question2' | 'option2_1' | 'option2_2' | 'option2_3' | 'question3' | 'option3_1' | 'option3_2' | 'question4' | 'option4_1' | 'option4_2' | 'question5' | 'option5_1' | 'option5_2' | 'question6' | 'option6_1' | 'option6_2' | 'question7' | 'option7_1' | 'option7_2' | 'question8' | 'option8_1' | 'option8_2' | 'question9' | 'option9_1' | 'option9_2' | 'question10' | 'option10_1' | 'option10_2' | 'tips' | 'tipsSimple' | 'tipsComplex' | 'instructions' | 'mainPlate' | 'mainPlateDescription' | 'black' | 'crtGridDescription' | 'grayJpgDescription' | 'turnOffText' | 'distortionGrid' | 'gray' | 'refPlateDescription' | 'reference' | 'footerVersion' | 'footerYear' | 'debugInfoTitle' | 'support' | 'illumination' | 'chroma' | 'continue' | 'mainPlateAdditional' | 'restartButton';
 
 type TranslationType = {
   [key in TranslationKeys]: string;
@@ -60,6 +60,7 @@ export const translations: { [key: string]: TranslationType } = {
     chroma: "Chroma",
     continue: "Continuar",
     mainPlateAdditional: "En caso de que el {soporte} tenga alguna luz que indique que está encendido, usar un JPG negro para que la pantalla quede oscura y el indicador quede encendido.",
+    restartButton: "Volver a empezar",
   },
   en: {
     question1: "How is the scene lighting and what impact does the screen light have on it?",
@@ -116,5 +117,6 @@ export const translations: { [key: string]: TranslationType } = {
     chroma: "Chroma",
     continue: "Continue",
     mainPlateAdditional: "If the {soporte} has any light indicating that it is on, use a black JPG so that the screen remains dark and the indicator stays on.",
+    restartButton: "Start Over",
   }
 };

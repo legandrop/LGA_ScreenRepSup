@@ -10,16 +10,17 @@ type SpecificResult1Props = {
 };
 
 export default function SpecificResult1({ soporte, tvOnOff, basePath }: SpecificResult1Props) {
+  console.log('SpecificResult1 received props:', { soporte, tvOnOff, basePath });
+
   const { t } = useTranslation();
   const { language } = useLanguage();
 
-  const soporteShort = soporte.startsWith('Monitor/TV') ? 'Monitor/TV' : soporte;
-  const translatedSoporte = language === 'en' && soporteShort === 'Celular' ? 'Mobile phone' : soporteShort;
+  const translatedSoporte = language === 'en' && soporte === 'Celular' ? 'Mobile phone' : soporte;
 
   const apagarTexto = tvOnOff ? t('turnOffText', { soporte: translatedSoporte }) : '';
   
   return (
-    <div className="standard-results">
+    <div className="standard-results w-full">
       <h2 className="result-title text-2xl font-bold mb-6">{t('instructions')}</h2>
       <ol className="list-decimal list-outside space-y-8 ml-5">
         <li>
@@ -34,11 +35,11 @@ export default function SpecificResult1({ soporte, tvOnOff, basePath }: Specific
         <li>
           <p className="mb-2 -mt-1">
             <strong>Plate Ref A: </strong> 
-            {soporteShort === 'Monitor/TV CRT' && t('crtGridDescription')}
+            {soporte === 'Monitor/TV CRT' && t('crtGridDescription')}
             {t('grayJpgDescription')} {apagarTexto}
           </p>
           <div className="mb-4 flex space-x-4">
-            {soporteShort === 'Monitor/TV CRT' && (
+            {soporte === 'Monitor/TV CRT' && (
               <ImageViewer src="/images/GrillaDistorsion.jpg" alt={t('distortionGrid')} width={100} height={100} basePath={basePath} />
             )}
             <ImageViewer src="/images/Gris.jpg" alt={t('gray')} width={100} height={100} basePath={basePath} />
@@ -53,15 +54,15 @@ export default function SpecificResult1({ soporte, tvOnOff, basePath }: Specific
         </li>
       </ol>
       
-      {/* Pie de página */}
-      <footer className="mt-8 pt-4 border-t text-sm text-gray-600">
+      {/* Pie de página con texto más pequeño */}
+      <footer className="mt-8 pt-4 border-t text-xs text-gray-500">
         <p>{t('footerVersion')}</p>
         <p>{t('footerYear')}</p>
         <p>
-          <Link href="https://www.wanka.tv" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+          <Link href="https://www.wanka.tv" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
             www.wanka.tv
           </Link> | {' '}
-          <Link href="https://github.com/legandrop/LGA_ScreenRepSup" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+          <Link href="https://github.com/legandrop/LGA_ScreenRepSup" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
             github
           </Link>
         </p>

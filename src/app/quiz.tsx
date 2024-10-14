@@ -23,8 +23,17 @@ function QuizContent() {
   const [iluminacion, setIluminacion] = useState<string | null>(null);
   const [tvOnOff, setTvOnOff] = useState<boolean | null>(null);
 
-  // Eliminar el estado de depuración
-  // const [showDebugInfo, setShowDebugInfo] = useState<boolean>(false);
+  const logState = () => {
+    console.log('Current state:', {
+      iluminacion,
+      soporte,
+      chroma,
+      cameraMovement,
+      reflejoImportante,
+      semitransparente,
+      tvOnOff
+    });
+  };
 
   const changeLanguage = useCallback((lang: string) => {
     console.log('Changing language to:', lang);
@@ -48,6 +57,8 @@ function QuizContent() {
   }, []);
 
   const askIluminacion = useCallback(() => {
+    console.log('askIluminacion called');
+    logState();
     console.log('Asking illumination question');
     setIsFirstQuestion(true);
     showQuestion(
@@ -61,6 +72,8 @@ function QuizContent() {
   }, [showQuestion]);
 
   const askSoporte = useCallback((iluminacionValue: string) => {
+    console.log('askSoporte called');
+    logState();
     showQuestion('question2', [
       { text: 'option2_1', handler: () => handleSoporteResponse('Monitor/TV LCD', iluminacionValue) },
       { text: 'option2_2', handler: () => handleSoporteResponse('Monitor/TV CRT', iluminacionValue) },
@@ -135,7 +148,6 @@ function QuizContent() {
     ], tipsContent);
   }, [showQuestion]);
 
-  // Mover la definición de askTvOnOff antes de askReflejo
   const askTvOnOff = useCallback(() => {
     console.log('askTvOnOff llamada');
     showQuestion('question10', [
@@ -159,7 +171,6 @@ function QuizContent() {
     }
   }, [showQuestion, chroma]);
 
-  // Declarar handleReflejoResponse antes de su uso
   function handleReflejoResponse(value: boolean, iluminacionValue: string, soporteValue: string) {
     console.log('Setting reflejoImportante to:', value);
     setReflejoImportante(value);
@@ -215,18 +226,31 @@ function QuizContent() {
     }
   }, [askReflejo, iluminacion]);
 
-  // Definir displayResults antes de su uso
   const displayResults = useCallback(() => {
     console.log('displayResults called');
+    logState();
     setShowResults(true);
   }, []);
 
   const handleTvOnOffResponse = useCallback((value: boolean) => {
-    console.log('handleTvOnOffResponse llamada con:', value);
+    console.log('handleTvOnOffResponse called with:', value);
     setTvOnOff(value);
-    console.log('Current state - iluminacion:', iluminacion, 'soporte:', soporte, 'chroma:', chroma, 'cameraMovement:', cameraMovement, 'reflejoImportante:', reflejoImportante, 'tvOnOff:', value);
+    logState();
     displayResults();
   }, [displayResults, iluminacion, soporte, chroma, cameraMovement, reflejoImportante]);
+
+  const restartQuiz = useCallback(() => {
+    setShowResults(false);
+    setIsFirstQuestion(true);
+    setCameraMovement(false);
+    setSoporte(null);
+    setChroma(false);
+    setSemitransparente(false);
+    setReflejoImportante(null);
+    setIluminacion(null);
+    setTvOnOff(null);
+    askIluminacion();
+  }, [askIluminacion]);
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center p-4 space-y-4">
@@ -246,7 +270,7 @@ function QuizContent() {
           </button>
         </div>
       )}
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md overflow-y-auto">
+      <div className="w-full max-w-3xl p-6 bg-white rounded-lg shadow-md overflow-y-auto">
         <AnimatePresence mode="wait">
           {!showResults ? (
             <motion.div
@@ -299,6 +323,16 @@ function QuizContent() {
           )}
         </AnimatePresence>
       </div>
+      {showResults && (
+        <div className="mt-8">
+          <button
+            onClick={restartQuiz}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          >
+            {t('restartButton')}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
