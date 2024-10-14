@@ -91,8 +91,9 @@ function QuizContent() {
 
   const askCameraMovement = useCallback((iluminacionValue: string, soporteValue: string) => {
     console.log('askCameraMovement called with soporte:', soporteValue);
+    const questionKey = soporteValue === 'Celular' ? 'question3Mobile' : 'question3';
     showQuestion(
-      'question3',
+      questionKey,
       [
         { text: 'option3_1', handler: () => handleCameraMovementResponse(true, iluminacionValue, soporteValue) },
         { text: 'option3_2', handler: () => handleCameraMovementResponse(false, iluminacionValue, soporteValue) }

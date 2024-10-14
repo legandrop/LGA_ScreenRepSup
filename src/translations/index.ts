@@ -1,4 +1,4 @@
-type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' | 'question2' | 'option2_1' | 'option2_2' | 'option2_3' | 'question3' | 'option3_1' | 'option3_2' | 'question4' | 'option4_1' | 'option4_2' | 'question5' | 'option5_1' | 'option5_2' | 'question6' | 'option6_1' | 'option6_2' | 'question7' | 'option7_1' | 'option7_2' | 'question8' | 'option8_1' | 'option8_2' | 'question9' | 'option9_1' | 'option9_2' | 'question10' | 'option10_1' | 'option10_2' | 'tips' | 'tipsSimple' | 'tipsComplex' | 'instructions' | 'mainPlate' | 'mainPlateDescription' | 'black' | 'crtGridDescription' | 'grayJpgDescription' | 'turnOffText' | 'distortionGrid' | 'gray' | 'refPlateDescription' | 'reference' | 'footerVersion' | 'footerYear' | 'debugInfoTitle' | 'support' | 'illumination' | 'chroma' | 'continue' | 'mainPlateAdditional' | 'restartButton';
+type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' | 'question2' | 'option2_1' | 'option2_2' | 'option2_3' | 'question3' | 'question3Mobile' | 'option3_1' | 'option3_2' | 'question4' | 'option4_1' | 'option4_2' | 'question5' | 'option5_1' | 'option5_2' | 'question6' | 'option6_1' | 'option6_2' | 'question7' | 'option7_1' | 'option7_2' | 'question8' | 'option8_1' | 'option8_2' | 'question9' | 'option9_1' | 'option9_2' | 'question10' | 'option10_1' | 'option10_2' | 'tips' | 'tipsSimple' | 'tipsComplex' | 'instructions' | 'mainPlate' | 'mainPlateDescription' | 'black' | 'crtGridDescription' | 'grayJpgDescription' | 'turnOffText' | 'distortionGrid' | 'gray' | 'refPlateDescription' | 'reference' | 'footerVersion' | 'footerYear' | 'debugInfoTitle' | 'support' | 'illumination' | 'chroma' | 'continue' | 'mainPlateAdditional' | 'restartButton';
 
 type TranslationType = {
   [key in TranslationKeys]: string;
@@ -15,6 +15,7 @@ export const translations: { [key: string]: TranslationType } = {
     option2_2: "Monitor / TV CRT (de tubo)",
     option2_3: "Celular",
     question3: "¿Hay movimiento de cámara?",
+    question3Mobile: "¿Hay movimiento de cámara o del celular?",
     option3_1: "Sí",
     option3_2: "No",
     question4: "¿Hay superposición de algún actor o algún objeto con la pantalla?",
@@ -72,6 +73,7 @@ export const translations: { [key: string]: TranslationType } = {
     option2_2: "CRT Monitor / TV (tube)",
     option2_3: "Mobile phone",
     question3: "Is there camera movement?",
+    question3Mobile: "Is there camera or mobile phone movement?",
     option3_1: "Yes",
     option3_2: "No",
     question4: "Is there any overlap of an actor or object with the screen?",
