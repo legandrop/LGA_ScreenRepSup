@@ -142,7 +142,7 @@ function QuizContent() {
   }, [showQuestion]);
 
   const askRotoscopeComplexity = useCallback((iluminacionValue: string, soporteValue: string) => {
-    const tipsContent = 'tips';
+    const tipsContent = 'rotoscopeTips'; // Cambiamos 'tips' por 'rotoscopeTips'
     showQuestion('question6', [
       { text: 'option6_1', handler: () => handleRotoscopeComplexityResponse('simple', iluminacionValue, soporteValue) },
       { text: 'option6_2', handler: () => handleRotoscopeComplexityResponse('complejo', iluminacionValue, soporteValue) },
@@ -304,10 +304,9 @@ function QuizContent() {
                 ))}
               </div>
               {additionalContent && (
-                <div
-                  className="mt-4"
-                  dangerouslySetInnerHTML={{ __html: t(additionalContent) }}
-                />
+                <div className="mt-4">
+                  <div dangerouslySetInnerHTML={{ __html: t(additionalContent) }} />
+                </div>
               )}
             </motion.div>
           ) : (

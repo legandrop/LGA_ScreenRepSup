@@ -15,9 +15,10 @@ export default function SpecificResult1({ soporte, tvOnOff, basePath }: Specific
   const { t } = useTranslation();
   const { language } = useLanguage();
 
-  const translatedSoporte = language === 'en' && soporte === 'Celular' ? 'Mobile phone' : soporte;
+  const soporteShort = soporte.startsWith('Monitor/TV') ? 'Monitor/TV' : soporte;
+  const translatedSoporteShort = language === 'en' && soporteShort === 'Celular' ? 'Mobile phone' : soporteShort;
 
-  const apagarTexto = tvOnOff ? t('turnOffText', { soporte: translatedSoporte }) : '';
+  const apagarTexto = tvOnOff ? t('turnOffText', { soporte: translatedSoporteShort }) : '';
   
   return (
     <div className="standard-results w-full">
@@ -25,7 +26,7 @@ export default function SpecificResult1({ soporte, tvOnOff, basePath }: Specific
       <ol className="list-decimal list-outside space-y-8 ml-5">
         <li>
           <p className="mb-2 -mt-1">
-            <strong>{t('mainPlate')}:</strong> {t('mainPlateDescription', { soporte: translatedSoporte })} {t('mainPlateAdditional', { soporte: translatedSoporte })}
+            <strong>{t('mainPlate')}:</strong> {t('mainPlateDescription', { soporte: translatedSoporteShort })} {t('mainPlateAdditional', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4">
             <ImageViewer src="/images/Negro.jpg" alt={t('black')} width={100} height={100} basePath={basePath} />
@@ -47,7 +48,7 @@ export default function SpecificResult1({ soporte, tvOnOff, basePath }: Specific
         </li>
 
         <li>
-          <p className="mb-2 -mt-1"><strong>Plate Ref B:</strong> {t('refPlateDescription', { soporte: translatedSoporte })}</p>
+          <p className="mb-2 -mt-1"><strong>Plate Ref B:</strong> {t('refPlateDescription', { soporte: translatedSoporteShort })}</p>
           <div className="mb-4">
             <ImageViewer src="/images/Referencia.jpg" alt={t('reference')} width={100} height={100} basePath={basePath} />
           </div>
