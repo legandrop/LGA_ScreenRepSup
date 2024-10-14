@@ -1,15 +1,19 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ResultsDisplay from './components/ResultsDisplay';
+import { useTranslation } from '../hooks/useTranslation';
+import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 
-export default function QuizApp() {
+function QuizContent() {
+  const { language, setLanguage } = useLanguage();
+  const { t } = useTranslation();
   const [currentQuestion, setCurrentQuestion] = useState<string>('');
   const [options, setOptions] = useState<Array<{ text: string; handler: () => void }>>([]);
   const [additionalContent, setAdditionalContent] = useState<string>('');
   const [showResults, setShowResults] = useState<boolean>(false);
-  const [results, setResults] = useState<string>('');
+  const [isFirstQuestion, setIsFirstQuestion] = useState<boolean>(true);
 
   const [cameraMovement, setCameraMovement] = useState<boolean>(false);
   const [soporte, setSoporte] = useState<string | null>(null);
@@ -19,190 +23,239 @@ export default function QuizApp() {
   const [iluminacion, setIluminacion] = useState<string | null>(null);
   const [tvOnOff, setTvOnOff] = useState<boolean | null>(null);
 
+  const [showDebugInfo, setShowDebugInfo] = useState<boolean>(false);
+
+  const changeLanguage = useCallback((lang: string) => {
+    console.log('Changing language to:', lang);
+    setLanguage(lang);
+  }, [setLanguage]);
+
   useEffect(() => {
-    // Iniciar con la pregunta de iluminación
+    console.log('Current language:', language);
     askIluminacion();
-  }, []);
+  }, [language]);
 
-  useEffect(() => {
-    if (reflejoImportante !== null && soporte !== null && iluminacion !== null) {
-      if (soporte !== 'Celular' && iluminacion === 'alta' && chroma === false) {
-        askTvOnOff();
-      } else {
-        displayResults();
-      }
-    }
-  }, [reflejoImportante, soporte, iluminacion, chroma]);
-
-  function showQuestion(
+  const showQuestion = useCallback((
     questionText: string,
     options: Array<{ text: string; handler: () => void }>,
     additionalContent: string = ''
-  ) {
+  ) => {
     setCurrentQuestion(questionText);
     setOptions(options);
     setAdditionalContent(additionalContent);
-  }
+  }, []);
 
-  function askIluminacion() {
+  const askIluminacion = useCallback(() => {
+    console.log('Asking illumination question');
+    setIsFirstQuestion(true);
     showQuestion(
-      '¿Cómo es la iluminación de la escena y qué impacto tiene la luz de la pantalla sobre ella?',
+      'question1',
       [
-        { text: 'Escena luminosa / Poco impacto de la luz de la pantalla', handler: () => handleIluminacionResponse('alta') },
-        { text: 'Iluminación media / Impacto moderado', handler: () => handleIluminacionResponse('media') },
-        { text: 'Escena oscura / Gran impacto de la luz de la pantalla', handler: () => handleIluminacionResponse('baja') }
+        { text: 'option1_1', handler: () => handleIluminacionResponse('alta') },
+        { text: 'option1_2', handler: () => handleIluminacionResponse('media') },
+        { text: 'option1_3', handler: () => handleIluminacionResponse('baja') }
       ]
     );
-  }
+  }, [showQuestion]);
 
-  function handleIluminacionResponse(value: string) {
-    setIluminacion(value);
-    askSoporte(value); // Preguntar soporte después de la iluminación
-  }
-
-  function askSoporte(iluminacionValue: string) {
-    showQuestion('¿Qué tipo de pantalla es?', [
-      { text: 'Monitor / TV LCD', handler: () => handleSoporteResponse('Monitor/TV LCD', iluminacionValue) },
-      { text: 'Monitor / TV CRT (de tubo)', handler: () => handleSoporteResponse('Monitor/TV CRT', iluminacionValue) },
-      { text: 'Celular', handler: () => handleSoporteResponse('Celular', iluminacionValue) },
+  const askSoporte = useCallback((iluminacionValue: string) => {
+    showQuestion('question2', [
+      { text: 'option2_1', handler: () => handleSoporteResponse('Monitor/TV LCD', iluminacionValue) },
+      { text: 'option2_2', handler: () => handleSoporteResponse('Monitor/TV CRT', iluminacionValue) },
+      { text: 'option2_3', handler: () => handleSoporteResponse('Celular', iluminacionValue) },
     ]);
-  }
+  }, [showQuestion]);
 
-  function handleSoporteResponse(option: string, iluminacionValue: string) {
-    setSoporte(option);
-    askCameraMovement(iluminacionValue, option); // Pasar soporte a la siguiente pregunta
-  }
+  const handleIluminacionResponse = useCallback((value: string) => {
+    console.log('Setting iluminacion to:', value);
+    setIluminacion(value);
+    setIsFirstQuestion(false);
+    askSoporte(value);
+  }, [askSoporte]);
 
-  function askCameraMovement(iluminacionValue: string, soporteValue: string) {
-    const questionText =
-      soporteValue === 'Celular'
-        ? '¿Hay movimiento de cámara o del celular?'
-        : '¿Hay movimiento de cámara?';
-
+  const askCameraMovement = useCallback((iluminacionValue: string, soporteValue: string) => {
     showQuestion(
-      questionText,
+      'question3',
       [
-        { text: 'Sí', handler: () => handleCameraMovementResponse(true, iluminacionValue) },
-        { text: 'No', handler: () => handleCameraMovementResponse(false, iluminacionValue) }
+        { text: 'option3_1', handler: () => handleCameraMovementResponse(true, iluminacionValue) },
+        { text: 'option3_2', handler: () => handleCameraMovementResponse(false, iluminacionValue) }
       ]
     );
-  }
+  }, [showQuestion]);
 
-  function handleCameraMovementResponse(value: boolean, iluminacionValue: string) {
+  const handleSoporteResponse = useCallback((option: string, iluminacionValue: string) => {
+    console.log('Setting soporte to:', option);
+    setSoporte(option);
+    askCameraMovement(iluminacionValue, option);
+  }, [askCameraMovement]);
+
+  const handleCameraMovementResponse = useCallback((value: boolean, iluminacionValue: string) => {
     setCameraMovement(value);
     askOverlap(iluminacionValue);
-  }
+  }, []);
 
-  function askOverlap(iluminacionValue: string) {
-    showQuestion('¿Hay superposición de algún actor o algún objeto con la pantalla?', [
-      { text: 'Sí', handler: () => handleOverlapResponse(true, iluminacionValue) },
-      { text: 'No', handler: () => handleOverlapResponse(false, iluminacionValue) },
+  const askOverlap = useCallback((iluminacionValue: string) => {
+    showQuestion('question4', [
+      { text: 'option4_1', handler: () => handleOverlapResponse(true, iluminacionValue) },
+      { text: 'option4_2', handler: () => handleOverlapResponse(false, iluminacionValue) },
     ]);
-  }
+  }, [showQuestion]);
 
-  function handleOverlapResponse(overlap: boolean, iluminacionValue: string) {
+  const handleOverlapResponse = useCallback((overlap: boolean, iluminacionValue: string) => {
     if (overlap) {
       askChromaOverlap(iluminacionValue);
     } else {
       handleChroma(false, iluminacionValue);
     }
-  }
+  }, []);
 
-  function askChromaOverlap(iluminacionValue: string) {
-    showQuestion('¿El actor/objeto se cruza fugazmente o está efectivamente tapando parte de la pantalla?', [
-      { text: 'Está efectivamente tapando', handler: () => handleChroma(true, iluminacionValue) },
-      { text: 'Se cruza fugazmente', handler: () => handleChroma(false, iluminacionValue) },
+  const askChromaOverlap = useCallback((iluminacionValue: string) => {
+    showQuestion('question5', [
+      { text: 'option5_1', handler: () => handleChroma(true, iluminacionValue) },
+      { text: 'option5_2', handler: () => handleChroma(false, iluminacionValue) },
     ]);
-  }
+  }, [showQuestion]);
 
-  function handleChroma(value: boolean, iluminacionValue: string) {
+  const askRotoscopeComplexity = useCallback((iluminacionValue: string) => {
+    const tipsContent = 'tips';
+    showQuestion('question6', [
+      { text: 'option6_1', handler: () => handleRotoscopeComplexityResponse('simple', iluminacionValue) },
+      { text: 'option6_2', handler: () => handleRotoscopeComplexityResponse('complejo', iluminacionValue) },
+    ], tipsContent);
+  }, [showQuestion]);
+
+  const askReflejo = useCallback((iluminacionValue: string) => {
+    if (iluminacionValue !== 'alta') {
+      showQuestion(
+        'question9',
+        [
+          { text: 'option9_1', handler: () => handleReflejoResponse(true) },
+          { text: 'option9_2', handler: () => handleReflejoResponse(false) },
+        ]
+      );
+    } else {
+      handleReflejoResponse(false);
+    }
+  }, [showQuestion]);
+
+  const handleChroma = useCallback((value: boolean, iluminacionValue: string) => {
+    console.log('Setting chroma to:', value);
     setChroma(value);
     if (value) {
       askRotoscopeComplexity(iluminacionValue);
     } else {
       askReflejo(iluminacionValue);
     }
-  }
+  }, [askRotoscopeComplexity, askReflejo]);
 
-  function askRotoscopeComplexity(iluminacionValue: string) {
-    const tipsContent = `
-      <div class="tips">
-        <p><strong>Tips:</strong></p>
-        <ul>
-          <li><strong>Elementos simples:</strong> objetos con bordes definidos, sin movimiento rápido, sin semitransparencias.</li>
-          <li><strong>Elementos complejos:</strong> pelo, objetos fuera de foco, movimiento rápido, bordes difusos, con semitransparencias.</li>
-        </ul>
-      </div>
-    `;
-    showQuestion('¿El actor/objeto es simple de rotoscopiar o es complejo?', [
-      { text: 'Simple', handler: () => handleRotoscopeComplexityResponse('simple', iluminacionValue) },
-      { text: 'Complejo', handler: () => handleRotoscopeComplexityResponse('complejo', iluminacionValue) },
-    ], tipsContent);
-  }
-
-  function handleRotoscopeComplexityResponse(complexity: string, iluminacionValue: string) {
+  const handleRotoscopeComplexityResponse = useCallback((complexity: string, iluminacionValue: string) => {
     askSemitransparente(iluminacionValue);
-  }
+  }, []);
 
-  function askSemitransparente(iluminacionValue: string) {
-    showQuestion('¿Hay un objeto semitransparente por delante de la pantalla? (por ejemplo un vaso)', [
-      { text: 'Sí', handler: () => handleSemitransparenteResponse(true, iluminacionValue) },
-      { text: 'No', handler: () => handleSemitransparenteResponse(false, iluminacionValue) },
+  const askSemitransparente = useCallback((iluminacionValue: string) => {
+    showQuestion('question7', [
+      { text: 'option7_1', handler: () => handleSemitransparenteResponse(true, iluminacionValue) },
+      { text: 'option7_2', handler: () => handleSemitransparenteResponse(false, iluminacionValue) },
     ]);
-  }
+  }, [showQuestion]);
 
-  function handleSemitransparenteResponse(value: boolean, iluminacionValue: string) {
+  const handleSemitransparenteResponse = useCallback((value: boolean, iluminacionValue: string) => {
     setSemitransparente(value);
     if (value) {
       setChroma(true);
-      showQuestion('Complica bastante las cosas. ¿Se puede evitar poner?', [
-        { text: 'Sí', handler: () => { setSemitransparente(false); askReflejo(iluminacionValue); } },
-        { text: 'No', handler: () => askReflejo(iluminacionValue) },
+      showQuestion('question8', [
+        { text: 'option8_1', handler: () => { setSemitransparente(false); askReflejo(iluminacionValue); } },
+        { text: 'option8_2', handler: () => askReflejo(iluminacionValue) },
       ]);
     } else {
       askReflejo(iluminacionValue);
     }
-  }
+  }, []);
 
-  function askReflejo(iluminacionValue: string) {
-    if (iluminacionValue !== 'alta') {
-      showQuestion(
-        `¿Hay algún reflejo en la pantalla que sea importante para la escena?`,
-        [
-          { text: 'Sí', handler: () => handleReflejoResponse(true) },
-          { text: 'No', handler: () => handleReflejoResponse(false) },
-        ]
-      );
-    } else {
-      handleReflejoResponse(false);
-    }
-  }
-
-  function handleReflejoResponse(value: boolean) {
-    setReflejoImportante(value);
-  }
-
-  function askTvOnOff() {
-    showQuestion('¿Se muestra la acción de prender o apagar la TV en cámara?', [
-      { text: 'Sí', handler: () => handleTvOnOffResponse(true) },
-      { text: 'No', handler: () => handleTvOnOffResponse(false) },
+  const askTvOnOff = useCallback(() => {
+    console.log('askTvOnOff llamada');
+    setShowDebugInfo(false); // Asegurarse de que la información de depuración no se muestre
+    showQuestion('question10', [
+      { text: 'option10_1', handler: () => handleTvOnOffResponse(true) },
+      { text: 'option10_2', handler: () => handleTvOnOffResponse(false) },
     ]);
-  }
+  }, [showQuestion]);
 
-  function handleTvOnOffResponse(value: boolean) {
+  const handleReflejoResponse = useCallback((value: boolean) => {
+    setReflejoImportante(value);
+    console.log('handleReflejoResponse called with:');
+    console.log('soporte:', soporte);
+    console.log('iluminacion:', iluminacion);
+    console.log('chroma:', chroma);
+
+    if (soporte !== 'Celular' && iluminacion === 'alta' && chroma === false) {
+      console.log('Condición cumplida, llamando a askTvOnOff');
+      askTvOnOff();
+    } else {
+      console.log('Condición no cumplida, mostrando información de depuración');
+      setShowDebugInfo(true);
+    }
+  }, [soporte, iluminacion, chroma, askTvOnOff, setShowDebugInfo]);
+
+  const handleTvOnOffResponse = useCallback((value: boolean) => {
+    console.log('handleTvOnOffResponse llamada con:', value);
     setTvOnOff(value);
     displayResults();
-  }
+  }, []);
 
-  function displayResults() {
+  const displayResults = useCallback(() => {
+    console.log('displayResults called');
     setShowResults(true);
-  }
+  }, []);
+
+  // Modificar el useEffect
+  useEffect(() => {
+    console.log('useEffect triggered');
+    console.log('Current values:');
+    console.log('reflejoImportante:', reflejoImportante, typeof reflejoImportante);
+    console.log('soporte:', soporte, typeof soporte);
+    console.log('iluminacion:', iluminacion, typeof iluminacion);
+    console.log('chroma:', chroma, typeof chroma);
+
+    if (reflejoImportante !== null && soporte !== null && iluminacion !== null) {
+      const condition = (soporte !== 'Celular' && iluminacion === 'alta' && chroma === false);
+      console.log('Condition in useEffect:', condition);
+      if (condition) {
+        console.log('Condition met in useEffect, calling askTvOnOff');
+        askTvOnOff();
+      } else {
+        console.log('Condition not met in useEffect, setting showDebugInfo to true');
+        setShowDebugInfo(true);
+      }
+    }
+  }, [reflejoImportante, soporte, iluminacion, chroma, askTvOnOff]);
+
+  const handleContinueAfterDebug = useCallback(() => {
+    setShowDebugInfo(false);
+    displayResults();
+  }, []);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-4">
-      <div className={`w-full ${showResults ? 'max-w-2xl' : 'max-w-md'} p-6 bg-white rounded-lg shadow-md overflow-y-auto ${showResults ? 'max-h-[90vh]' : ''}`}>
+      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md overflow-y-auto">
+        {isFirstQuestion && !showResults && (
+          <div className="mb-4 flex justify-end space-x-2">
+            <button
+              onClick={() => changeLanguage('es')}
+              className={`px-3 py-1 rounded ${language === 'es' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+            >
+              Esp
+            </button>
+            <button
+              onClick={() => changeLanguage('en')}
+              className={`px-3 py-1 rounded ${language === 'en' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+            >
+              Eng
+            </button>
+          </div>
+        )}
         <AnimatePresence mode="wait">
-          {!showResults ? (
+          {!showResults && !showDebugInfo ? (
             <motion.div
               key={currentQuestion}
               initial={{ opacity: 0, y: 20 }}
@@ -216,7 +269,7 @@ export default function QuizApp() {
               layout
             >
               <h2 className="text-2xl font-bold mb-6 text-center">
-                {currentQuestion}
+                {t(currentQuestion)}
               </h2>
               <div className="space-y-4">
                 {options.map((option, index) => (
@@ -225,16 +278,41 @@ export default function QuizApp() {
                     onClick={option.handler}
                     className="w-full p-4 text-left border border-gray-300 rounded-md hover:bg-blue-100 transition-colors duration-200"
                   >
-                    {option.text}
+                    {t(option.text)}
                   </button>
                 ))}
               </div>
               {additionalContent && (
                 <div
                   className="mt-4"
-                  dangerouslySetInnerHTML={{ __html: additionalContent }}
+                  dangerouslySetInnerHTML={{ __html: t(additionalContent) }}
                 />
               )}
+            </motion.div>
+          ) : showDebugInfo ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{
+                duration: 0.3,
+                ease: [0.45, 0, 0.55, 1],
+                layout: { duration: 0.3 }
+              }}
+              layout
+            >
+              <h2 className="text-2xl font-bold mb-6 text-center">{t('debugInfoTitle')}</h2>
+              <ul className="space-y-2 mb-6">
+                <li><strong>{t('support')}:</strong> {soporte}</li>
+                <li><strong>{t('illumination')}:</strong> {iluminacion}</li>
+                <li><strong>{t('chroma')}:</strong> {chroma.toString()}</li>
+              </ul>
+              <button
+                onClick={handleContinueAfterDebug}
+                className="w-full p-4 text-center bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200"
+              >
+                {t('continue')}
+              </button>
             </motion.div>
           ) : (
             <ResultsDisplay
@@ -251,5 +329,13 @@ export default function QuizApp() {
         </AnimatePresence>
       </div>
     </div>
+  );
+}
+
+export default function QuizApp() {
+  return (
+    <LanguageProvider>
+      <QuizContent />
+    </LanguageProvider>
   );
 }

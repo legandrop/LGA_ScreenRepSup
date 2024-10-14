@@ -7,9 +7,32 @@ Este proyecto es un quiz interactivo diseñado para ayudar a determinar el mejor
 
 Para ejecutar el proyecto localmente:
 
-1. Iniciar el servidor de desarrollo:
+1a. Iniciar el servidor de desarrollo:
    ```
    npm run dev
+   ```
+   o para inicialo con inspector:
+   ```
+   $env:NODE_OPTIONS='--inspect'; npm run dev
+   ```
+
+1b. Si falla ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
+
+   ```
+   Remove-Item -Recurse -Force -ErrorAction SilentlyContinue .\node_modules, .\.next   
+   ```
+   ```
+   npm install    
+   ```
+
+1c. Se puede probar cambiar de puerto si falla:
+
+   ```
+   npm run dev --port 3001
+   ```
+   y chequear si el puerto está en uso:
+   ```
+   netstat -ano | findstr :3000
    ```
 
 2. Abrir el navegador y acceder a:
@@ -29,14 +52,7 @@ Para ejecutar el proyecto localmente:
 Los archivos compilados se generarán en la carpeta `out`.
 
 
-## Si falla, ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
 
-```
-rm -rf .next       
-```
-```
-npm install    
-```
 
 ## Manejo de imágenes
 
