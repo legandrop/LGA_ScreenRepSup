@@ -124,15 +124,6 @@ function QuizContent() {
     ]);
   }, [showQuestion]);
 
-  const handleOverlapResponse = useCallback((overlap: boolean, iluminacionValue: string, soporteValue: string) => {
-    console.log('handleOverlapResponse called with soporte:', soporteValue);
-    if (overlap) {
-      askChromaOverlap(iluminacionValue, soporteValue);
-    } else {
-      handleChroma(false, iluminacionValue, soporteValue);
-    }
-  }, []);
-
   const askChromaOverlap = useCallback((iluminacionValue: string, soporteValue: string) => {
     console.log('askChromaOverlap called with soporte:', soporteValue);
     showQuestion('question5', [
@@ -140,6 +131,23 @@ function QuizContent() {
       { text: 'option5_2', handler: () => handleChroma(false, iluminacionValue, soporteValue) },
     ]);
   }, [showQuestion]);
+
+  const askSemitransparente = useCallback((iluminacionValue: string, soporteValue: string) => {
+    showQuestion('question7', [
+      { text: 'option7_1', handler: () => handleSemitransparenteResponse(true, iluminacionValue, soporteValue) },
+      { text: 'option7_2', handler: () => handleSemitransparenteResponse(false, iluminacionValue, soporteValue) },
+    ]);
+  }, [showQuestion]);
+
+  const handleOverlapResponse = useCallback((overlap: boolean, iluminacionValue: string, soporteValue: string) => {
+    console.log('handleOverlapResponse called with soporte:', soporteValue);
+    if (overlap) {
+      askChromaOverlap(iluminacionValue, soporteValue);
+    } else {
+      setChroma(false);
+      askSemitransparente(iluminacionValue, soporteValue);
+    }
+  }, [askChromaOverlap, askSemitransparente]);
 
   const askRotoscopeComplexity = useCallback((iluminacionValue: string, soporteValue: string) => {
     const tipsContent = 'rotoscopeTips'; // Cambiamos 'tips' por 'rotoscopeTips'
@@ -195,37 +203,33 @@ function QuizContent() {
     console.log('Setting chroma to:', value);
     setChroma(value);
     console.log('Current state - iluminacion:', iluminacionValue, 'soporte:', soporteValue, 'chroma:', value, 'cameraMovement:', cameraMovement);
-    if (value) {
-      askRotoscopeComplexity(iluminacionValue, soporteValue);
-    } else {
-      console.log('Calling askReflejo with iluminacion:', iluminacionValue, 'soporte:', soporteValue);
-      askReflejo(iluminacionValue, soporteValue);
-    }
-  }, [askRotoscopeComplexity, askReflejo, cameraMovement]);
+    askSemitransparente(iluminacionValue, soporteValue);
+  }, [askSemitransparente, cameraMovement]);
 
   const handleRotoscopeComplexityResponse = useCallback((complexity: string, iluminacionValue: string, soporteValue: string) => {
+    if (complexity === 'simple') {
+      setChroma(false);
+    }
     askSemitransparente(iluminacionValue, soporteValue);
-  }, []);
-
-  const askSemitransparente = useCallback((iluminacionValue: string, soporteValue: string) => {
-    showQuestion('question7', [
-      { text: 'option7_1', handler: () => handleSemitransparenteResponse(true, iluminacionValue, soporteValue) },
-      { text: 'option7_2', handler: () => handleSemitransparenteResponse(false, iluminacionValue, soporteValue) },
-    ]);
-  }, [showQuestion]);
+  }, [askSemitransparente]);
 
   const handleSemitransparenteResponse = useCallback((value: boolean, iluminacionValue: string, soporteValue: string) => {
     setSemitransparente(value);
     if (value) {
-      setChroma(true);
       showQuestion('question8', [
-        { text: 'option8_1', handler: () => { setSemitransparente(false); askReflejo(iluminacionValue, soporteValue); } },
-        { text: 'option8_2', handler: () => askReflejo(iluminacionValue, soporteValue) },
+        { text: 'option8_1', handler: () => { 
+          setSemitransparente(false); 
+          askReflejo(iluminacionValue, soporteValue); 
+        }},
+        { text: 'option8_2', handler: () => {
+          setChroma(true);  // Establecer chroma en true si no se puede evitar el objeto semitransparente
+          askReflejo(iluminacionValue, soporteValue);
+        }}
       ]);
     } else {
       askReflejo(iluminacionValue, soporteValue);
     }
-  }, [askReflejo, iluminacion]);
+  }, [askReflejo, showQuestion]);
 
   const displayResults = useCallback(() => {
     console.log('displayResults called');
