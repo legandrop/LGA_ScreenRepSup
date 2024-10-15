@@ -14,7 +14,7 @@ Para ejecutar el proyecto localmente:
    ```  
 
 <br />
-<br />
+
 
 **1b.** Si falla, ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
    ```
@@ -25,7 +25,7 @@ Para ejecutar el proyecto localmente:
    ```
 
 <br />
-<br />
+
 
 **1c.** Se puede probar cambiar de puerto si falla:
    ```
@@ -37,7 +37,7 @@ Para ejecutar el proyecto localmente:
    ```  
 
 <br />
-<br />
+
 
 **2.** Abrir el navegador y acceder a:
    ```
@@ -45,7 +45,7 @@ Para ejecutar el proyecto localmente:
    ```
 
 <br />
-<br />
+
 
 ## Compilación para producción
    ```
@@ -58,7 +58,7 @@ Para ejecutar el proyecto localmente:
 Los archivos compilados se generarán en la carpeta `out`.
 
 <br />
-<br />
+
 
 ## Manejo de imágenes
 
