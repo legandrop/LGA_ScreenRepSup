@@ -1,8 +1,10 @@
+# Guía de Desarrollo para Screen Replacement Supervisor
+
 ## Configuración del proyecto
 
 Para ejecutar el proyecto localmente:
 
-1a. Iniciar el servidor de desarrollo:
+**1a.** Iniciar el servidor de desarrollo:
    ```
    npm run dev
    ```
@@ -11,7 +13,7 @@ Para ejecutar el proyecto localmente:
    $env:NODE_OPTIONS='--inspect'; npm run dev
    ```
 
-1b. Si falla, ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
+**1b.** Si falla, ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
    ```
    Remove-Item -Recurse -Force -ErrorAction SilentlyContinue .\node_modules, .\.next
    ```
@@ -19,7 +21,7 @@ Para ejecutar el proyecto localmente:
    npm install
    ```
 
-1c. Se puede probar cambiar de puerto si falla:
+**1c.** Se puede probar cambiar de puerto si falla:
    ```
    npm run dev --port 3001
    ```
@@ -28,7 +30,7 @@ Para ejecutar el proyecto localmente:
    netstat -ano | findstr :3000
    ```
 
-2. Abrir el navegador y acceder a:
+**2.** Abrir el navegador y acceder a:
    ```
    http://localhost:3000/ScreenRepSup
    ```
