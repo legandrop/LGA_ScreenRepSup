@@ -13,6 +13,7 @@ Para ejecutar el proyecto localmente:
    $env:NODE_OPTIONS='--inspect'; npm run dev
    ```
 
+
 **1b.** Si falla, ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
    ```
    Remove-Item -Recurse -Force -ErrorAction SilentlyContinue .\node_modules, .\.next
@@ -20,6 +21,7 @@ Para ejecutar el proyecto localmente:
    ```
    npm install
    ```
+
 
 **1c.** Se puede probar cambiar de puerto si falla:
    ```
@@ -30,10 +32,12 @@ Para ejecutar el proyecto localmente:
    netstat -ano | findstr :3000
    ```
 
+
 **2.** Abrir el navegador y acceder a:
    ```
    http://localhost:3000/ScreenRepSup
    ```
+
 
 ## Compilación para producción
    ```
