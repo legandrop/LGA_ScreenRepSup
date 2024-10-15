@@ -25,4 +25,3 @@ A través de una serie de preguntas sobre las condiciones de filmación, la apli
 
 [Guía de Desarrollo](DEVELOPMENT.md).
 
-

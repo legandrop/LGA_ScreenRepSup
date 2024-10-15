@@ -11,8 +11,10 @@ Para ejecutar el proyecto localmente:
    o para iniciarlo con inspector:
    ```
    $env:NODE_OPTIONS='--inspect'; npm run dev
-   ```
+   ```  
 
+
+  
 
 **1b.** Si falla, ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
    ```
@@ -23,6 +25,7 @@ Para ejecutar el proyecto localmente:
    ```
 
 
+
 **1c.** Se puede probar cambiar de puerto si falla:
    ```
    npm run dev --port 3001
@@ -30,7 +33,7 @@ Para ejecutar el proyecto localmente:
    y chequear si el puerto está en uso:
    ```
    netstat -ano | findstr :3000
-   ```
+   ```  
 
 
 **2.** Abrir el navegador y acceder a:
