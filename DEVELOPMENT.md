@@ -57,19 +57,22 @@ Para ejecutar el proyecto localmente:
    ```
 Los archivos compilados se generarán en la carpeta `out`.
 
+<br />
+<br />
+
 ## Manejo de imágenes
 
-- Durante el desarrollo, las imágenes deben colocarse en:
+Durante el desarrollo, las imágenes deben colocarse en:
   ```
   public/images/
   ```
 
-- Después de la compilación, las imágenes se encontrarán en:
+Después de la compilación, las imágenes se encontrarán en:
   ```
   out/images/
   ```
 
-- En el servidor de producción, las imágenes deben estar en:
+En el servidor de producción, las imágenes deben estar en:
   ```
   vfx/images/
   ```
