@@ -3,8 +3,8 @@
 Iluminacion: Alta - media - baja  
 Chroma  
 CameraMovement  
-$${\color{orange}\textsf{{TvOnOff: True/False}}}$$  
-$${\color{yellow}\textsf{{Soporte: Monitor o TV LCD, TV CRT, Celular}}}$$  
+$${\color{orange}\textsf{\textbf{TvOnOff:} True/False}}$$  
+$${\color{yellow}\textsf{\textbf{Soporte:} Monitor o TV LCD, TV CRT, Celular}}$$  
 $${\color{red}\textsf{\textbf{Semitransparente}}}$$  
 $${\color{magenta}\textsf{\textbf{ReflejoImportante}}}$$  
 
@@ -28,4 +28,3 @@ $${\color{magenta}\textsf{\textbf{CameraMovement:}}}$$ False
 
 Falta pasar a formato markdown el resto de las respuestas, por el momento se pueden ver en este PDF: [Respuestas.pdf](./Respuestas.pdf)
 
-#### $${\color{red}\textsf{\textbf{Color didint work .}}}$$ 
