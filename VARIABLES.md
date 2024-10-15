@@ -21,6 +21,6 @@ $${\color{magenta}\textbf{CameraMovement:}}$$ False
 1. **Plate Principal:** Filmar el plano con el $${\color{yellow}(soporte)}$$ apagado.  
    En caso de que el $${\color{yellow}(soporte)}$$ tenga alguna luz que indique que está encendido, usar un $${\color{brown}JPG \space negro}$$ para que la pantalla quede oscura y el indicador quede encendido.
 
-2. **Plate Ref A:** ($${\color{yellow}en \space caso \space de \space soporte \space TV \space CRT:\space JPG \space con \space }$$ $${\color{purple}grilla \space de \space distorsión}$$ $${\color{yellow}1 \space durante  \space un \space segundo, \space luego \space cambiar \space a}$$ $${\color{brown}JPG \space gris}$$ durante 1 segundo $${\color{orange}y \space luego \space apagar \space el (soporte) \space en \space plano}$$).
+2. **Plate Ref A:** $${\color{yellow}(en \space caso \space de \space soporte \space TV \space CRT:\space JPG \space con \space }$$ $${\color{purple}grilla \space de \space distorsión}$$ $${\color{yellow} \space durante  \space un \space segundo, \space luego \space cambiar \space a)}$$ $${\color{brown}JPG \space gris}$$ durante 1 segundo $${\color{orange}y \space luego \space apagar \space el (soporte) \space en \space plano}$$.
 
 3. **Plate Ref B:** $${\color{yellow}(soporte)}$$ con contenido real de referencia. Cuanto más similar al contenido que se planea poner en post, mejor.
