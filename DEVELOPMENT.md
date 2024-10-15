@@ -1,7 +1,3 @@
-# Guía de Desarrollo para Screen Replacement Supervisor
-
-Esta guía proporciona información para desarrolladores que deseen contribuir o configurar el proyecto Screen Replacement Supervisor localmente.
-
 ## Configuración del proyecto
 
 Para ejecutar el proyecto localmente:
