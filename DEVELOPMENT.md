@@ -35,6 +35,10 @@ Para ejecutar el proyecto localmente:
    ```
    netstat -ano | findstr :3000
    ```  
+   y para matar el proceso:
+   ```
+   taskkill /PID <PID> /F
+   ```
 
 <br />
 
@@ -51,7 +55,7 @@ Para ejecutar el proyecto localmente:
    ```
    npm run build
    ```
-   o:
+   en realidad usar este para compilar el sitio estático:
    ```
    npm run export
    ```

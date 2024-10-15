@@ -290,8 +290,12 @@ function QuizContent() {
               }}
               layout
             >
-              {console.log('Rendering Question:', currentQuestion)}
-              {console.log('Options:', options)}
+              {/* Mover los console.log fuera del JSX */}
+              {(() => {
+                console.log('Rendering Question:', currentQuestion);
+                console.log('Options:', options);
+                return null;
+              })()}
 
               <h2 className="text-2xl font-bold mb-6 text-center">
                 {currentQuestion === 'question10' ? t('question10') : t(currentQuestion)}
