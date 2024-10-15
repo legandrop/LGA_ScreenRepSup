@@ -1,8 +1,8 @@
 # Variables
 
-Iluminacion: Alta - media - baja  
-Chroma  
-CameraMovement  
+**Iluminacion:** Alta - media - baja  
+**Chroma**  
+**CameraMovement**  
 $${\color{orange}\textsf{\textbf{TvOnOff:} True/False}}$$  
 $${\color{yellow}\textsf{\textbf{Soporte:} Monitor o TV LCD, TV CRT, Celular}}$$  
 $${\color{red}\textsf{\textbf{Semitransparente}}}$$  
