@@ -27,3 +27,5 @@ $${\color{magenta}\textbf{CameraMovement:}}$$ False
 
 
 Falta pasar a formato markdown el resto de las respuestas, por el momento se pueden ver en este PDF: [Respuestas.pdf](./Respuestas.pdf)
+
+#### $\textcolor{red}{\textsf{Color didint work .}}$ 
