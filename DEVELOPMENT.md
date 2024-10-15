@@ -13,7 +13,8 @@ Para ejecutar el proyecto localmente:
    $env:NODE_OPTIONS='--inspect'; npm run dev
    ```  
 
-
+<br />
+<br />
   
 
 **1b.** Si falla, ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
