@@ -15,7 +15,6 @@ Para ejecutar el proyecto localmente:
 
 <br />
 <br />
-  
 
 **1b.** Si falla, ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
    ```
@@ -25,7 +24,8 @@ Para ejecutar el proyecto localmente:
    npm install
    ```
 
-
+<br />
+<br />
 
 **1c.** Se puede probar cambiar de puerto si falla:
    ```
@@ -36,12 +36,16 @@ Para ejecutar el proyecto localmente:
    netstat -ano | findstr :3000
    ```  
 
+<br />
+<br />
 
 **2.** Abrir el navegador y acceder a:
    ```
    http://localhost:3000/ScreenRepSup
    ```
 
+<br />
+<br />
 
 ## Compilación para producción
    ```
