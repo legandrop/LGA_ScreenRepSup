@@ -25,4 +25,4 @@ A través de una serie de preguntas sobre las condiciones de filmación, la apli
 
 [Guía de Desarrollo](DEVELOPMENT.md).
 
-Para entender las variables utilizadas en el sistema y cómo afectan al flujo de la aplicación, consulta nuestra [Guía de Variables](VARIABLES.md).
+Para entender las variables utilizadas en el sistema y cómo afectan al flujo de la aplicación: [Guía de Variables](VARIABLES.md).
