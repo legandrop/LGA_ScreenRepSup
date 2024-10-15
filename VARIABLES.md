@@ -4,8 +4,8 @@
 Iluminacion: Alta - media - baja <br />
 Chroma <br />
 CameraMovement <br />
-$${\color{orange}TvOnOff:}$$ True/False <br />
-$${\color{yellow}Soporte:}$$ Monitor o TV LCD, TV CRT, Celular <br />
+$${\color{orange}TvOnOff: True/False}$$ <br />
+$${\color{yellow}Soporte:Monitor o TV LCD, TV CRT, Celular}$$ <br />
 $${\color{red}Semitransparente}$$ <br />
 $${\color{magenta}ReflejoImportante}$$ <br />
 
