@@ -12,7 +12,7 @@ La pregunta de TVONOFF hay que hacerla solo si la iluminacion de la escena es al
 
 ---
 
-## Escenario 1
+## Respuesta 1
 
 $${\color{magenta}\textbf{Iluminacion:}}$$ Alta  
 $${\color{green}\textbf{Chroma:}}$$ False  
@@ -24,3 +24,6 @@ $${\color{magenta}\textbf{CameraMovement:}}$$ False
 2. **Plate Ref A:** $${\color{yellow}(en \space caso \space de \space soporte \space TV \space CRT:\space JPG \space con \space }$$ $${\color{purple}grilla \space de \space distorsión}$$ $${\color{yellow} \space durante  \space un \space segundo, \space luego \space cambiar \space a)}$$ $${\color{brown}JPG \space gris}$$ durante 1 segundo $${\color{orange}y \space luego \space apagar \space el (soporte) \space en \space plano}$$.
 
 3. **Plate Ref B:** $${\color{yellow}(soporte)}$$ con contenido real de referencia. Cuanto más similar al contenido que se planea poner en post, mejor.
+
+
+Falta pasar a formato markdown el resto de las respuestas, por el momento se pueden ver en este PDF: [Respuestas.pdf](./Respuestas.pdf)
