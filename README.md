@@ -1,76 +1,28 @@
 # Screen Replacement Supervisor
 
-Este proyecto es un quiz interactivo diseñado para ayudar a determinar el mejor método para realizar reemplazos de pantalla en producción audiovisual.
+## Descripción
 
-## Configuración del proyecto
+Screen Replacement Supervisor es una aplicación web interactiva diseñada para asistir en la determinación del método más adecuado para realizar reemplazos de pantalla.
+A través de una serie de preguntas sobre las condiciones de filmación, la aplicación proporciona instrucciones detalladas y personalizadas para capturar las tomas necesarias.
 
+## Características principales
 
-Para ejecutar el proyecto localmente:
+- Cuestionario interactivo para evaluar las condiciones de filmación
+- Soporte para múltiples tipos de pantallas (LCD, CRT, móviles)
+- Consideraciones para iluminación, movimiento de cámara y objetos semitransparentes
+- Instrucciones detalladas para la captura de plates principales y de referencia
+- Soporte multilingüe (Español e Inglés)
+- Interfaz de usuario intuitiva y responsive
 
-1a. Iniciar el servidor de desarrollo:
-   ```
-   npm run dev
-   ```
-   o para inicialo con inspector:
-   ```
-   $env:NODE_OPTIONS='--inspect'; npm run dev
-   ```
+## Cómo usar
 
-1b. Si falla ejecutar estos comandos para borrar la carpeta .next y volver a instalar las dependencias:
+1. Accede a la aplicación a través de tu navegador web.
+2. Responde a las preguntas sobre tu escena y condiciones de filmación.
+3. Recibe instrucciones personalizadas para capturar tus tomas.
+4. Sigue las instrucciones durante la filmación para optimizar el proceso de post-producción.
 
-   ```
-   Remove-Item -Recurse -Force -ErrorAction SilentlyContinue .\node_modules, .\.next
-   ```
-   ```
-   npm install
-   ```
+## Información para Desarrolladores
 
-1c. Se puede probar cambiar de puerto si falla:
-
-   ```
-   npm run dev --port 3001
-   ```
-   y chequear si el puerto está en uso:
-   ```
-   netstat -ano | findstr :3000
-   ```
-
-2. Abrir el navegador y acceder a:
-   ```
-   http://localhost:3000/ScreenRepSup
-   ```
-
-## Compilación para producción
-
-   ```
-   npm run build
-   ```
-   o:
-   ```
-   npm run export
-   ```
-Los archivos compilados se generarán en la carpeta `out`.
-
-
-
-
-## Manejo de imágenes
-
-- Durante el desarrollo, las imágenes deben colocarse en:
-  ```
-  public/images/
-  ```
-
-- Después de la compilación, las imágenes se encontrarán en:
-  ```
-  out/images/
-  ```
-
-- En el servidor de producción, las imágenes deben estar en:
-  ```
-  vfx/images/
-  ```
-
-
+[Guía de Desarrollo](DEVELOPMENT.md).
 
 
