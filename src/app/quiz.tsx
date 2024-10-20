@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ResultsDisplay from './components/ResultsDisplay';
 import { useTranslation } from '../hooks/useTranslation';
 import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
+import AllVariables from './components/AllVariables'; 
 
 function QuizContent() {
   const { language, setLanguage } = useLanguage();
@@ -22,6 +23,7 @@ function QuizContent() {
   const [reflejoImportante, setReflejoImportante] = useState<boolean | null>(null);
   const [iluminacion, setIluminacion] = useState<string | null>(null);
   const [tvOnOff, setTvOnOff] = useState<boolean | null>(null);
+  const [lga_debug, setLga_debug] = useState(true); // Variable para debug
 
   const logState = () => {
     console.log('Current state:', {
@@ -56,118 +58,6 @@ function QuizContent() {
     setAdditionalContent(additionalContent);
   }, []);
 
-  const askIluminacion = useCallback(() => {
-    console.log('askIluminacion called');
-    logState();
-    console.log('Asking illumination question');
-    setIsFirstQuestion(true);
-    showQuestion(
-      'question1',
-      [
-        { text: 'option1_1', handler: () => handleIluminacionResponse('alta') },
-        { text: 'option1_2', handler: () => handleIluminacionResponse('media') },
-        { text: 'option1_3', handler: () => handleIluminacionResponse('baja') }
-      ]
-    );
-  }, [showQuestion]);
-
-  const askSoporte = useCallback((iluminacionValue: string) => {
-    console.log('askSoporte called');
-    logState();
-    showQuestion('question2', [
-      { text: 'option2_1', handler: () => handleSoporteResponse('Monitor/TV LCD', iluminacionValue) },
-      { text: 'option2_2', handler: () => handleSoporteResponse('Monitor/TV CRT', iluminacionValue) },
-      { text: 'option2_3', handler: () => handleSoporteResponse('Celular', iluminacionValue) },
-    ]);
-  }, [showQuestion]);
-
-  const handleIluminacionResponse = useCallback((value: string) => {
-    console.log('Setting iluminacion to:', value);
-    setIluminacion(value);
-    console.log('Current state - iluminacion:', value, 'soporte:', soporte, 'chroma:', chroma);
-    setIsFirstQuestion(false);
-    askSoporte(value);
-  }, [askSoporte, soporte, chroma]);
-
-  const askCameraMovement = useCallback((iluminacionValue: string, soporteValue: string) => {
-    console.log('askCameraMovement called with soporte:', soporteValue);
-    const questionKey = soporteValue === 'Celular' ? 'question3Mobile' : 'question3';
-    showQuestion(
-      questionKey,
-      [
-        { text: 'option3_1', handler: () => handleCameraMovementResponse(true, iluminacionValue, soporteValue) },
-        { text: 'option3_2', handler: () => handleCameraMovementResponse(false, iluminacionValue, soporteValue) }
-      ]
-    );
-  }, [showQuestion]);
-
-  const handleSoporteResponse = useCallback((option: string, iluminacionValue: string) => {
-    console.log('Setting soporte to:', option);
-    setSoporte(option);
-    console.log('Current state - iluminacion:', iluminacionValue, 'soporte:', option, 'chroma:', chroma);
-    console.log('Soporte set, calling askCameraMovement');
-    askCameraMovement(iluminacionValue, option);
-  }, [askCameraMovement, chroma]);
-
-  const handleCameraMovementResponse = useCallback((value: boolean, iluminacionValue: string, soporteValue: string) => {
-    console.log('Setting cameraMovement to:', value);
-    setCameraMovement(value);
-    console.log('Current state - iluminacion:', iluminacionValue, 'soporte:', soporteValue, 'chroma:', chroma, 'cameraMovement:', value);
-    askOverlap(iluminacionValue, soporteValue);
-  }, [chroma]);
-
-  const askOverlap = useCallback((iluminacionValue: string, soporteValue: string) => {
-    console.log('askOverlap called with soporte:', soporteValue);
-    const questionKey = soporteValue === 'Celular' ? 'question4Mobile' : 'question4';
-    showQuestion(questionKey, [
-      { text: 'option4_1', handler: () => handleOverlapResponse(true, iluminacionValue, soporteValue) },
-      { text: 'option4_2', handler: () => handleOverlapResponse(false, iluminacionValue, soporteValue) },
-    ]);
-  }, [showQuestion]);
-
-  const askChromaOverlap = useCallback((iluminacionValue: string, soporteValue: string) => {
-    console.log('askChromaOverlap called with soporte:', soporteValue);
-    showQuestion('question6', [
-      { text: 'option6_2', handler: () => handleChroma(true, iluminacionValue, soporteValue) },
-      { text: 'option6_1', handler: () => handleChroma(false, iluminacionValue, soporteValue) },
-    ], 'rotoscopeTips');
-  }, [showQuestion]);
-
-  const askSemitransparente = useCallback((iluminacionValue: string, soporteValue: string, chromaValue: boolean) => {
-    showQuestion('question7', [
-      { text: 'option7_1', handler: () => handleSemitransparenteResponse(true, iluminacionValue, soporteValue, chromaValue) },
-      { text: 'option7_2', handler: () => handleSemitransparenteResponse(false, iluminacionValue, soporteValue, chromaValue) },
-    ]);
-  }, [showQuestion]);
-
-  const handleOverlapResponse = useCallback((overlap: boolean, iluminacionValue: string, soporteValue: string) => {
-    console.log('handleOverlapResponse called with soporte:', soporteValue);
-    if (overlap) {
-      askChromaOverlap(iluminacionValue, soporteValue);
-    } else {
-      setChroma(false);
-      askSemitransparente(iluminacionValue, soporteValue);
-    }
-  }, [askChromaOverlap, askSemitransparente]);
-
-  const askRotoscopeComplexity = useCallback((iluminacionValue: string, soporteValue: string) => {
-    const tipsContent = 'rotoscopeTips'; // Cambiamos 'tips' por 'rotoscopeTips'
-    showQuestion('question6', [
-      { text: 'option6_1', handler: () => handleRotoscopeComplexityResponse('simple', iluminacionValue, soporteValue) },
-      { text: 'option6_2', handler: () => handleRotoscopeComplexityResponse('complejo', iluminacionValue, soporteValue) },
-    ], tipsContent);
-  }, [showQuestion]);
-
-  const askTvOnOff = useCallback(() => {
-    console.log('askTvOnOff llamada');
-    showQuestion('question10', [
-      { text: 'option10_1', handler: () => handleTvOnOffResponse(true) },
-      { text: 'option10_2', handler: () => handleTvOnOffResponse(false) },
-    ]);
-  }, [showQuestion]);
-
-
-
   const askReflejo = useCallback((iluminacionValue: string, soporteValue: string, chromaValue: boolean) => {
     console.log('🔍 askReflejo EVALUATION:');
     console.log('   iluminacion:', iluminacionValue);
@@ -191,39 +81,6 @@ function QuizContent() {
       handleReflejoResponse(false, iluminacionValue, soporteValue);
     }
   }, [showQuestion, chroma]);
-
-  function handleReflejoResponse(value: boolean, iluminacionValue: string, soporteValue: string) {
-    console.log('Setting reflejoImportante to:', value);
-    setReflejoImportante(value);
-    console.log('handleReflejoResponse called with:');
-    console.log('soporte:', soporteValue);
-    console.log('iluminacion:', iluminacionValue);
-    console.log('chroma:', chroma);
-    console.log('cameraMovement:', cameraMovement);
-    console.log('reflejoImportante:', value);
-
-    if (soporteValue && soporteValue !== 'Celular' && iluminacionValue === 'alta' && chroma === false) {
-      console.log('Condición cumplida, llamando a askTvOnOff');
-      askTvOnOff();
-    } else {
-      console.log('Condición no cumplida, mostrando resultados directamente');
-      displayResults();
-    }
-  }
-
-  const handleChroma = useCallback((value: boolean, iluminacionValue: string, soporteValue: string) => {
-    console.log('Setting chroma to:', value);
-    setChroma(value);
-    console.log('Current state - iluminacion:', iluminacionValue, 'soporte:', soporteValue, 'chroma:', value, 'cameraMovement:', cameraMovement);
-    askSemitransparente(iluminacionValue, soporteValue, value);  // Pasar el valor de chroma
-  }, [askSemitransparente, cameraMovement]);
-
-  const handleRotoscopeComplexityResponse = useCallback((complexity: string, iluminacionValue: string, soporteValue: string) => {
-    if (complexity === 'simple') {
-      setChroma(false);
-    }
-    askSemitransparente(iluminacionValue, soporteValue);
-  }, [askSemitransparente]);
 
   const handleSemitransparenteResponse = useCallback((value: boolean, iluminacionValue: string, soporteValue: string, chromaValue: boolean) => {
     console.log('🔧 handleSemitransparenteResponse:');
@@ -252,7 +109,121 @@ function QuizContent() {
       console.log('🔄 Calling askReflejo with chroma:', chromaValue);
       askReflejo(iluminacionValue, soporteValue, chromaValue);
     }
-  }, [askReflejo, showQuestion]);
+  }, [showQuestion, askReflejo, setChroma, setSemitransparente]);
+
+  const askSemitransparente = useCallback((iluminacionValue: string, soporteValue: string, chromaValue: boolean) => {
+    showQuestion('question7', [
+      { text: 'option7_1', handler: () => handleSemitransparenteResponse(true, iluminacionValue, soporteValue, chromaValue) },
+      { text: 'option7_2', handler: () => handleSemitransparenteResponse(false, iluminacionValue, soporteValue, chromaValue) },
+    ]);
+  }, [showQuestion, handleSemitransparenteResponse]);
+
+  const handleRotoscopeComplexityResponse = useCallback((complexity: string, iluminacionValue: string, soporteValue: string) => {
+    console.log('handleRotoscopeComplexityResponse called with complexity:', complexity);
+    if (complexity === 'simple') {
+      console.log('Rotoscope is simple. Setting chroma to false and proceeding.');
+      setChroma(false);
+      handleSemitransparenteResponse(false, iluminacionValue, soporteValue, false);
+    } else {
+      console.log('Rotoscope is complejo. Setting chroma to true and asking about semitransparente objects.');
+      setChroma(true);
+      askSemitransparente(iluminacionValue, soporteValue, true);
+    }
+  }, [setChroma, handleSemitransparenteResponse, askSemitransparente]);
+
+  const askChromaOverlap = useCallback((iluminacionValue: string, soporteValue: string) => {
+    console.log('askChromaOverlap called with soporte:', soporteValue);
+    showQuestion('question6', [
+      { text: 'option6_1', handler: () => handleRotoscopeComplexityResponse('simple', iluminacionValue, soporteValue) },
+      { text: 'option6_2', handler: () => handleRotoscopeComplexityResponse('complejo', iluminacionValue, soporteValue) },
+    ], 'rotoscopeTips');
+  }, [showQuestion, handleRotoscopeComplexityResponse]);
+
+  const askIluminacion = useCallback(() => {
+    console.log('askIluminacion called');
+    logState();
+    console.log('Asking illumination question');
+    setIsFirstQuestion(true);
+    showQuestion(
+      'question1',
+      [
+        { text: 'option1_1', handler: () => handleIluminacionResponse('alta') },
+        { text: 'option1_2', handler: () => handleIluminacionResponse('media') },
+        { text: 'option1_3', handler: () => handleIluminacionResponse('baja') }
+      ]
+    );
+  }, [showQuestion]);
+
+  const askSoporte = useCallback((iluminacionValue: string) => {
+    console.log('askSoporte called');
+    logState();
+    showQuestion('question2', [
+      { text: 'option2_1', handler: () => handleSoporteResponse('Monitor/TV LCD', iluminacionValue) },
+      { text: 'option2_2', handler: () => handleSoporteResponse('Monitor/TV CRT', iluminacionValue) },
+      { text: 'option2_3', handler: () => handleSoporteResponse('Celular', iluminacionValue) },
+    ]);
+  }, [showQuestion]);
+
+  const askCameraMovement = useCallback((iluminacionValue: string, soporteValue: string) => {
+    console.log('askCameraMovement called with soporte:', soporteValue);
+    const questionKey = soporteValue === 'Celular' ? 'question3Mobile' : 'question3';
+    showQuestion(
+      questionKey,
+      [
+        { text: 'option3_1', handler: () => handleCameraMovementResponse(true, iluminacionValue, soporteValue) },
+        { text: 'option3_2', handler: () => handleCameraMovementResponse(false, iluminacionValue, soporteValue) }
+      ]
+    );
+  }, [showQuestion]);
+
+  const askOverlap = useCallback((iluminacionValue: string, soporteValue: string) => {
+    console.log('askOverlap called with soporte:', soporteValue);
+    const questionKey = soporteValue === 'Celular' ? 'question4Mobile' : 'question4';
+    showQuestion(questionKey, [
+      { text: 'option4_1', handler: () => handleOverlapResponse(true, iluminacionValue, soporteValue) },
+      { text: 'option4_2', handler: () => handleOverlapResponse(false, iluminacionValue, soporteValue) },
+    ]);
+  }, [showQuestion]);
+
+  const handleIluminacionResponse = useCallback((value: string) => {
+    console.log('Setting iluminacion to:', value);
+    setIluminacion(value);
+    console.log('Current state - iluminacion:', value, 'soporte:', soporte, 'chroma:', chroma);
+    setIsFirstQuestion(false);
+    askSoporte(value);
+  }, [askSoporte, soporte, chroma]);
+
+  const handleSoporteResponse = useCallback((option: string, iluminacionValue: string) => {
+    console.log('Setting soporte to:', option);
+    setSoporte(option);
+    console.log('Current state - iluminacion:', iluminacionValue, 'soporte:', option, 'chroma:', chroma);
+    console.log('Soporte set, calling askCameraMovement');
+    askCameraMovement(iluminacionValue, option);
+  }, [askCameraMovement, chroma]);
+
+  const handleCameraMovementResponse = useCallback((value: boolean, iluminacionValue: string, soporteValue: string) => {
+    console.log('Setting cameraMovement to:', value);
+    setCameraMovement(value);
+    console.log('Current state - iluminacion:', iluminacionValue, 'soporte:', soporteValue, 'chroma:', chroma, 'cameraMovement:', value);
+    askOverlap(iluminacionValue, soporteValue);
+  }, [chroma, askOverlap]);
+
+  const handleOverlapResponse = useCallback((overlap: boolean, iluminacionValue: string, soporteValue: string) => {
+    console.log('handleOverlapResponse called with soporte:', soporteValue);
+    if (overlap) {
+      askChromaOverlap(iluminacionValue, soporteValue);
+    } else {
+      setChroma(false);
+      handleSemitransparenteResponse(false, iluminacionValue, soporteValue, false);
+    }
+  }, [askChromaOverlap, handleSemitransparenteResponse, setChroma]);
+
+  const handleChroma = useCallback((value: boolean, iluminacionValue: string, soporteValue: string) => {
+    console.log('Setting chroma to:', value);
+    setChroma(value);
+    console.log('Current state - iluminacion:', iluminacionValue, 'soporte:', soporteValue, 'chroma:', value, 'cameraMovement:', cameraMovement);
+    askSemitransparente(iluminacionValue, soporteValue, value);  // Pasar el valor de chroma
+  }, [askSemitransparente, cameraMovement]);
 
   const displayResults = useCallback(() => {
     console.log('displayResults called');
@@ -265,7 +236,49 @@ function QuizContent() {
     setTvOnOff(value);
     logState();
     displayResults();
-  }, [displayResults, iluminacion, soporte, chroma, cameraMovement, reflejoImportante]);
+  }, [displayResults]);
+
+  const askTvOnOff = useCallback(() => {
+    console.log('askTvOnOff llamada');
+    showQuestion('question10', [
+      { text: 'option10_1', handler: () => handleTvOnOffResponse(true) },
+      { text: 'option10_2', handler: () => handleTvOnOffResponse(false) },
+    ]);
+  }, [showQuestion, handleTvOnOffResponse]);
+
+  const handleReflejoResponse = useCallback((value: boolean, iluminacionValue: string, soporteValue: string) => {
+    console.log('Setting reflejoImportante to:', value);
+    setReflejoImportante(value);
+    console.log('handleReflejoResponse called with:');
+    console.log('soporte:', soporteValue);
+    console.log('iluminacion:', iluminacionValue);
+    console.log('chroma:', chroma);
+    console.log('cameraMovement:', cameraMovement);
+    console.log('reflejoImportante:', value);
+
+    if (soporteValue && soporteValue !== 'Celular' && iluminacionValue === 'alta' && chroma === false) {
+      console.log('Condición cumplida, llamando a askTvOnOff');
+      askTvOnOff();
+    } else {
+      console.log('Condición no cumplida, mostrando resultados directamente');
+      displayResults();
+    }
+  }, [chroma, cameraMovement, askTvOnOff, displayResults]);
+
+
+
+
+  // Función para determinar qué SpecificResult mostrar
+  const getSpecificResult = () => {
+    // Lógica para determinar qué SpecificResult mostrar basado en las respuestas
+    // Esta es una lógica de ejemplo, ajústala según tus necesidades reales
+    if (soporte === 'Celular') return 1;
+    if (soporte === 'Monitor/TV CRT') return 2;
+    if (soporte === 'Monitor/TV LCD' && !cameraMovement) return 3;
+    if (soporte === 'Monitor/TV LCD' && cameraMovement && !chroma) return 4;
+    if (soporte === 'Monitor/TV LCD' && cameraMovement && chroma && !semitransparente) return 5;
+    return 6;
+  };
 
   const restartQuiz = useCallback(() => {
     setShowResults(false);
@@ -341,16 +354,29 @@ function QuizContent() {
               )}
             </motion.div>
           ) : (
-            <ResultsDisplay
-              cameraMovement={cameraMovement}
-              soporte={soporte}
-              chroma={chroma}
-              semitransparente={semitransparente}
-              reflejoImportante={reflejoImportante}
-              iluminacion={iluminacion}
-              tvOnOff={tvOnOff}
-              basePath="/ScreenRepSup"
-            />
+            <>
+              <ResultsDisplay
+                cameraMovement={cameraMovement}
+                soporte={soporte}
+                chroma={chroma}
+                semitransparente={semitransparente}
+                reflejoImportante={reflejoImportante}
+                iluminacion={iluminacion}
+                tvOnOff={tvOnOff}
+                basePath="/ScreenRepSup"
+              />
+              {lga_debug && (
+                <AllVariables
+                  cameraMovement={cameraMovement}
+                  soporte={soporte}
+                  chroma={chroma}
+                  semitransparente={semitransparente}
+                  reflejoImportante={reflejoImportante}
+                  iluminacion={iluminacion}
+                  tvOnOff={tvOnOff}
+                />
+              )}
+            </>
           )}
         </AnimatePresence>
       </div>
