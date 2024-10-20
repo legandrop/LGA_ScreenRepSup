@@ -118,7 +118,8 @@ function QuizContent() {
 
   const askOverlap = useCallback((iluminacionValue: string, soporteValue: string) => {
     console.log('askOverlap called with soporte:', soporteValue);
-    showQuestion('question4', [
+    const questionKey = soporteValue === 'Celular' ? 'question4Mobile' : 'question4';
+    showQuestion(questionKey, [
       { text: 'option4_1', handler: () => handleOverlapResponse(true, iluminacionValue, soporteValue) },
       { text: 'option4_2', handler: () => handleOverlapResponse(false, iluminacionValue, soporteValue) },
     ]);
@@ -126,10 +127,10 @@ function QuizContent() {
 
   const askChromaOverlap = useCallback((iluminacionValue: string, soporteValue: string) => {
     console.log('askChromaOverlap called with soporte:', soporteValue);
-    showQuestion('question5', [
-      { text: 'option5_1', handler: () => handleChroma(true, iluminacionValue, soporteValue) },
-      { text: 'option5_2', handler: () => handleChroma(false, iluminacionValue, soporteValue) },
-    ]);
+    showQuestion('question6', [
+      { text: 'option6_2', handler: () => handleChroma(true, iluminacionValue, soporteValue) },
+      { text: 'option6_1', handler: () => handleChroma(false, iluminacionValue, soporteValue) },
+    ], 'rotoscopeTips');
   }, [showQuestion]);
 
   const askSemitransparente = useCallback((iluminacionValue: string, soporteValue: string, chromaValue: boolean) => {
