@@ -89,10 +89,10 @@ export const translations: { [key: string]: TranslationType } = {
     plateRefASemitransparentWithMovement: "JPG con grilla de distorsión y objeto semitransparente repitiendo la acción del objeto en el plate principal, luego retirar el objeto semitransparente y cambiar a JPG gris durante 1 segundo y apagar el {soporte} en toma.",
     plateRefACRTWithMovementChroma: "JPG con grilla de distorsión durante un 1 segundo, luego cambiar a JPG gris durante 1 segundo y apagar el {soporte} en toma",
     plateRefAOtherWithMovementChroma: "JPG gris durante 1 segundo y apagar el {soporte} en toma",
-    mobileConsiderationsTitle: "Consideraciones para celulares:",
-    mobileConsiderationsText: "Si hay interacción con el teléfono (ej: alguien está tecleando) la acción tiene que tener coherencia con la ubicación de los elementos que se agregarán después.",
+    mobileConsiderationsTitle: "Consideraciones para interacción con celulares:",
+    mobileConsiderationsText: "Si hay interacción con la pantalla (ej: alguien está tecleando), la acción tiene que tener coherencia con la ubicación de los elementos que se agregarán después.",
     mobileConsiderationsPreparedScreen: "Conviene tener preparada/programada una pantalla o una app de antemano para que los dedos se apoyen en los lugares correctos.",
-    mobileConsiderationsClicking: "Además, clickear en los lugares correctos. Si se usa una imagen en full screen, al tocar la pantalla aparecen elementos gráficos o la imagen sale de full screen. Para que esto no suceda hay que usar la función GUIDED ACCESS del teléfono para bloquear la pantalla. Instrucciones para [Android](https://www.youtube.com/watch?v=o0ujQcw1tdc) | [iPhone](https://www.youtube.com/watch?v=p6QrNwtR3nc)",
+    mobileConsiderationsClicking: "Si se usa una imagen en full screen, al tocar la pantalla aparecen elementos gráficos o la imagen sale de full screen. Para que esto no suceda, hay que usar la función GUIDED ACCESS del teléfono para bloquear la pantalla. Instrucciones para [Android](https://www.youtube.com/watch?v=o0ujQcw1tdc) | [iPhone](https://www.youtube.com/watch?v=p6QrNwtR3nc)",
     question4Mobile: "¿Hay superposición de algún actor, dedos o algún objeto con la pantalla?",
   },
   en: {
@@ -179,10 +179,10 @@ export const translations: { [key: string]: TranslationType } = {
     plateRefASemitransparentWithMovement: "JPG with distortion grid and semi-transparent object repeating the action from the main plate, then remove the semi-transparent object, switch to gray JPG for 1 second, and turn off the {soporte} on camera.",
     plateRefACRTWithMovementChroma: "JPG with distortion grid for 1 second, then switch to gray JPG for 1 second and turn off the {soporte} on camera",
     plateRefAOtherWithMovementChroma: "Gray JPG for 1 second, then turn off the {soporte} on camera",
-    mobileConsiderationsTitle: "Considerations for mobile phones:",
-    mobileConsiderationsText: "If there is interaction with the phone (e.g., someone is typing), the action must be consistent with the location of the elements that will be added later.",
+    mobileConsiderationsTitle: "Considerations for interaction with mobile phones:",
+    mobileConsiderationsText: "If there is interaction with the screen (e.g., someone is typing), the action must be consistent with the location of the elements that will be added later.",
     mobileConsiderationsPreparedScreen: "It is advisable to have a screen or app prepared/programmed in advance so that the fingers are placed in the correct locations.",
-    mobileConsiderationsClicking: "Additionally, click in the correct places. If a full-screen image is used, touching the screen may cause graphic elements to appear or the image to exit full-screen mode. To prevent this, use the phone's GUIDED ACCESS function to lock the screen. Instructions for [Android](https://www.youtube.com/watch?v=o0ujQcw1tdc) | [iPhone](https://www.youtube.com/watch?v=p6QrNwtR3nc)",
+    mobileConsiderationsClicking: "If a full-screen image is used, touching the screen may cause graphic elements to appear or the image to exit full-screen mode. To prevent this, use the phone's GUIDED ACCESS function to lock the screen. Instructions for [Android](https://www.youtube.com/watch?v=o0ujQcw1tdc) | [iPhone](https://www.youtube.com/watch?v=p6QrNwtR3nc)",
     question4Mobile: "Is there any overlap of an actor, fingers, or any object with the screen?",
   }
 };

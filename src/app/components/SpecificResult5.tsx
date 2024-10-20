@@ -22,6 +22,14 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
 
   const apagarTexto = tvOnOff ? t('turnOffText', { soporte: translatedSoporteShort }) : '';
   
+  const createMarkup = (html: string) => {
+    const sanitizedHtml = html.replace(
+      /\[([^\]]+)\]\(([^)]+)\)/g, 
+      '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-500 underline">$1</a>'
+    );
+    return { __html: sanitizedHtml };
+  }
+
   return (
     <div className="standard-results w-full">
       <h2 className="result-title text-2xl font-bold mb-6">{t('instructions')}</h2>
@@ -61,12 +69,27 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
             <ImageViewer src="/images/Referencia.jpg" alt={t('reference')} width={100} height={100} basePath={basePath} />
           </div>
         </li>
+
+        {reflejoImportante && (
+          <li>
+            <p className="mb-2 -mt-1"><strong>{t('plateReflejo')}:</strong> {t('plateReflejoDescription', { soporte: translatedSoporteShort })}</p>
+          </li>
+        )}
       </ol>
       
-      {reflejoImportante && (
-        <li>
-          <p className="mb-2 -mt-1"><strong>{t('plateReflejo')}:</strong> {t('plateReflejoDescription', { soporte: translatedSoporteShort })}</p>
-        </li>
+      {soporte === 'Celular' && (
+        <div className="mt-8 p-4 bg-yellow-100 rounded-lg">
+          <h3 className="font-bold mb-2">{t('mobileConsiderationsTitle')}</h3>
+          <p>{t('mobileConsiderationsText')}</p>
+          <ul className="list-disc list-inside mt-2">
+            <li>{t('mobileConsiderationsPreparedScreen')}</li>
+            <li>
+              {t('mobileConsiderationsClicking').split('Instrucciones para')[0]}
+              <br />
+              <span className="ml-3" dangerouslySetInnerHTML={createMarkup('Instrucciones para ' + t('mobileConsiderationsClicking').split('Instrucciones para')[1])} />
+            </li>
+          </ul>
+        </div>
       )}
       
       {/* Pie de página con texto más pequeño */}

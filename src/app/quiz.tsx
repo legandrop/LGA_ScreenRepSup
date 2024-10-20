@@ -283,7 +283,7 @@ function QuizContent() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center p-4 space-y-4">
       {isFirstQuestion && !showResults && (
-        <div className="w-full max-w-md flex justify-end space-x-2">
+        <div className="w-full max-w-3xl flex justify-end space-x-2 mb-4">
           <button
             onClick={() => changeLanguage('es')}
             className={`px-3 py-1 rounded ${language === 'es' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'}`}
