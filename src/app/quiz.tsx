@@ -132,10 +132,10 @@ function QuizContent() {
     ]);
   }, [showQuestion]);
 
-  const askSemitransparente = useCallback((iluminacionValue: string, soporteValue: string) => {
+  const askSemitransparente = useCallback((iluminacionValue: string, soporteValue: string, chromaValue: boolean) => {
     showQuestion('question7', [
-      { text: 'option7_1', handler: () => handleSemitransparenteResponse(true, iluminacionValue, soporteValue) },
-      { text: 'option7_2', handler: () => handleSemitransparenteResponse(false, iluminacionValue, soporteValue) },
+      { text: 'option7_1', handler: () => handleSemitransparenteResponse(true, iluminacionValue, soporteValue, chromaValue) },
+      { text: 'option7_2', handler: () => handleSemitransparenteResponse(false, iluminacionValue, soporteValue, chromaValue) },
     ]);
   }, [showQuestion]);
 
@@ -165,9 +165,19 @@ function QuizContent() {
     ]);
   }, [showQuestion]);
 
-  const askReflejo = useCallback((iluminacionValue: string, soporteValue: string) => {
-    console.log('askReflejo called with iluminacion:', iluminacionValue, 'soporte:', soporteValue);
-    if (iluminacionValue !== 'alta') {
+
+
+  const askReflejo = useCallback((iluminacionValue: string, soporteValue: string, chromaValue: boolean) => {
+    console.log('🔍 askReflejo EVALUATION:');
+    console.log('   iluminacion:', iluminacionValue);
+    console.log('   soporte:', soporteValue);
+    console.log('   chroma (passed as parameter):', chromaValue);
+    console.log('   chroma (from state):', chroma);
+    
+    console.log('🔎 Condition evaluation:', chromaValue || iluminacionValue !== 'alta');
+    
+    if (chromaValue || iluminacionValue !== 'alta') {
+      console.log('🟢 Condition met: Showing reflejo question');
       showQuestion(
         'question9',
         [
@@ -176,6 +186,7 @@ function QuizContent() {
         ]
       );
     } else {
+      console.log('🔴 Condition not met: Skipping reflejo question');
       handleReflejoResponse(false, iluminacionValue, soporteValue);
     }
   }, [showQuestion, chroma]);
@@ -203,7 +214,7 @@ function QuizContent() {
     console.log('Setting chroma to:', value);
     setChroma(value);
     console.log('Current state - iluminacion:', iluminacionValue, 'soporte:', soporteValue, 'chroma:', value, 'cameraMovement:', cameraMovement);
-    askSemitransparente(iluminacionValue, soporteValue);
+    askSemitransparente(iluminacionValue, soporteValue, value);  // Pasar el valor de chroma
   }, [askSemitransparente, cameraMovement]);
 
   const handleRotoscopeComplexityResponse = useCallback((complexity: string, iluminacionValue: string, soporteValue: string) => {
@@ -213,21 +224,32 @@ function QuizContent() {
     askSemitransparente(iluminacionValue, soporteValue);
   }, [askSemitransparente]);
 
-  const handleSemitransparenteResponse = useCallback((value: boolean, iluminacionValue: string, soporteValue: string) => {
+  const handleSemitransparenteResponse = useCallback((value: boolean, iluminacionValue: string, soporteValue: string, chromaValue: boolean) => {
+    console.log('🔧 handleSemitransparenteResponse:');
+    console.log('   semitransparente:', value);
+    console.log('   iluminacion:', iluminacionValue);
+    console.log('   soporte:', soporteValue);
+    console.log('   chroma:', chromaValue);
+
     setSemitransparente(value);
     if (value) {
       showQuestion('question8', [
         { text: 'option8_1', handler: () => { 
+          console.log('🔄 Setting semitransparente to false');
           setSemitransparente(false); 
-          askReflejo(iluminacionValue, soporteValue); 
+          console.log('🔄 Calling askReflejo with chroma:', chromaValue);
+          askReflejo(iluminacionValue, soporteValue, chromaValue);
         }},
         { text: 'option8_2', handler: () => {
-          setChroma(true);  // Establecer chroma en true si no se puede evitar el objeto semitransparente
-          askReflejo(iluminacionValue, soporteValue);
+          console.log('🔄 Setting chroma to true');
+          setChroma(true);
+          console.log('🔄 Calling askReflejo with chroma: true');
+          askReflejo(iluminacionValue, soporteValue, true);
         }}
       ]);
     } else {
-      askReflejo(iluminacionValue, soporteValue);
+      console.log('🔄 Calling askReflejo with chroma:', chromaValue);
+      askReflejo(iluminacionValue, soporteValue, chromaValue);
     }
   }, [askReflejo, showQuestion]);
 

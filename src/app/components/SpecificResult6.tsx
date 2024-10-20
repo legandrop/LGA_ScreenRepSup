@@ -20,6 +20,15 @@ export default function SpecificResult6({ soporte, tvOnOff, semitransparente, re
   const soporteShort = soporte.startsWith('Monitor/TV') ? 'Monitor/TV' : soporte;
   const translatedSoporteShort = language === 'en' && soporteShort === 'Celular' ? 'Mobile phone' : soporteShort;
   
+  const createMarkup = (html: string) => {
+    // Esta función simple reemplaza los enlaces con elementos <a> seguros y con estilo
+    const sanitizedHtml = html.replace(
+      /\[([^\]]+)\]\(([^)]+)\)/g, 
+      '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-500 underline">$1</a>'
+    );
+    return { __html: sanitizedHtml };
+  }
+
   return (
     <div className="standard-results w-full">
       <h2 className="result-title text-2xl font-bold mb-6">{t('instructions')}</h2>
@@ -75,6 +84,21 @@ export default function SpecificResult6({ soporte, tvOnOff, semitransparente, re
           </li>
         )}
       </ol>
+      
+      {soporte === 'Celular' && (
+        <div className="mt-8 p-4 bg-yellow-100 rounded-lg">
+          <h3 className="font-bold mb-2">{t('mobileConsiderationsTitle')}</h3>
+          <p>{t('mobileConsiderationsText')}</p>
+          <ul className="list-disc list-inside mt-2">
+            <li>{t('mobileConsiderationsPreparedScreen')}</li>
+            <li>
+              {t('mobileConsiderationsClicking').split('Instrucciones para')[0]}
+              <br />
+              <span className="ml-3" dangerouslySetInnerHTML={createMarkup('Instrucciones para ' + t('mobileConsiderationsClicking').split('Instrucciones para')[1])} />
+            </li>
+          </ul>
+        </div>
+      )}
       
       {/* Pie de página con texto más pequeño */}
       <footer className="mt-8 pt-4 border-t text-xs text-gray-500">
