@@ -1,0 +1,379 @@
+#! C:/Program Files/Nuke15.0v4/nuke-15.0.4.dll -nx
+version 15.0 v4
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-1" y="-8" w="3440" h="1369" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1317" stretch="1"/>
+            <splitter orientation="2">
+                <split size="1001"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                </dock>
+                <split size="323"/>
+                <splitter orientation="1">
+                    <split size="395"/>
+                    <dock id="" activePageId="Progress.1">
+                        <page id="Progress.1"/>
+                        <page id="com.lega.perfTime"/>
+                    </dock>
+                    <split size="918"/>
+                    <dock id="" activePageId="DopeSheet.1">
+                        <page id="DopeSheet.1"/>
+                        <page id="Curve Editor.1"/>
+                        <page id="Error Console.1"/>
+                        <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="494"/>
+            <splitter orientation="2">
+                <split size="1328"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                    <page id="com.adrianpueyo.KnobScripterPane"/>
+                </dock>
+            </splitter>
+            <split size="1577"/>
+            <dock id="" activePageId="Viewer.1">
+                <page id="Viewer.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Pics_v03_Aligning_v01.nk
+ format "4096 2160 0 0 4096 2160 1 4K_DCP"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config aces_1.2
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT "ACES - ACES2065-1"
+ monitorLut "sRGB (ACES)"
+ monitorOutLUT "sRGB (ACES)"
+ int8Lut "Output - Rec.709"
+ int16Lut texture_paint
+ logLut compositing_log
+ floatLut "ACES - ACES2065-1"
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Grey.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read7
+ xpos 706
+ ypos -284
+}
+Transform {
+ translate {-2 2}
+ rotate -0.2
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform7
+ xpos 706
+ ypos -188
+}
+set Nc5076400 [stack 0]
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Grey_Track-4.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read8
+ xpos 848
+ ypos -285
+}
+Transform {
+ translate {-4 1}
+ rotate -0.25
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform8
+ xpos 848
+ ypos -189
+}
+set Nc5077800 [stack 0]
+push $Nc5076400
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_DistGrid_Glass.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read3
+ xpos 135
+ ypos -285
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_DistGrid_Glass.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ ocioColorspace scene_linear
+ display ACES
+ view sRGB
+ name Write1
+ xpos 135
+ ypos -101
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+}
+Viewer {
+ inputs 4
+ frame 1
+ frame_range 1-100
+ input_number 1
+ viewerProcess "Rec.709 (ACES)"
+ monitorOutNDISenderName "NukeX - untitled - Viewer1"
+ name Viewer1
+ tile_color 0x323232ff
+ xpos 28
+ ypos 80
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Black_Track-4.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read2
+ xpos -7
+ ypos -285
+}
+Transform {
+ translate {-4 8}
+ rotate 0.1
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform2
+ xpos -7
+ ypos -189
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Black_Track-4.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ ocioColorspace scene_linear
+ display ACES
+ view sRGB
+ name Write2
+ xpos -7
+ ypos -92
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_DistGrid_Glass-B.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read4
+ xpos 278
+ ypos -285
+}
+Transform {
+ translate {0 1}
+ rotate 0.1
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform1
+ xpos 278
+ ypos -189
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_DistGrid_Glass-B.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ ocioColorspace scene_linear
+ display ACES
+ view sRGB
+ name Write3
+ xpos 278
+ ypos -96
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Green.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read5
+ xpos 421
+ ypos -285
+}
+Transform {
+ translate {-2 2}
+ rotate -0.1
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform5
+ xpos 421
+ ypos -189
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Green.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ ocioColorspace scene_linear
+ display ACES
+ view sRGB
+ name Write4
+ xpos 421
+ ypos -96
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Green_Track-4.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read6
+ xpos 563
+ ypos -285
+}
+Transform {
+ translate {-2 7}
+ rotate -0.26
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform6
+ xpos 563
+ ypos -189
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Green_Track-4.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ ocioColorspace scene_linear
+ display ACES
+ view sRGB
+ name Write7
+ xpos 563
+ ypos -97
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+}
+push $Nc5076400
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Grey.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ ocioColorspace scene_linear
+ display ACES
+ view sRGB
+ name Write8
+ xpos 706
+ ypos -95
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+}
+push $Nc5077800
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Grey_Track-4.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ ocioColorspace scene_linear
+ display ACES
+ view sRGB
+ name Write9
+ xpos 848
+ ypos -96
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Off.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read9
+ xpos 991
+ ypos -285
+}
+Transform {
+ translate {3 20}
+ rotate 0.4
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform3
+ xpos 991
+ ypos -189
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Off.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ ocioColorspace scene_linear
+ display ACES
+ view sRGB
+ name Write6
+ xpos 991
+ ypos -96
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Ref.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read10
+ xpos 1134
+ ypos -285
+}
+Transform {
+ translate {3 20}
+ rotate 0.4
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform4
+ xpos 1134
+ ypos -189
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Ref.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ ocioColorspace scene_linear
+ display ACES
+ view sRGB
+ name Write5
+ xpos 1134
+ ypos -96
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+}

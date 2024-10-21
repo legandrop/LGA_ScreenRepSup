@@ -35,7 +35,7 @@ export default function SpecificResult6({ soporte, tvOnOff, semitransparente, re
       { src: "/images/LCD_DistGrid_Glass.jpg", alt: t('altDistGridGlassA') },
       { src: "/images/LCD_DistGrid_Glass-B.jpg", alt: t('altDistGridGlassB') },
       { src: "/images/LCD_Grey.jpg", alt: t('altGrayJpg') },
-      { src: "/images/LCD_DistGrid_Glass-C.jpg", alt: t('altTurnedOff') },
+      { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
     ] : [
       ...(soporte === 'Monitor/TV CRT' ? [{ src: "/images/CRT_DistGrid.jpg", alt: t('altDistortionGrid') }] : []),
       { src: "/images/LCD_Grey.jpg", alt: t('altGrayJpg') },

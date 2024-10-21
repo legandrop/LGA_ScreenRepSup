@@ -1,0 +1,1075 @@
+#! C:/Program Files/Nuke15.0v4/nuke-15.0.4.dll -nx
+version 15.0 v4
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-1" y="-8" w="3440" h="1369" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1271" stretch="1"/>
+            <splitter orientation="2">
+                <split size="1001"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                </dock>
+                <split size="323"/>
+                <splitter orientation="1">
+                    <split size="381"/>
+                    <dock id="" activePageId="Progress.1">
+                        <page id="Progress.1"/>
+                        <page id="com.lega.perfTime"/>
+                    </dock>
+                    <split size="886"/>
+                    <dock id="" activePageId="DopeSheet.1">
+                        <page id="DopeSheet.1"/>
+                        <page id="Curve Editor.1"/>
+                        <page id="Error Console.1"/>
+                        <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="540"/>
+            <splitter orientation="2">
+                <split size="1328"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                    <page id="com.adrianpueyo.KnobScripterPane"/>
+                </dock>
+            </splitter>
+            <split size="1577"/>
+            <dock id="" activePageId="Viewer.1">
+                <page id="Viewer.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Pics_v03_Aligning_v02.nk
+ format "4096 2160 0 0 4096 2160 1 4K_DCP"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config aces_1.2
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT "ACES - ACES2065-1"
+ monitorLut "sRGB (ACES)"
+ monitorOutLUT "sRGB (ACES)"
+ int8Lut "Output - Rec.709"
+ int16Lut texture_paint
+ logLut compositing_log
+ floatLut "ACES - ACES2065-1"
+ addUserKnob {20 User}
+ addUserKnob {1 Km_Render_Start_Time +HIDDEN}
+ Km_Render_Start_Time "2024-10-21 16:27:26"
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Green.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read5
+ xpos 421
+ ypos -352
+}
+Dot {
+ name Dot4
+ xpos 455
+ ypos -256
+}
+set N54eeac00 [stack 0]
+Transform {
+ translate {-2 4}
+ rotate -0.1
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform5
+ xpos 421
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat5
+ xpos 421
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Green.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 3
+ in_colorspace scene_linear
+ out_colorspace scene_linear
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write4
+ xpos 421
+ ypos 111
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Green_Track-4.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read6
+ xpos 783
+ ypos -352
+}
+Transform {
+ translate {-2 7}
+ rotate -0.26
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform6
+ xpos 783
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat6
+ xpos 783
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Green_Track-4.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ in_colorspace scene_linear
+ out_colorspace scene_linear
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write7
+ xpos 783
+ ypos 111
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Grey.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read7
+ xpos 926
+ ypos -351
+}
+Transform {
+ translate {-2 2}
+ rotate -0.2
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform7
+ xpos 926
+ ypos -188
+}
+set N2e776c00 [stack 0]
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat7
+ xpos 926
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Grey.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ in_colorspace scene_linear
+ out_colorspace scene_linear
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write8
+ xpos 926
+ ypos 111
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Grey_Track-4.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read8
+ xpos 1068
+ ypos -352
+}
+Transform {
+ translate {-4 1}
+ rotate -0.25
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform8
+ xpos 1068
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat8
+ xpos 1068
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Grey_Track-4.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ in_colorspace scene_linear
+ out_colorspace scene_linear
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write9
+ xpos 1068
+ ypos 111
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Off.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read9
+ xpos 1211
+ ypos -352
+}
+Transform {
+ translate {3 20}
+ rotate 0.4
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform3
+ xpos 1211
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat4
+ xpos 1211
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Off.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ in_colorspace scene_linear
+ out_colorspace scene_linear
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write6
+ xpos 1211
+ ypos 111
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Ref.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read10
+ xpos 1354
+ ypos -352
+}
+Transform {
+ translate {3 20}
+ rotate 0.4
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform4
+ xpos 1354
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat3
+ xpos 1354
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Ref.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ in_colorspace scene_linear
+ out_colorspace scene_linear
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write5
+ xpos 1354
+ ypos 111
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Off.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read1
+ xpos -323
+ ypos -359
+}
+RotoPaint {
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t x44909000 x4440c000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {cubiccurve Brush10 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44eaeccd x448f2333 1}}}
+     {tx 1 x44eaeccd x448f2333}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x40000000 h x3f666666 bu 1 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush9 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44eb2000 x448f1ccd 1}
+       {x44eb0000 x448f2ccd 1}
+       {x44eae000 x448f3000 1}}}
+     {tx 1 x44eb0000 x448f2889}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x40000000 h x3f666666 bu 1 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush8 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44ec0333 x448f2ccd 1}
+       {x44ebe000 x448f2ccd 1}
+       {x44ebc000 x448f2ccd 1}
+       {x44eb9ccd x448f2ccd 1}
+       {x44eb7ccd x448f2ccd 1}
+       {x44eb599a x448f2ccd 1}
+       {x44eb399a x448f2ccd 1}
+       {x44eb6666 x448f2ccd 1}
+       {x44eb8666 x448f2ccd 1}
+       {x44ebaccd x448f2ccd 1}
+       {x44ebd000 x448f2ccd 1}
+       {x44ebf000 x448f2ccd 1}
+       {x44ebd000 x448f399a 1}
+       {x44eba99a x448f4000 1}
+       {x44eb8666 x448f4333 1}
+       {x44eb6666 x448f4333 1}
+       {x44eb4333 x448f4333 1}
+       {x44eb2333 x448f4333 1}
+       {x44eb0000 x448f4333 1}
+       {x44eadccd x448f4333 1}
+       {x44eabccd x448f4000 1}
+       {x44eadccd x448f4000 1}
+       {x44eb0000 x448f3333 1}
+       {x44eb2333 x448f3333 1}
+       {x44eb4333 x448f2ccd 1}}}
+     {tx 1 x44eb69ba x448f3581}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x40000000 h x3f666666 bu 1 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush7 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x441ab333 x44954000 1}
+       {x441af333 x44954000 1}
+       {x441b3333 x44954000 1}
+       {x441b7333 x44954000 1}
+       {x441bb333 x4495399a 1}
+       {x441b599a x44954000 1}
+       {x441b199a x44954ccd 1}
+       {x441ad99a x44954ccd 1}
+       {x441a999a x44955333 1}
+       {x441ad99a x44955333 1}
+       {x441b199a x44955333 1}
+       {x441b599a x44955333 1}
+       {x441bb333 x44954ccd 1}
+       {x441bf333 x44954666 1}
+       {x441c3333 x44954000 1}
+       {x441c7333 x4495399a 1}
+       {x441cc000 x44953333 1}
+       {x441d0000 x44953333 1}
+       {x441d4000 x44953333 1}
+       {x441d8000 x44953333 1}
+       {x441dc000 x44953333 1}
+       {x441e0000 x44953333 1}
+       {x441e4000 x44953333 1}
+       {x441e8000 x44952ccd 1}}}
+     {tx 1 x441c1aaa x44953fff}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x40000000 h x3f666666 bu 1 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Eraser2 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x4413a666 x44954666 1}}}
+     {tx 1 x4413a666 x44954666}
+     {a ro 0 go 0 bo 0 ao 0 h 1 bu 1 src x40000000 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41900000}}
+    {cubiccurve Eraser1 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x4413cccd x44958666 1}}}
+     {tx 1 x4413cccd x44958666}
+     {a ro 0 go 0 bo 0 ao 0 bu 1 src x40000000 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41900000}}
+    {cubiccurve Brush6 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44170666 x44955666 1}
+       {x44174666 x44955666 1}
+       {x44178ccd x44955666 1}
+       {x4417cccd x44955666 1}
+       {x44180ccd x44955666 1}
+       {x44184ccd x44955666 1}
+       {x44188ccd x44955000 1}
+       {x4418d333 x44955000 1}
+       {x44191333 x44954ccd 1}
+       {x44195333 x44954ccd 1}
+       {x4419a000 x4495499a 1}
+       {x4419e000 x4495499a 1}
+       {x441a2000 x4495499a 1}
+       {x441a6666 x4495499a 1}
+       {x441a2666 x4495499a 1}
+       {x4419c666 x4495499a 1}
+       {x44197333 x4495499a 1}
+       {x44193333 x4495499a 1}
+       {x4418f333 x4495499a 1}
+       {x4418accd x4495499a 1}
+       {x44186ccd x4495499a 1}
+       {x44182ccd x44954666 1}
+       {x4417eccd x44954666 1}
+       {x44182ccd x44954666 1}
+       {x44189333 x4495499a 1}
+       {x4418d99a x44954ccd 1}
+       {x44192000 x44955000 1}
+       {x44196000 x44955000 1}
+       {x4419a666 x44955000 1}
+       {x4419e666 x44955000 1}
+       {x441a2ccd x44955000 1}
+       {x441a6ccd x44954ccd 1}
+       {x441aaccd x4495499a 1}
+       {x441a6ccd x4495499a 1}
+       {x441a2ccd x4495499a 1}
+       {x4419e666 x4495499a 1}
+       {x4419999a x4495499a 1}
+       {x44193333 x4495499a 1}
+       {x4418eccd x4495499a 1}
+       {x4418a666 x4495499a 1}
+       {x4418599a x44954ccd 1}
+       {x4418999a x4495599a 1}
+       {x4418e000 x4495599a 1}
+       {x44192666 x4495599a 1}
+       {x44196666 x4495599a 1}
+       {x4419accd x4495599a 1}
+       {x4419f99a x4495599a 1}
+       {x441a399a x44955666 1}
+       {x441a799a x44955666 1}
+       {x441ab99a x44955333 1}}}
+     {tx 1 x4419320b x44954ecb}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x40000000 h x3f666666 bu 1 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush4 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44e92000 x43ec6666 1}}}
+     {tx 1 x44e92000 x43ec6666}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x412b3333 h x3f666666 bu 1 str 1 spx x44909000 spy x4440c000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush3 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44ebe99a x448f3000 1}
+       {x44ec0ccd x448f3000 1}
+       {x44ec2ccd x448f3000 1}
+       {x44ec5333 x448f3000 1}
+       {x44ec7333 x448f3000 1}
+       {x44ec999a x448f3000 1}
+       {x44ecbccd x448f3000 1}
+       {x44ecdccd x448f3000 1}}}
+     {tx 1 x44ec639a x448f3000}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x40200000 h x3f666666 bu 1 str 1 spx x44909000 spy x4440c000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush2 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x4415e666 x44955000 1}
+       {x44162666 x44955000 1}
+       {x44166ccd x44955000 1}
+       {x4416accd x44955000 1}
+       {x4416eccd x44955000 1}}}
+     {tx 1 x44166a3d x44955000}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x40200000 h x3f666666 bu 1 str 1 spx x44909000 spy x4440c000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush5 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44170000 x44954666 1}
+       {x44174666 x44954666 1}
+       {x44179333 x44954ccd 1}
+       {x4417d99a x44954ccd 1}
+       {x4418199a x44955333 1}
+       {x44186000 x44955333 1}
+       {x4418a000 x44955333 1}}}
+     {tx 1 0}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x3fcccccd h x3f666666 bu 1 str 1 spx x44909000 spy x4440c000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush1 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44150ccd x441a7333 1}}}
+     {tx 1 x44150ccd x441a7333}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x41480000 h x3f666666 bu 1 str 1 spx x44909000 spy x4440c000 sb 1 ltt x40000000 tt x41880000}}}}}}
+ toolbox {brush {
+  { selectAll r 0 g 0.3 b 0 bs 1.6 h 0.9 str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush r 0 g 0.3 b 0 bs 2 h 0.9 str 1 ssx 1 ssy 1 sf 1 sb 1 tt 17 }
+  { eraser h 1 src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 tt 18 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_paint_color {0 0.3000000119 0 1}
+ toolbar_brush_size 2
+ toolbar_brush_hardness 0.8999999762
+ toolbar_lifetime_type single
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {2048 1080}
+ color {0 0.3000000119 0 1}
+ colorOverlay {0 0 0 0}
+ brush_size 2
+ brush_spacing 0.05000000075
+ brush_hardness 0.8999999762
+ source_black_outside true
+ name RotoPaint1
+ xpos -323
+ ypos -260
+}
+Transform {
+ translate {3 20}
+ rotate 0.4
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform9
+ xpos -323
+ ypos -196
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat10
+ xpos -323
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Black_Track-Outside.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 3
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write10
+ xpos -323
+ ypos 104
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Black_Track-4.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read2
+ xpos -179
+ ypos -363
+}
+Transform {
+ translate {-4 8}
+ rotate 0.1
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform2
+ xpos -179
+ ypos -200
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat1
+ xpos -179
+ ypos -135
+}
+set N116a5400 [stack 0]
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Black_Track-4.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write2
+ xpos -179
+ ypos 100
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_DistGrid_Glass-B.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read4
+ xpos 131
+ ypos -352
+}
+Transform {
+ translate {0 1}
+ rotate 0.1
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform1
+ xpos 131
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat9
+ xpos 131
+ ypos -135
+}
+set N2e8a4800 [stack 0]
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_DistGrid_Glass-B.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 3
+ in_colorspace scene_linear
+ out_colorspace scene_linear
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write3
+ xpos 131
+ ypos 111
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:01
+}
+Roto {
+ inputs 0
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x45000000 x44870000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Bezier1 512 bezier
+     {{cc
+       {f 8192}
+       {px 1
+        {x40000000 x42140000}
+        {x43ad8000 x44b50000}
+        {xc0000000 xc2140000}
+        {xc0a00000 x42880000}
+        {x43b38000 x44a0a000}
+        {x40a00000 xc2880000}
+        {xc1100000 x42000000}
+        {x43d00000 x44774000}
+        {x41100000 xc2000000}
+        {0 x41a00000}
+        {x43d00000 x44414000}
+        {0 xc1a00000}
+        {x40400000 x41400000}
+        {x43d70000 x4409c000}
+        {xc0400000 xc1400000}
+        {xc1200000 x41300000}
+        {x4403b6db x44071b6e}
+        {x41200000 xc1300000}
+        {0 0}
+        {x4429c000 x44060000}
+        {0 0}
+        {0 0}
+        {x44dac000 x43d30000}
+        {0 0}
+        {0 0}
+        {x44ea8000 x43dc0000}
+        {0 0}
+        {0 0}
+        {x44f44000 x44080000}
+        {0 0}
+        {0 x40000000}
+        {x4509c000 x43ed0000}
+        {0 xc0000000}
+        {0 0}
+        {x450f8000 xc3220000}
+        {0 0}
+        {x40000000 0}
+        {xc3640000 xc3980000}
+        {xc0000000 0}
+        {0 0}
+        {xc3800000 x44c8c000}
+        {0 0}}}     idem}
+     {tx 1 x4464087e x442341f6}
+     {a osw x41200000 osf 0 str 1 spx x45000000 spy x44870000 sb 1 tt x40800000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {2048 1080}
+ colorOverlay {0 0 0 0}
+ lifetime_type "all frames"
+ motionblur_shutter_offset_type centred
+ source_black_outside true
+ name Roto1
+ xpos 348
+ ypos -71
+}
+Blur {
+ channels rgba
+ size 7
+ name Blur1
+ label "\[value size]"
+ xpos 348
+ ypos -24
+}
+push $N116a5400
+Dot {
+ name Dot3
+ xpos -145
+ ypos -15
+}
+push $N2e8a4800
+Dot {
+ name Dot1
+ xpos 286
+ ypos -132
+}
+Merge2 {
+ inputs 2+1
+ bbox B
+ name Merge1
+ xpos 252
+ ypos -18
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/CRT_DistGrid.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 3
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write11
+ xpos 252
+ ypos 113
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:01
+}
+push $N2e776c00
+push $N54eeac00
+RotoPaint {
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x45000000 x44870000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {cubiccurve Brush6 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44eda000 x4491a666 1}
+       {x44eda000 x44918666 1}
+       {x44eda000 x44916666 1}
+       {x44edc000 x44916000 1}
+       {x44ede000 x44914ccd 1}
+       {x44ee0666 x44914ccd 1}
+       {x44ee2666 x44916000 1}
+       {x44ee3333 x44918000 1}
+       {x44ee3333 x4491a000 1}
+       {x44ee2000 x4491c000 1}
+       {x44ee0666 x4491d99a 1}
+       {x44ede666 x4491e000 1}
+       {x44edc666 x4491e000 1}
+       {x44eda666 x4491e666 1}
+       {x44ed8666 x4491e666 1}
+       {x44ed6666 x4491e000 1}
+       {x44ed599a x4491c000 1}
+       {x44ed599a x4491a000 1}
+       {x44ed599a x44918000 1}
+       {x44ed6666 x44916000 1}
+       {x44ed8000 x44914ccd 1}
+       {x44eda000 x44914ccd 1}
+       {x44edc000 x44914ccd 1}}}
+     {tx 1 x44edbafc x44919333}
+     {a r 0 g x3e800000 b 0 ro 0 go 0 bo 0 ao 0 bs x40a66666 h x3f4ccccd bu 1 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush5 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x4418cccd x44964000 1}
+       {x44188ccd x44963333 1}
+       {x44187333 x44961333 1}
+       {x4418b333 x44961000 1}
+       {x4418f333 x44961333 1}
+       {x4418e000 x44963333 1}
+       {x4418a000 x44964000 1}
+       {x44186000 x44964333 1}}}
+     {tx 1 x4418aa66 x44962c00}
+     {a r 0 g x3e800000 b 0 ro 0 go 0 bo 0 ao 0 bs x40a66666 h x3f4ccccd bu 1 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush4 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x4418accd x44961ccd 1}}}
+     {tx 1 x4418accd x44961ccd}
+     {a r 0 g x3e800000 b 0 ro 0 go 0 bo 0 ao 0 bs x40a66666 h x3f4ccccd bu 1 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush3 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44edaccd x4491a000 1}}}
+     {tx 1 x44edaccd x4491a000}
+     {a r 0 g x3e800000 b 0 ro 0 go 0 bo 0 ao 0 bs x40f00000 h x3f4ccccd bu 1 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush2 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44e90000 x43f9c000 1}}}
+     {tx 1 x44e90000 x43f9c000}
+     {a r 0 g x3e800000 b 0 ro 0 go 0 bo 0 ao 0 bs x41680000 h x3f4ccccd bu 1 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush1 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44188ccd x441d4ccd 1}}}
+     {tx 1 x44188ccd x441d4ccd}
+     {a r 0 g x3e800000 b 0 ro 0 go 0 bo 0 ao 0 bs x41680000 h x3f4ccccd bu 1 str 1 spx x45000000 spy x44870000 sb 1 ltt x40000000 tt x41880000}}}}}}
+ toolbox {brush {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush r 0 g 0.25 b 0 bs 5.2 h 0.8 str 1 ssx 1 ssy 1 sf 1 sb 1 tt 17 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 tt 18 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_paint_color {0 0.25 0 1}
+ toolbar_brush_size 5.199999809
+ toolbar_brush_hardness 0.8
+ toolbar_lifetime_type single
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {2048 1080}
+ color {0 0.25 0 1}
+ colorOverlay {0 0 0 0}
+ brush_size 5.199999809
+ brush_spacing 0.05000000075
+ brush_hardness 0.8000000119
+ source_black_outside true
+ name RotoPaint2
+ xpos 593
+ ypos -259
+}
+set Nc2c65800 [stack 0]
+push $N2e776c00
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_DistGrid_Glass.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read3
+ xpos -14
+ ypos -364
+}
+Dot {
+ name Dot2
+ xpos 20
+ ypos -250
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat2
+ xpos -14
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_DistGrid_Glass.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write1
+ xpos -14
+ ypos 99
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Viewer {
+ inputs 4
+ frame_range 1-100
+ input_number 2
+ viewerProcess "Rec.709 (ACES)"
+ monitorOutNDISenderName "NukeX - LCD_Pics_v03_Aligning_v02 - Viewer1"
+ name Viewer1
+ tile_color 0x323232ff
+ xpos 28
+ ypos 272
+}
+push $Nc2c65800
+Transform {
+ translate {-2 4}
+ rotate -0.1
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform10
+ xpos 593
+ ypos -190
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat11
+ xpos 593
+ ypos -136
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Green_Track-Outside.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 4
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write12
+ selected true
+ xpos 593
+ ypos 110
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
