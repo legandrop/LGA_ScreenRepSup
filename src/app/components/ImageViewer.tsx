@@ -73,9 +73,32 @@ export default function ImageViewer({ images, initialIndex, width, height, baseP
   }, [isOpen, nextImage, prevImage, closeViewer]);
 
   const arrowStyle = {
-    textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0px 0px 4px rgba(0,0,0,0.5)',
-    fontSize: '6rem',
-    fontWeight: 'bold',
+    width: '50px',
+    height: '50px',
+    borderRadius: '50%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    cursor: 'pointer',
+  };
+
+  const leftSymbolStyle = {
+    fontSize: '30px',
+    color: 'white',
+    lineHeight: '1',
+    position: 'relative' as 'relative',
+    top: '-3px',
+    left: '-2px', // Ajusta este valor para mover el símbolo < horizontalmente
+  };
+
+  const rightSymbolStyle = {
+    fontSize: '30px',
+    color: 'white',
+    lineHeight: '1',
+    position: 'relative' as 'relative',
+    top: '-3px',
+    right: '-2px', // Ajusta este valor para mover el símbolo > horizontalmente
   };
 
   return (
@@ -129,18 +152,18 @@ export default function ImageViewer({ images, initialIndex, width, height, baseP
               {images.length > 1 && (
                 <>
                   <button
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors duration-200"
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 hover:bg-opacity-75 transition-colors duration-200"
                     style={arrowStyle}
                     onClick={(e) => { e.stopPropagation(); prevImage(); }}
                   >
-                    &#8592;
+                    <span style={leftSymbolStyle}>&lt;</span>
                   </button>
                   <button
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors duration-200"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 hover:bg-opacity-75 transition-colors duration-200"
                     style={arrowStyle}
                     onClick={(e) => { e.stopPropagation(); nextImage(); }}
                   >
-                    &#8594;
+                    <span style={rightSymbolStyle}>&gt;</span>
                   </button>
                 </>
               )}
