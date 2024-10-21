@@ -14,7 +14,7 @@ export default function ImageViewer({ images, initialIndex, width, height, baseP
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-  const fullSrc = `${basePath}${images[currentIndex].src}`;
+  const fullSrc = `${basePath}${images[initialIndex].src}`;
 
   const formatAltText = (text: string) => {
     const phrases = [
@@ -46,7 +46,8 @@ export default function ImageViewer({ images, initialIndex, width, height, baseP
 
   const closeViewer = useCallback(() => {
     setIsOpen(false);
-  }, []);
+    setCurrentIndex(initialIndex);
+  }, [initialIndex]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -89,7 +90,7 @@ export default function ImageViewer({ images, initialIndex, width, height, baseP
     lineHeight: '1',
     position: 'relative' as 'relative',
     top: '-3px',
-    left: '-2px', // Ajusta este valor para mover el símbolo < horizontalmente
+    left: '-2px',
   };
 
   const rightSymbolStyle = {
@@ -98,14 +99,14 @@ export default function ImageViewer({ images, initialIndex, width, height, baseP
     lineHeight: '1',
     position: 'relative' as 'relative',
     top: '-3px',
-    right: '-2px', // Ajusta este valor para mover el símbolo > horizontalmente
+    right: '-2px',
   };
 
   return (
     <>
       <Image
         src={fullSrc}
-        alt={images[currentIndex].alt}
+        alt={images[initialIndex].alt}
         width={width}
         height={height}
         className="result-image cursor-pointer"
@@ -130,7 +131,7 @@ export default function ImageViewer({ images, initialIndex, width, height, baseP
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={fullSrc}
+                src={`${basePath}${images[currentIndex].src}`}
                 alt={images[currentIndex].alt}
                 width={1000}
                 height={1000}
