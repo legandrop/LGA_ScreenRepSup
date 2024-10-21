@@ -15,6 +15,26 @@ export default function ImageViewer({ src, alt, width, height, basePath }: Image
 
   const fullSrc = `${basePath}${src}`;
 
+  const formatAltText = (text: string) => {
+    const phrases = [
+      'Plate Principal:',
+      'Plate Ref A:',
+      'Plate Ref B:',
+      'Plate Ref C:',
+      'Plate Reflejo:'
+    ];
+
+    let formattedText = text;
+    phrases.forEach(phrase => {
+      formattedText = formattedText.replace(
+        new RegExp(`(${phrase})`, 'g'),
+        '<strong>$1</strong>'
+      );
+    });
+
+    return formattedText;
+  };
+
   return (
     <>
       <Image
@@ -51,7 +71,7 @@ export default function ImageViewer({ src, alt, width, height, basePath }: Image
                 className="max-w-full max-h-[90vh] object-contain"
               />
               <button
-                className="absolute top-4 right-4 text-white text-6xl font-bold hover:text-gray-300 transition-colors duration-200"
+                className="absolute top-0 right-4 text-white text-6xl font-bold hover:text-gray-300 transition-colors duration-200"
                 style={{
                   textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0px 0px 4px rgba(0,0,0,0.5)',
                 }}
@@ -59,6 +79,10 @@ export default function ImageViewer({ src, alt, width, height, basePath }: Image
               >
                 ×
               </button>
+              <div 
+                className="absolute top-5 left-5 text-white text-xl bg-black bg-opacity-50 p-2 rounded z-10"
+                dangerouslySetInnerHTML={{ __html: formatAltText(alt) }}
+              />
             </motion.div>
           </motion.div>
         )}

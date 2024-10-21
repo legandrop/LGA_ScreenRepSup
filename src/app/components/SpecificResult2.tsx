@@ -33,8 +33,8 @@ export default function SpecificResult2({ soporte, tvOnOff, basePath }: Specific
             {t('trackPointsInside', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4 flex space-x-4">
-            <ImageViewer src="/images/LCD_Black_Track-4.jpg" alt="LCD_Black_Track-4.jpg" width={100} height={100} basePath={basePath} />
-            <ImageViewer src="/images/LCD_Black_Track-Outside.jpg" alt="LCD_Black_Track-Outside.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Black_Track-Outside.jpg" alt="Plate Principal: Puntos de track en los bordes plásticos" width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Black_Track-4.jpg" alt="Plate Principal: Puntos de track en el JPG Black" width={100} height={100} basePath={basePath} />
           </div>
           <div className="tips mt-4">
             <p className="font-bold mb-2">{t('trackPointsTips')}:</p>
@@ -54,16 +54,17 @@ export default function SpecificResult2({ soporte, tvOnOff, basePath }: Specific
           </p>
           <div className="mb-4 flex space-x-4">
             {soporte === 'Monitor/TV CRT' && (
-              <ImageViewer src="/images/CRT_DistGrid.jpg" alt="CRT_DistGrid.jpg" width={100} height={100} basePath={basePath} />
+              <ImageViewer src="/images/CRT_DistGrid.jpg" alt="Plate Ref A: Grilla de distorsión" width={100} height={100} basePath={basePath} />
             )}
-            <ImageViewer src="/images/LCD_Grey.jpg" alt="LCD_Grey.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Grey.jpg" alt="Plate Ref A: JPG gris" width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Off.jpg" alt="Plate Ref A: Apagado" width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
         <li>
           <p className="mb-2 -mt-1"><strong>Plate Ref B:</strong> {t('refPlateDescription', { soporte: translatedSoporteShort })}</p>
           <div className="mb-4">
-            <ImageViewer src="/images/LCD_Ref.jpg" alt="LCD_Ref.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Ref.jpg" alt="Plate Ref B: Video o imagen de referencia" width={100} height={100} basePath={basePath} />
           </div>
         </li>
       </ol>

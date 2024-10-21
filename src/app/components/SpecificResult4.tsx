@@ -29,14 +29,13 @@ export default function SpecificResult4({ soporte, tvOnOff, reflejoImportante, b
             {t('mainPlateGrayWithTrack', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4 flex space-x-4">
-            <ImageViewer src="/images/LCD_Grey_Track-4.jpg" alt="LCD_Grey_Track-4.jpg" width={100} height={100} basePath={basePath} />
-            <ImageViewer src="/images/LCD_Grey_Track-Outside.jpg" alt="LCD_Grey_Track-Outside.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Green_Track-4.jpg" alt="LCD_Green_Track-4.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Black_Track-Outside.jpg" alt="LCD_Black_Track-Outside.jpg" width={100} height={100} basePath={basePath} />
           </div>
           <div className="tips mt-4">
             <p className="font-bold mb-2">{t('trackPointsTips')}:</p>
             <ul className="list-disc list-inside">
               <li>{t('trackPointsQuantity')}</li>
-              <li>{t('trackPointsPlacement')}</li>
               <li>{t('trackPointsSize', { soporte: translatedSoporteShort })}</li>
             </ul>
           </div>
