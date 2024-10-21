@@ -1,0 +1,634 @@
+#! C:/Program Files/Nuke15.0v4/nuke-15.0.4.dll -nx
+version 15.0 v4
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-1" y="-8" w="3440" h="1369" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1317" stretch="1"/>
+            <splitter orientation="2">
+                <split size="1001"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                </dock>
+                <split size="323"/>
+                <splitter orientation="1">
+                    <split size="395"/>
+                    <dock id="" activePageId="Progress.1">
+                        <page id="Progress.1"/>
+                        <page id="com.lega.perfTime"/>
+                    </dock>
+                    <split size="918"/>
+                    <dock id="" activePageId="DopeSheet.1">
+                        <page id="DopeSheet.1"/>
+                        <page id="Curve Editor.1"/>
+                        <page id="Error Console.1"/>
+                        <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="494"/>
+            <splitter orientation="2">
+                <split size="1328"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                    <page id="com.adrianpueyo.KnobScripterPane"/>
+                </dock>
+            </splitter>
+            <split size="1577"/>
+            <dock id="" activePageId="Viewer.1">
+                <page id="Viewer.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Pics_v03_Aligning_v02.nk
+ format "4096 2160 0 0 4096 2160 1 4K_DCP"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config aces_1.2
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT "ACES - ACES2065-1"
+ monitorLut "sRGB (ACES)"
+ monitorOutLUT "sRGB (ACES)"
+ int8Lut "Output - Rec.709"
+ int16Lut texture_paint
+ logLut compositing_log
+ floatLut "ACES - ACES2065-1"
+ addUserKnob {20 User}
+ addUserKnob {1 Km_Render_Start_Time +HIDDEN}
+ Km_Render_Start_Time "2024-10-21 16:02:54"
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Black_Track-4.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read2
+ xpos -7
+ ypos -352
+}
+Transform {
+ translate {-4 8}
+ rotate 0.1
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform2
+ xpos -7
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat1
+ xpos -7
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Black_Track-4.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write2
+ xpos -7
+ ypos -81
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_DistGrid_Glass-B.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read4
+ xpos 278
+ ypos -352
+}
+Transform {
+ translate {0 1}
+ rotate 0.1
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform1
+ xpos 278
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat9
+ xpos 278
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_DistGrid_Glass-B.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 3
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write3
+ xpos 278
+ ypos -81
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:01
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Green.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read5
+ xpos 421
+ ypos -352
+}
+Transform {
+ translate {-2 4}
+ rotate -0.1
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform5
+ xpos 421
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat5
+ xpos 421
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Green.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 3
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write4
+ xpos 421
+ ypos -81
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Green_Track-4.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read6
+ xpos 563
+ ypos -352
+}
+Transform {
+ translate {-2 7}
+ rotate -0.26
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform6
+ xpos 563
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat6
+ xpos 563
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Green_Track-4.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write7
+ xpos 563
+ ypos -81
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Grey.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read7
+ xpos 706
+ ypos -351
+}
+Transform {
+ translate {-2 2}
+ rotate -0.2
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform7
+ xpos 706
+ ypos -188
+}
+set Nc5076400 [stack 0]
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat7
+ xpos 706
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Grey.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write8
+ xpos 706
+ ypos -81
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Grey_Track-4.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read8
+ xpos 848
+ ypos -352
+}
+Transform {
+ translate {-4 1}
+ rotate -0.25
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform8
+ xpos 848
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat8
+ xpos 848
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Grey_Track-4.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write9
+ xpos 848
+ ypos -81
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Off.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read9
+ xpos 991
+ ypos -352
+}
+Transform {
+ translate {3 20}
+ rotate 0.4
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform3
+ xpos 991
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat4
+ xpos 991
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Off.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write6
+ xpos 991
+ ypos -81
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Ref.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read10
+ xpos 1134
+ ypos -352
+}
+Transform {
+ translate {3 20}
+ rotate 0.4
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform4
+ xpos 1134
+ ypos -189
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat3
+ xpos 1134
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Ref.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write5
+ xpos 1134
+ ypos -81
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_Off.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read1
+ xpos -151
+ ypos -348
+}
+RotoPaint {
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x44909000 x4440c000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {cubiccurve Brush5 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x4417199a x44954000 1}
+       {x4417599a x44954000 1}
+       {x4417a000 x44954000 1}
+       {x4417e000 x44954666 1}
+       {x44182666 x44954ccd 1}}}
+     {tx 1 x44179eb8 x449543d7}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x40333333 h x3f666666 bu 1 str 1 spx x44909000 spy x4440c000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush4 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44e92000 x43ec6666 1}}}
+     {tx 1 x44e92000 x43ec6666}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x412b3333 h x3f666666 bu 1 str 1 spx x44909000 spy x4440c000 sb 1 ltt x40000000 tt x41880000 vis 0}}
+    {cubiccurve Brush3 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44ebe99a x448f3000 1}
+       {x44ec0ccd x448f3000 1}
+       {x44ec2ccd x448f3000 1}
+       {x44ec5333 x448f3000 1}
+       {x44ec7333 x448f3000 1}
+       {x44ec999a x448f3000 1}
+       {x44ecbccd x448f3000 1}
+       {x44ecdccd x448f3000 1}}}
+     {tx 1 x44ec639a x448f3000}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x40200000 h x3f666666 bu 1 str 1 spx x44909000 spy x4440c000 sb 1 ltt x40000000 tt x41880000 vis 0}}
+    {cubiccurve Brush2 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x4415e666 x44955000 1}
+       {x44162666 x44955000 1}
+       {x44166ccd x44955000 1}
+       {x4416accd x44955000 1}
+       {x4416eccd x44955000 1}}}
+     {tx 1 x44166a3d x44955000}
+     {a r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x40200000 h x3f666666 bu 1 str 1 spx x44909000 spy x4440c000 sb 1 ltt x40000000 tt x41880000 vis 0}}
+    {cubiccurve Brush5 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44170000 x44954666 1}
+       {x44174666 x44954666 1}
+       {x44179333 x44954ccd 1}
+       {x4417d99a x44954ccd 1}
+       {x4418199a x44955333 1}
+       {x44186000 x44955333 1}
+       {x4418a000 x44955333 1}}}
+     {tx 1 0}
+     {a vis 0 r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x3fcccccd h x3f666666 bu 1 str 1 spx x44909000 spy x4440c000 sb 1 ltt x40000000 tt x41880000}}
+    {cubiccurve Brush1 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x44150ccd x441a7333 1}}}
+     {tx 1 x44150ccd x441a7333}
+     {a vis 0 r 0 g x3e99999a b 0 ro 0 go 0 bo 0 ao 0 bs x41480000 h x3f666666 bu 1 str 1 spx x44909000 spy x4440c000 sb 1 ltt x40000000 tt x41880000}}}}}}
+ toolbox {brush {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush r 0 g 0.3 b 0 bs 1.6 h 0.9 str 1 ssx 1 ssy 1 sf 1 sb 1 tt 17 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_paint_color {0 0.3000000119 0 1}
+ toolbar_brush_size 1.600000024
+ toolbar_brush_hardness 0.9
+ toolbar_lifetime_type single
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1156.5 771}
+ color {0 0.3000000119 0 1}
+ colorOverlay {0 0 0 0}
+ brush_size 2.799999952
+ brush_spacing 0.05000000075
+ brush_hardness 0.8999999762
+ source_black_outside true
+ name RotoPaint1
+ xpos -151
+ ypos -249
+ disable true
+}
+set Nf6776400 [stack 0]
+Transform {
+ translate {3 20}
+ rotate 0.4
+ center {1156.5 771}
+ shutteroffset centred
+ name Transform9
+ xpos -151
+ ypos -185
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat10
+ xpos -151
+ ypos -131
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_Off.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ in_colorspace scene_linear
+ out_colorspace scene_linear
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write10
+ xpos -151
+ ypos -77
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+push $Nc5076400
+push $Nf6776400
+push $Nc5076400
+Read {
+ inputs 0
+ file_type jpeg
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Unaligned/LCD_DistGrid_Glass.jpg
+ format "2313 1542 0 0 2313 1542 1 "
+ origset true
+ name Read3
+ xpos 135
+ ypos -352
+}
+Reformat {
+ type scale
+ scale 0.9
+ resize none
+ name Reformat2
+ xpos 135
+ ypos -135
+}
+Write {
+ file C:/Portable/LGA_ScreenRepSup/resources/LCD_Pics_v03/Scale_0.33_Aligned/LCD_DistGrid_Glass.jpg
+ file_type jpeg
+ create_directories true
+ checkHashOnRead false
+ version 2
+ ocioColorspace "ACES - ACES2065-1"
+ display ACES
+ view sRGB
+ name Write1
+ xpos 135
+ ypos -81
+ bookmark true
+ addUserKnob {20 User}
+ addUserKnob {6 send_mail l "Send Mail" +STARTLINE}
+ addUserKnob {1 render_time l "Render Time"}
+ render_time 00:00:00
+}
+Viewer {
+ inputs 4
+ frame 1
+ frame_range 1-100
+ input_number 2
+ viewerProcess "Rec.709 (ACES)"
+ monitorOutNDISenderName "NukeX - untitled - Viewer1"
+ name Viewer1
+ tile_color 0x323232ff
+ xpos 28
+ ypos 80
+}
