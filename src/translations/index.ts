@@ -1,4 +1,4 @@
-type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' | 'question2' | 'option2_1' | 'option2_2' | 'option2_3' | 'question3' | 'question3Mobile' | 'option3_1' | 'option3_2' | 'question4' | 'option4_1' | 'option4_2' | 'question5' | 'option5_1' | 'option5_2' | 'question6' | 'option6_1' | 'option6_2' | 'question7' | 'option7_1' | 'option7_2' | 'question8' | 'option8_1' | 'option8_2' | 'question9' | 'option9_1' | 'option9_2' | 'question10' | 'option10_1' | 'option10_2' | 'tips' | 'tipsSimple' | 'tipsComplex' | 'instructions' | 'mainPlate' | 'mainPlateDescription' | 'black' | 'crtGridDescription' | 'grayJpgDescription' | 'turnOffText' | 'distortionGrid' | 'gray' | 'refPlateDescription' | 'reference' | 'footerVersion' | 'footerYear' | 'debugInfoTitle' | 'support' | 'illumination' | 'chroma' | 'continue' | 'mainPlateAdditional' | 'restartButton' | 'trackPointsOutside' | 'trackPointsInside' | 'blackWithTrackPoints' | 'blackWithOutsideTrackPoints' | 'trackPointsTips' | 'trackPointsQuantity' | 'trackPointsSize' | 'rotoscopeTips' | 'mainPlateGray' | 'plateRefACRT' | 'plateRefAOther' | 'plateReflejo' | 'plateReflejoDescription' | 'mainPlateGrayWithTrack' | 'grayWithTrackPoints' | 'grayWithOutsideTrackPoints' | 'plateRefACRTWithMovement' | 'plateRefAOtherWithMovement' | 'mainPlateChroma' | 'green' | 'plateRefASemitransparent' | 'mainPlateChromaWithTrack' | 'greenWithTrackPoints' | 'greenWithOutsideTrackPoints' | 'plateRefASemitransparentWithMovement' | 'plateRefACRTWithMovementChroma' | 'plateRefAOtherWithMovementChroma' | 'mobileConsiderationsTitle' | 'mobileConsiderationsText' | 'mobileConsiderationsPreparedScreen' | 'mobileConsiderationsClicking' | 'question4Mobile';
+type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' | 'question2' | 'option2_1' | 'option2_2' | 'option2_3' | 'question3' | 'question3Mobile' | 'option3_1' | 'option3_2' | 'question4' | 'option4_1' | 'option4_2' | 'question5' | 'option5_1' | 'option5_2' | 'question6' | 'option6_1' | 'option6_2' | 'question7' | 'option7_1' | 'option7_2' | 'question8' | 'option8_1' | 'option8_2' | 'question9' | 'option9_1' | 'option9_2' | 'question10' | 'option10_1' | 'option10_2' | 'tips' | 'tipsSimple' | 'tipsComplex' | 'instructions' | 'mainPlate' | 'mainPlateDescription' | 'black' | 'crtGridDescription' | 'grayJpgDescription' | 'turnOffText' | 'distortionGrid' | 'gray' | 'refPlateDescription' | 'reference' | 'footerVersion' | 'footerYear' | 'debugInfoTitle' | 'support' | 'illumination' | 'chroma' | 'continue' | 'mainPlateAdditional' | 'restartButton' | 'trackPointsOutside' | 'trackPointsInside' | 'blackWithTrackPoints' | 'blackWithOutsideTrackPoints' | 'trackPointsTips' | 'trackPointsQuantity' | 'trackPointsSize' | 'rotoscopeTips' | 'mainPlateGray' | 'plateRefACRT' | 'plateRefAOther' | 'plateReflejo' | 'plateReflejoDescription' | 'mainPlateGrayWithTrack' | 'grayWithTrackPoints' | 'grayWithOutsideTrackPoints' | 'plateRefACRTWithMovement' | 'plateRefAOtherWithMovement' | 'mainPlateChroma' | 'green' | 'plateRefASemitransparent' | 'mainPlateChromaWithTrack' | 'greenWithTrackPoints' | 'greenWithOutsideTrackPoints' | 'plateRefASemitransparentWithMovement' | 'plateRefACRTWithMovementChroma' | 'plateRefAOtherWithMovementChroma' | 'mobileConsiderationsTitle' | 'mobileConsiderationsText' | 'mobileConsiderationsPreparedScreen' | 'mobileConsiderationsClicking' | 'question4Mobile' | 'altTrackPointsOutside' | 'altTrackPointsInside' | 'altDistortionGrid' | 'altGrayJpg' | 'altTurnedOff' | 'altReferenceImage' | 'altMainPlateTurnedOff';
 
 type TranslationType = {
   [key in TranslationKeys]: string;
@@ -95,6 +95,13 @@ export const translations: { [key: string]: TranslationType } = {
     mobileConsiderationsPreparedScreen: "Conviene tener preparada/programada una pantalla o una app de antemano para que los dedos se apoyen en los lugares correctos.",
     mobileConsiderationsClicking: "Si se usa una imagen en full screen, al tocar la pantalla aparecen elementos gráficos o la imagen sale de full screen. Para que esto no suceda, hay que usar la función GUIDED ACCESS del teléfono para bloquear la pantalla. Instrucciones para [Android](https://www.youtube.com/watch?v=o0ujQcw1tdc) | [iPhone](https://www.youtube.com/watch?v=p6QrNwtR3nc)",
     question4Mobile: "¿Hay superposición de algún actor, dedos o algún objeto con la pantalla?",
+    altTrackPointsOutside: "Plate Principal: Puntos de track en los bordes plásticos",
+    altTrackPointsInside: "Plate Principal: Puntos de track en el JPG Black",
+    altDistortionGrid: "Plate Ref A: Grilla de distorsión",
+    altGrayJpg: "Plate Ref A: JPG gris",
+    altTurnedOff: "Plate Ref A: Apagado",
+    altReferenceImage: "Plate Ref B: Video o imagen de referencia",
+    altMainPlateTurnedOff: "Plate Principal: Pantalla apagada",
   },
   en: {
     question1: "How is the scene lit and what impact does the screen's light have on it?",
@@ -186,5 +193,12 @@ export const translations: { [key: string]: TranslationType } = {
     mobileConsiderationsPreparedScreen: "It is advisable to have a screen or app prepared/programmed in advance so that the fingers are placed in the correct locations.",
     mobileConsiderationsClicking: "If a full-screen image is used, touching the screen may cause graphic elements to appear or the image to exit full-screen mode. To prevent this, use the phone's GUIDED ACCESS function to lock the screen. Instructions for [Android](https://www.youtube.com/watch?v=o0ujQcw1tdc) | [iPhone](https://www.youtube.com/watch?v=p6QrNwtR3nc)",
     question4Mobile: "Is there any overlap of an actor, fingers, or any object with the screen?",
+    altTrackPointsOutside: "Main Plate: Tracking points on plastic edges",
+    altTrackPointsInside: "Main Plate: Tracking points on Black JPG",
+    altDistortionGrid: "Plate Ref A: Distortion grid",
+    altGrayJpg: "Plate Ref A: Gray JPG",
+    altTurnedOff: "Plate Ref A: Turned off",
+    altReferenceImage: "Plate Ref B: Reference video or image",
+    altMainPlateTurnedOff: "Main Plate: Screen turned off",
   }
 };

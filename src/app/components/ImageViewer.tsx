@@ -126,20 +126,24 @@ export default function ImageViewer({ images, initialIndex, width, height, baseP
                 className="absolute top-5 left-5 text-white text-xl bg-black bg-opacity-50 p-2 rounded z-10"
                 dangerouslySetInnerHTML={{ __html: formatAltText(images[currentIndex].alt) }}
               />
-              <button
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors duration-200"
-                style={arrowStyle}
-                onClick={(e) => { e.stopPropagation(); prevImage(); }}
-              >
-                &#8592;
-              </button>
-              <button
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors duration-200"
-                style={arrowStyle}
-                onClick={(e) => { e.stopPropagation(); nextImage(); }}
-              >
-                &#8594;
-              </button>
+              {images.length > 1 && (
+                <>
+                  <button
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors duration-200"
+                    style={arrowStyle}
+                    onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                  >
+                    &#8592;
+                  </button>
+                  <button
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors duration-200"
+                    style={arrowStyle}
+                    onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                  >
+                    &#8594;
+                  </button>
+                </>
+              )}
             </motion.div>
           </motion.div>
         )}
