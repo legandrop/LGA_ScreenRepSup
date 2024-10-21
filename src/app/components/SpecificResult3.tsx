@@ -31,7 +31,7 @@ export default function SpecificResult3({ soporte, tvOnOff, reflejoImportante, b
             {t('mainPlateGray', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4">
-            <ImageViewer src="/images/Gris.jpg" alt={t('gray')} width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Grey.jpg" alt="LCD_Grey.jpg" width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
@@ -44,7 +44,7 @@ export default function SpecificResult3({ soporte, tvOnOff, reflejoImportante, b
           </p>
           <div className="mb-4 flex space-x-4">
             {soporte === 'Monitor/TV CRT' && (
-              <ImageViewer src="/images/GrillaDistorsion.jpg" alt={t('distortionGrid')} width={100} height={100} basePath={basePath} />
+              <ImageViewer src="/images/CRT_DistGrid.jpg" alt="CRT_DistGrid.jpg" width={100} height={100} basePath={basePath} />
             )}
           </div>
         </li>
@@ -54,7 +54,7 @@ export default function SpecificResult3({ soporte, tvOnOff, reflejoImportante, b
             {t('refPlateDescription', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4">
-            <ImageViewer src="/images/Referencia.jpg" alt={t('reference')} width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Ref.jpg" alt="LCD_Ref.jpg" width={100} height={100} basePath={basePath} />
           </div>
         </li>
 

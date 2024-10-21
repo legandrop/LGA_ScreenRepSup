@@ -33,13 +33,14 @@ export default function SpecificResult2({ soporte, tvOnOff, basePath }: Specific
             {t('trackPointsInside', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4 flex space-x-4">
-            <ImageViewer src="/images/Negro_Track.jpg" alt={t('blackWithTrackPoints')} width={100} height={100} basePath={basePath} />
-            <ImageViewer src="/images/Negro_TrackOutside.jpg" alt={t('blackWithOutsideTrackPoints')} width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Black_Track-4.jpg" alt="LCD_Black_Track-4.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Black_Track-Outside.jpg" alt="LCD_Black_Track-Outside.jpg" width={100} height={100} basePath={basePath} />
           </div>
           <div className="tips mt-4">
             <p className="font-bold mb-2">{t('trackPointsTips')}:</p>
             <ul className="list-disc list-inside">
               <li>{t('trackPointsQuantity')}</li>
+              <li>{t('trackPointsPlacement')}</li>
               <li>{t('trackPointsSize', { soporte: translatedSoporteShort })}</li>
             </ul>
           </div>
@@ -53,16 +54,16 @@ export default function SpecificResult2({ soporte, tvOnOff, basePath }: Specific
           </p>
           <div className="mb-4 flex space-x-4">
             {soporte === 'Monitor/TV CRT' && (
-              <ImageViewer src="/images/GrillaDistorsion.jpg" alt={t('distortionGrid')} width={100} height={100} basePath={basePath} />
+              <ImageViewer src="/images/CRT_DistGrid.jpg" alt="CRT_DistGrid.jpg" width={100} height={100} basePath={basePath} />
             )}
-            <ImageViewer src="/images/Gris.jpg" alt={t('gray')} width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Grey.jpg" alt="LCD_Grey.jpg" width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
         <li>
           <p className="mb-2 -mt-1"><strong>Plate Ref B:</strong> {t('refPlateDescription', { soporte: translatedSoporteShort })}</p>
           <div className="mb-4">
-            <ImageViewer src="/images/Referencia.jpg" alt={t('reference')} width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Ref.jpg" alt="LCD_Ref.jpg" width={100} height={100} basePath={basePath} />
           </div>
         </li>
       </ol>

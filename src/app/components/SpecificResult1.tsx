@@ -29,7 +29,7 @@ export default function SpecificResult1({ soporte, tvOnOff, basePath }: Specific
             <strong>{t('mainPlate')}:</strong> {t('mainPlateDescription', { soporte: translatedSoporteShort })} {t('mainPlateAdditional', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4">
-            <ImageViewer src="/images/Negro.jpg" alt={t('black')} width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Off.jpg" alt="LCD_Off.jpg" width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
@@ -41,16 +41,16 @@ export default function SpecificResult1({ soporte, tvOnOff, basePath }: Specific
           </p>
           <div className="mb-4 flex space-x-4">
             {soporte === 'Monitor/TV CRT' && (
-              <ImageViewer src="/images/GrillaDistorsion.jpg" alt={t('distortionGrid')} width={100} height={100} basePath={basePath} />
+              <ImageViewer src="/images/CRT_DistGrid.jpg" alt="CRT_DistGrid.jpg" width={100} height={100} basePath={basePath} />
             )}
-            <ImageViewer src="/images/Gris.jpg" alt={t('gray')} width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Grey.jpg" alt="LCD_Grey.jpg" width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
         <li>
           <p className="mb-2 -mt-1"><strong>Plate Ref B:</strong> {t('refPlateDescription', { soporte: translatedSoporteShort })}</p>
           <div className="mb-4">
-            <ImageViewer src="/images/Referencia.jpg" alt={t('reference')} width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Ref.jpg" alt="LCD_Ref.jpg" width={100} height={100} basePath={basePath} />
           </div>
         </li>
       </ol>

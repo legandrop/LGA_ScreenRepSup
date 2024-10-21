@@ -40,7 +40,7 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
             {t('mainPlateChroma', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4 flex space-x-4">
-            <ImageViewer src="/images/Verde.jpg" alt={t('green')} width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Green.jpg" alt="LCD_Green.jpg" width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
@@ -55,8 +55,19 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
             }
           </p>
           <div className="mb-4 flex space-x-4">
-            {(soporte === 'Monitor/TV CRT' || semitransparente) && (
-              <ImageViewer src="/images/GrillaDistorsion.jpg" alt={t('distortionGrid')} width={100} height={100} basePath={basePath} />
+            {semitransparente ? (
+              <>
+                <ImageViewer src="/images/LCD_DistGrid_Glass.jpg" alt="LCD_DistGrid_Glass.jpg" width={100} height={100} basePath={basePath} />
+                <ImageViewer src="/images/LCD_DistGrid_Glass-B.jpg" alt="LCD_DistGrid_Glass-B.jpg" width={100} height={100} basePath={basePath} />
+                <ImageViewer src="/images/LCD_DistGrid_Glass-C.jpg" alt="LCD_DistGrid_Glass-C.jpg" width={100} height={100} basePath={basePath} />
+              </>
+            ) : (
+              <>
+                {soporte === 'Monitor/TV CRT' && (
+                  <ImageViewer src="/images/CRT_DistGrid.jpg" alt="CRT_DistGrid.jpg" width={100} height={100} basePath={basePath} />
+                )}
+                <ImageViewer src="/images/LCD_Off.jpg" alt="LCD_Off.jpg" width={100} height={100} basePath={basePath} />
+              </>
             )}
           </div>
         </li>
@@ -66,7 +77,7 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
             {t('refPlateDescription', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4">
-            <ImageViewer src="/images/Referencia.jpg" alt={t('reference')} width={100} height={100} basePath={basePath} />
+            <ImageViewer src="/images/LCD_Ref.jpg" alt="LCD_Ref.jpg" width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
