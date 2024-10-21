@@ -30,6 +30,20 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
     return { __html: sanitizedHtml };
   }
 
+  const allImages = [
+    { src: "/images/LCD_Green.jpg", alt: t('altMainPlateGreen') },
+    ...(semitransparente ? [
+      { src: "/images/LCD_DistGrid_Glass.jpg", alt: t('altDistGridGlassA') },
+      { src: "/images/LCD_DistGrid_Glass-B.jpg", alt: t('altDistGridGlassB') },
+      { src: "/images/LCD_DistGrid_Glass-C.jpg", alt: t('altTurnedOff') },
+    ] : [
+      ...(soporte === 'Monitor/TV CRT' ? [{ src: "/images/CRT_DistGrid.jpg", alt: t('altDistortionGrid') }] : []),
+      { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
+    ]),
+    { src: "/images/LCD_Ref.jpg", alt: t('altReferenceImage') },
+    ...(reflejoImportante ? [{ src: "/images/LCD_Off.jpg", alt: t('altPlateReflejo') }] : []),
+  ];
+
   return (
     <div className="standard-results w-full">
       <h2 className="result-title text-2xl font-bold mb-6">{t('instructions')}</h2>
@@ -40,7 +54,7 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
             {t('mainPlateChroma', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4 flex space-x-4">
-            <ImageViewer src="/images/LCD_Green.jpg" alt="LCD_Green.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer images={allImages} initialIndex={0} width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
@@ -57,16 +71,16 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
           <div className="mb-4 flex space-x-4">
             {semitransparente ? (
               <>
-                <ImageViewer src="/images/LCD_DistGrid_Glass.jpg" alt="LCD_DistGrid_Glass.jpg" width={100} height={100} basePath={basePath} />
-                <ImageViewer src="/images/LCD_DistGrid_Glass-B.jpg" alt="LCD_DistGrid_Glass-B.jpg" width={100} height={100} basePath={basePath} />
-                <ImageViewer src="/images/LCD_DistGrid_Glass-C.jpg" alt="LCD_DistGrid_Glass-C.jpg" width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={2} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={3} width={100} height={100} basePath={basePath} />
               </>
             ) : (
               <>
                 {soporte === 'Monitor/TV CRT' && (
-                  <ImageViewer src="/images/CRT_DistGrid.jpg" alt="CRT_DistGrid.jpg" width={100} height={100} basePath={basePath} />
+                  <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
                 )}
-                <ImageViewer src="/images/LCD_Off.jpg" alt="LCD_Off.jpg" width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 2 : 1} width={100} height={100} basePath={basePath} />
               </>
             )}
           </div>
@@ -77,13 +91,16 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
             {t('refPlateDescription', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4">
-            <ImageViewer src="/images/LCD_Ref.jpg" alt="LCD_Ref.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer images={allImages} initialIndex={allImages.length - (reflejoImportante ? 2 : 1)} width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
         {reflejoImportante && (
           <li>
             <p className="mb-2 -mt-1"><strong>{t('plateReflejo')}:</strong> {t('plateReflejoDescription', { soporte: translatedSoporteShort })}</p>
+            <div className="mb-4">
+              <ImageViewer images={allImages} initialIndex={allImages.length - 1} width={100} height={100} basePath={basePath} />
+            </div>
           </li>
         )}
       </ol>

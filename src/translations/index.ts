@@ -1,4 +1,4 @@
-type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' | 'question2' | 'option2_1' | 'option2_2' | 'option2_3' | 'question3' | 'question3Mobile' | 'option3_1' | 'option3_2' | 'question4' | 'option4_1' | 'option4_2' | 'question5' | 'option5_1' | 'option5_2' | 'question6' | 'option6_1' | 'option6_2' | 'question7' | 'option7_1' | 'option7_2' | 'question8' | 'option8_1' | 'option8_2' | 'question9' | 'option9_1' | 'option9_2' | 'question10' | 'option10_1' | 'option10_2' | 'tips' | 'tipsSimple' | 'tipsComplex' | 'instructions' | 'mainPlate' | 'mainPlateDescription' | 'black' | 'crtGridDescription' | 'grayJpgDescription' | 'turnOffText' | 'distortionGrid' | 'gray' | 'refPlateDescription' | 'reference' | 'footerVersion' | 'footerYear' | 'debugInfoTitle' | 'support' | 'illumination' | 'chroma' | 'continue' | 'mainPlateAdditional' | 'restartButton' | 'trackPointsOutside' | 'trackPointsInside' | 'blackWithTrackPoints' | 'blackWithOutsideTrackPoints' | 'trackPointsTips' | 'trackPointsQuantity' | 'trackPointsSize' | 'rotoscopeTips' | 'mainPlateGray' | 'plateRefACRT' | 'plateRefAOther' | 'plateReflejo' | 'plateReflejoDescription' | 'mainPlateGrayWithTrack' | 'grayWithTrackPoints' | 'grayWithOutsideTrackPoints' | 'plateRefACRTWithMovement' | 'plateRefAOtherWithMovement' | 'mainPlateChroma' | 'green' | 'plateRefASemitransparent' | 'mainPlateChromaWithTrack' | 'greenWithTrackPoints' | 'greenWithOutsideTrackPoints' | 'plateRefASemitransparentWithMovement' | 'plateRefACRTWithMovementChroma' | 'plateRefAOtherWithMovementChroma' | 'mobileConsiderationsTitle' | 'mobileConsiderationsText' | 'mobileConsiderationsPreparedScreen' | 'mobileConsiderationsClicking' | 'question4Mobile' | 'altTrackPointsOutside' | 'altTrackPointsInside' | 'altDistortionGrid' | 'altGrayJpg' | 'altTurnedOff' | 'altReferenceImage' | 'altMainPlateTurnedOff';
+type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' | 'question2' | 'option2_1' | 'option2_2' | 'option2_3' | 'question3' | 'question3Mobile' | 'option3_1' | 'option3_2' | 'question4' | 'option4_1' | 'option4_2' | 'question5' | 'option5_1' | 'option5_2' | 'question6' | 'option6_1' | 'option6_2' | 'question7' | 'option7_1' | 'option7_2' | 'question8' | 'option8_1' | 'option8_2' | 'question9' | 'option9_1' | 'option9_2' | 'question10' | 'option10_1' | 'option10_2' | 'tips' | 'tipsSimple' | 'tipsComplex' | 'instructions' | 'mainPlate' | 'mainPlateDescription' | 'black' | 'crtGridDescription' | 'grayJpgDescription' | 'turnOffText' | 'distortionGrid' | 'gray' | 'refPlateDescription' | 'reference' | 'footerVersion' | 'footerYear' | 'debugInfoTitle' | 'support' | 'illumination' | 'chroma' | 'continue' | 'mainPlateAdditional' | 'restartButton' | 'trackPointsOutside' | 'trackPointsInside' | 'blackWithTrackPoints' | 'blackWithOutsideTrackPoints' | 'trackPointsTips' | 'trackPointsQuantity' | 'trackPointsSize' | 'rotoscopeTips' | 'mainPlateGray' | 'plateRefACRT' | 'plateRefAOther' | 'plateReflejo' | 'plateReflejoDescription' | 'mainPlateGrayWithTrack' | 'grayWithTrackPoints' | 'grayWithOutsideTrackPoints' | 'plateRefACRTWithMovement' | 'plateRefAOtherWithMovement' | 'mainPlateChroma' | 'green' | 'plateRefASemitransparent' | 'mainPlateChromaWithTrack' | 'greenWithTrackPoints' | 'greenWithOutsideTrackPoints' | 'plateRefASemitransparentWithMovement' | 'plateRefACRTWithMovementChroma' | 'plateRefAOtherWithMovementChroma' | 'mobileConsiderationsTitle' | 'mobileConsiderationsText' | 'mobileConsiderationsPreparedScreen' | 'mobileConsiderationsClicking' | 'question4Mobile' | 'altTrackPointsOutside' | 'altTrackPointsInside' | 'altDistortionGrid' | 'altGrayJpg' | 'altTurnedOff' | 'altReferenceImage' | 'altMainPlateTurnedOff' | 'altMainPlateGray' | 'altPlateReflejo' | 'altGreyTrackOutside' | 'altGreyTrack' | 'altMainPlateGreen' | 'altDistGridGlassA' | 'altDistGridGlassB' | 'altGreenTrackOutside' | 'altGreenTrack';
 
 type TranslationType = {
   [key in TranslationKeys]: string;
@@ -102,6 +102,15 @@ export const translations: { [key: string]: TranslationType } = {
     altTurnedOff: "Plate Ref A: Apagado",
     altReferenceImage: "Plate Ref B: Video o imagen de referencia",
     altMainPlateTurnedOff: "Plate Principal: Pantalla apagada",
+    altMainPlateGray: "Plate Principal: JPG gris",
+    altPlateReflejo: "Plate Reflejo: Pantalla apagada con reflejos importantes",
+    altGreyTrackOutside: "Plate Principal: JPG Gris con puntos de track en los bordes plásticos",
+    altGreyTrack: "Plate Principal: JPG Gris con puntos de track",
+    altMainPlateGreen: "Plate Principal: JPG Verde",
+    altDistGridGlassA: "Plate Ref A: Grilla de distorsión con objeto semitransparente",
+    altDistGridGlassB: "Plate Ref A: Grilla de distorsión sin objeto semitransparente",
+    altGreenTrackOutside: "Plate Principal: JPG Verde con puntos de track en los bordes plásticos",
+    altGreenTrack: "Plate Principal: JPG Verde con puntos de track",
   },
   en: {
     question1: "How is the scene lit and what impact does the screen's light have on it?",
@@ -200,5 +209,14 @@ export const translations: { [key: string]: TranslationType } = {
     altTurnedOff: "Plate Ref A: Turned off",
     altReferenceImage: "Plate Ref B: Reference video or image",
     altMainPlateTurnedOff: "Main Plate: Screen turned off",
+    altMainPlateGray: "Main Plate: Gray JPG",
+    altPlateReflejo: "Reflection Plate: Screen turned off with the important reflections",
+    altGreyTrackOutside: "Main Plate: Gray JPG with tracking points on plastic edges",
+    altGreyTrack: "Main Plate: Gray JPG with tracking points",
+    altMainPlateGreen: "Main Plate: Green JPG",
+    altDistGridGlassA: "Plate Ref A: Distortion grid with semi-transparent object",
+    altDistGridGlassB: "Plate Ref A: Distortion grid without semi-transparent object",
+    altGreenTrackOutside: "Main Plate: Green JPG with tracking points on plastic edges",
+    altGreenTrack: "Main Plate: Green JPG with tracking points",
   }
 };

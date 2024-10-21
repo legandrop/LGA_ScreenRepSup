@@ -19,6 +19,16 @@ export default function SpecificResult4({ soporte, tvOnOff, reflejoImportante, b
   const soporteShort = soporte.startsWith('Monitor/TV') ? 'Monitor/TV' : soporte;
   const translatedSoporteShort = language === 'en' && soporteShort === 'Celular' ? 'Mobile phone' : soporteShort;
 
+  const allImages = [
+    { src: "/images/LCD_Grey_Track-Outside.jpg", alt: t('altGreyTrackOutside') },
+    { src: "/images/LCD_Grey_Track-4.jpg", alt: t('altGreyTrack') },
+    ...(soporte === 'Monitor/TV CRT' ? [{ src: "/images/CRT_DistGrid.jpg", alt: t('altDistortionGrid') }] : []),
+    { src: "/images/LCD_Grey.jpg", alt: t('altGrayJpg') },
+    { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
+    { src: "/images/LCD_Ref.jpg", alt: t('altReferenceImage') },
+    ...(reflejoImportante ? [{ src: "/images/LCD_Off.jpg", alt: t('altPlateReflejo') }] : []),
+  ];
+
   return (
     <div className="standard-results w-full">
       <h2 className="result-title text-2xl font-bold mb-6">{t('instructions')}</h2>
@@ -29,13 +39,14 @@ export default function SpecificResult4({ soporte, tvOnOff, reflejoImportante, b
             {t('mainPlateGrayWithTrack', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4 flex space-x-4">
-            <ImageViewer src="/images/LCD_Green_Track-4.jpg" alt="LCD_Green_Track-4.jpg" width={100} height={100} basePath={basePath} />
-            <ImageViewer src="/images/LCD_Black_Track-Outside.jpg" alt="LCD_Black_Track-Outside.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer images={allImages} initialIndex={0} width={100} height={100} basePath={basePath} />
+            <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
           </div>
           <div className="tips mt-4">
             <p className="font-bold mb-2">{t('trackPointsTips')}:</p>
             <ul className="list-disc list-inside">
               <li>{t('trackPointsQuantity')}</li>
+              <li>{t('trackPointsPlacement')}</li>
               <li>{t('trackPointsSize', { soporte: translatedSoporteShort })}</li>
             </ul>
           </div>
@@ -50,9 +61,10 @@ export default function SpecificResult4({ soporte, tvOnOff, reflejoImportante, b
           </p>
           <div className="mb-4 flex space-x-4">
             {soporte === 'Monitor/TV CRT' && (
-              <ImageViewer src="/images/CRT_DistGrid.jpg" alt="CRT_DistGrid.jpg" width={100} height={100} basePath={basePath} />
+              <ImageViewer images={allImages} initialIndex={2} width={100} height={100} basePath={basePath} />
             )}
-            <ImageViewer src="/images/LCD_Grey.jpg" alt="LCD_Grey.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 3 : 2} width={100} height={100} basePath={basePath} />
+            <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 4 : 3} width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
@@ -61,13 +73,16 @@ export default function SpecificResult4({ soporte, tvOnOff, reflejoImportante, b
             {t('refPlateDescription', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4">
-            <ImageViewer src="/images/LCD_Ref.jpg" alt="LCD_Ref.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer images={allImages} initialIndex={allImages.length - 2} width={100} height={100} basePath={basePath} />
           </div>
         </li>
         
         {reflejoImportante && (
           <li>
             <p className="mb-2 -mt-1"><strong>{t('plateReflejo')}:</strong> {t('plateReflejoDescription', { soporte: translatedSoporteShort })}</p>
+            <div className="mb-4">
+              <ImageViewer images={allImages} initialIndex={allImages.length - 1} width={100} height={100} basePath={basePath} />
+            </div>
           </li>
         )}
       </ol>

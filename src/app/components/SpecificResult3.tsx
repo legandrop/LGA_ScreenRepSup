@@ -20,6 +20,14 @@ export default function SpecificResult3({ soporte, tvOnOff, reflejoImportante, b
   const translatedSoporteShort = language === 'en' && soporteShort === 'Celular' ? 'Mobile phone' : soporteShort;
 
   const apagarTexto = tvOnOff ? t('turnOffText', { soporte: translatedSoporteShort }) : '';
+
+  const allImages = [
+    { src: "/images/LCD_Grey.jpg", alt: t('altMainPlateGray') },
+    ...(soporte === 'Monitor/TV CRT' ? [{ src: "/images/CRT_DistGrid.jpg", alt: t('altDistortionGrid') }] : []),
+    { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
+    { src: "/images/LCD_Ref.jpg", alt: t('altReferenceImage') },
+    ...(reflejoImportante ? [{ src: "/images/LCD_Off.jpg", alt: t('altPlateReflejo') }] : []),
+  ];
   
   return (
     <div className="standard-results w-full">
@@ -31,7 +39,7 @@ export default function SpecificResult3({ soporte, tvOnOff, reflejoImportante, b
             {t('mainPlateGray', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4">
-            <ImageViewer src="/images/LCD_Grey.jpg" alt="LCD_Grey.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer images={allImages} initialIndex={0} width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
@@ -44,8 +52,9 @@ export default function SpecificResult3({ soporte, tvOnOff, reflejoImportante, b
           </p>
           <div className="mb-4 flex space-x-4">
             {soporte === 'Monitor/TV CRT' && (
-              <ImageViewer src="/images/CRT_DistGrid.jpg" alt="CRT_DistGrid.jpg" width={100} height={100} basePath={basePath} />
+              <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
             )}
+            <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 2 : 1} width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
@@ -54,13 +63,16 @@ export default function SpecificResult3({ soporte, tvOnOff, reflejoImportante, b
             {t('refPlateDescription', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4">
-            <ImageViewer src="/images/LCD_Ref.jpg" alt="LCD_Ref.jpg" width={100} height={100} basePath={basePath} />
+            <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 3 : 2} width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
         {reflejoImportante && (
           <li>
             <p className="mb-2 -mt-1"><strong>{t('plateReflejo')}:</strong> {t('plateReflejoDescription', { soporte: translatedSoporteShort })}</p>
+            <div className="mb-4">
+              <ImageViewer images={allImages} initialIndex={allImages.length - 1} width={100} height={100} basePath={basePath} />
+            </div>
           </li>
         )}
       </ol>
