@@ -30,19 +30,31 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
     return { __html: sanitizedHtml };
   }
 
-  const allImages = [
-    { src: "/images/LCD_Green.jpg", alt: t('altMainPlateGreen') },
-    ...(semitransparente ? [
-      { src: "/images/LCD_DistGrid_Glass.jpg", alt: t('altDistGridGlassA') },
-      { src: "/images/LCD_DistGrid_Glass-B.jpg", alt: t('altDistGridGlassB') },
-      { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
-    ] : [
-      ...(soporte === 'Monitor/TV CRT' ? [{ src: "/images/CRT_DistGrid.jpg", alt: t('altDistortionGrid') }] : []),
-      { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
-    ]),
-    { src: "/images/LCD_Ref.jpg", alt: t('altReferenceImage') },
-    ...(reflejoImportante ? [{ src: "/images/LCD_Off.jpg", alt: t('altPlateReflejo') }] : []),
-  ];
+  const isCelular = soporte === 'Celular';
+
+  const allImages = isCelular
+    ? [
+        { src: "/images/Cel_Green.jpg", alt: t('altMainPlateGreen') },
+        { src: "/images/Cel_Grey.jpg", alt: t('altGrayJpg') },
+        { src: "/images/Cel_Off.jpg", alt: t('altTurnedOff') },
+        { src: "/images/Cel_Ref.jpg", alt: t('altReferenceImage') },
+        { src: "/images/Cel_Ref_Dedo.jpg", alt: t('altReferenceFinger') },
+        ...(semitransparente ? [{ src: "/images/Cel_Ref_Gafas.jpg", alt: t('altReferenceGlasses') }] : []),
+        ...(reflejoImportante ? [{ src: "/images/Cel_Off.jpg", alt: t('altPlateReflejo') }] : []),
+      ]
+    : [
+        { src: "/images/LCD_Green.jpg", alt: t('altMainPlateGreen') },
+        ...(semitransparente ? [
+          { src: "/images/LCD_DistGrid_Glass.jpg", alt: t('altDistGridGlassA') },
+          { src: "/images/LCD_DistGrid_Glass-B.jpg", alt: t('altDistGridGlassB') },
+          { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
+        ] : [
+          ...(soporte === 'Monitor/TV CRT' ? [{ src: "/images/CRT_DistGrid.jpg", alt: t('altDistortionGrid') }] : []),
+          { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
+        ]),
+        { src: "/images/LCD_Ref.jpg", alt: t('altReferenceImage') },
+        ...(reflejoImportante ? [{ src: "/images/LCD_Off.jpg", alt: t('altPlateReflejo') }] : []),
+      ];
 
   return (
     <div className="standard-results w-full">
@@ -51,7 +63,7 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
         <li>
           <p className="mb-2 -mt-1">
             <strong>{t('mainPlate')}:</strong> <br /> 
-            {t('mainPlateChroma', { soporte: translatedSoporteShort })}
+            {t('mainPlateChroma').replace(/{soporte}/g, translatedSoporteShort)}
           </p>
           <div className="mb-4 flex space-x-4">
             <ImageViewer images={allImages} initialIndex={0} width={100} height={100} basePath={basePath} />
@@ -61,15 +73,22 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
         <li>
           <p className="mb-2 -mt-1">
             <strong>Plate Ref A: </strong> <br />
-            {semitransparente 
-              ? t('plateRefASemitransparent', { soporte: translatedSoporteShort })
-              : soporte === 'Monitor/TV CRT' 
-                ? t('plateRefACRT')
-                : t('plateRefAOther', { soporte: translatedSoporteShort })
+            {isCelular
+              ? t('plateRefAOther', { soporte: translatedSoporteShort })
+              : semitransparente 
+                ? t('plateRefASemitransparent', { soporte: translatedSoporteShort })
+                : soporte === 'Monitor/TV CRT' 
+                  ? t('plateRefACRT')
+                  : t('plateRefAOther', { soporte: translatedSoporteShort })
             }
           </p>
           <div className="mb-4 flex space-x-4">
-            {semitransparente ? (
+            {isCelular ? (
+              <>
+                <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={2} width={100} height={100} basePath={basePath} />
+              </>
+            ) : semitransparente ? (
               <>
                 <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
                 <ImageViewer images={allImages} initialIndex={2} width={100} height={100} basePath={basePath} />
@@ -88,10 +107,37 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
 
         <li>
           <p className="mb-2 -mt-1"><strong>Plate Ref B:</strong> <br /> 
-            {t('refPlateDescription', { soporte: translatedSoporteShort })}
+            {isCelular
+              ? semitransparente
+                ? (
+                  <>
+                    {t('refPlateCelularSemitransparente1')}
+                    <br />
+                    {t('refPlateCelularSemitransparente2')}
+                  </>
+                )
+                : (
+                  <>
+                    {t('refPlateCelular1')}
+                    <br />
+                    {t('refPlateCelular2')}
+                  </>
+                )
+              : t('refPlateDescription', { soporte: translatedSoporteShort })
+            }
           </p>
-          <div className="mb-4">
-            <ImageViewer images={allImages} initialIndex={allImages.length - (reflejoImportante ? 2 : 1)} width={100} height={100} basePath={basePath} />
+          <div className="mb-4 flex space-x-4">
+            {isCelular ? (
+              <>
+                <ImageViewer images={allImages} initialIndex={3} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={4} width={100} height={100} basePath={basePath} />
+                {semitransparente && (
+                  <ImageViewer images={allImages} initialIndex={5} width={100} height={100} basePath={basePath} />
+                )}
+              </>
+            ) : (
+              <ImageViewer images={allImages} initialIndex={allImages.length - (reflejoImportante ? 2 : 1)} width={100} height={100} basePath={basePath} />
+            )}
           </div>
         </li>
 
@@ -105,7 +151,7 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
         )}
       </ol>
       
-      {soporte === 'Celular' && (
+      {isCelular && (
         <div className="mt-8 p-4 bg-yellow-100 rounded-lg">
           <h3 className="font-bold mb-2">{t('mobileConsiderationsTitle')}</h3>
           <p>{t('mobileConsiderationsText')}</p>
@@ -120,7 +166,6 @@ export default function SpecificResult5({ soporte, tvOnOff, semitransparente, re
         </div>
       )}
       
-      {/* Pie de página con texto más pequeño */}
       <footer className="mt-8 pt-4 border-t text-xs text-gray-500">
         <p>{t('footerVersion')}</p>
         <p>{t('footerYear')}</p>

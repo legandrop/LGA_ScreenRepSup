@@ -1,4 +1,4 @@
-type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' | 'question2' | 'option2_1' | 'option2_2' | 'option2_3' | 'question3' | 'question3Mobile' | 'option3_1' | 'option3_2' | 'question4' | 'option4_1' | 'option4_2' | 'question5' | 'option5_1' | 'option5_2' | 'question6' | 'option6_1' | 'option6_2' | 'question7' | 'option7_1' | 'option7_2' | 'question8' | 'option8_1' | 'option8_2' | 'question9' | 'option9_1' | 'option9_2' | 'question10' | 'option10_1' | 'option10_2' | 'tips' | 'tipsSimple' | 'tipsComplex' | 'instructions' | 'mainPlate' | 'mainPlateDescription' | 'black' | 'crtGridDescription' | 'grayJpgDescription' | 'turnOffText' | 'distortionGrid' | 'gray' | 'refPlateDescription' | 'reference' | 'footerVersion' | 'footerYear' | 'debugInfoTitle' | 'support' | 'illumination' | 'chroma' | 'continue' | 'mainPlateAdditional' | 'restartButton' | 'trackPointsOutside' | 'trackPointsInside' | 'blackWithTrackPoints' | 'blackWithOutsideTrackPoints' | 'trackPointsTips' | 'trackPointsQuantity' | 'trackPointsSize' | 'rotoscopeTips' | 'mainPlateGray' | 'plateRefACRT' | 'plateRefAOther' | 'plateReflejo' | 'plateReflejoDescription' | 'mainPlateGrayWithTrack' | 'grayWithTrackPoints' | 'grayWithOutsideTrackPoints' | 'plateRefACRTWithMovement' | 'plateRefAOtherWithMovement' | 'mainPlateChroma' | 'green' | 'plateRefASemitransparent' | 'mainPlateChromaWithTrack' | 'greenWithTrackPoints' | 'greenWithOutsideTrackPoints' | 'plateRefASemitransparentWithMovement' | 'plateRefACRTWithMovementChroma' | 'plateRefAOtherWithMovementChroma' | 'mobileConsiderationsTitle' | 'mobileConsiderationsText' | 'mobileConsiderationsPreparedScreen' | 'mobileConsiderationsClicking' | 'question4Mobile' | 'altTrackPointsOutside' | 'altTrackPointsInside' | 'altDistortionGrid' | 'altGrayJpg' | 'altTurnedOff' | 'altReferenceImage' | 'altMainPlateTurnedOff' | 'altMainPlateGray' | 'altPlateReflejo' | 'altGreyTrackOutside' | 'altGreyTrack' | 'altMainPlateGreen' | 'altDistGridGlassA' | 'altDistGridGlassB' | 'altGreenTrackOutside' | 'altGreenTrack' | 'trackPointsPlacement';
+type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' | 'question2' | 'option2_1' | 'option2_2' | 'option2_3' | 'question3' | 'question3Mobile' | 'option3_1' | 'option3_2' | 'question4' | 'option4_1' | 'option4_2' | 'question5' | 'option5_1' | 'option5_2' | 'question6' | 'option6_1' | 'option6_2' | 'question7' | 'option7_1' | 'option7_2' | 'question8' | 'option8_1' | 'option8_2' | 'question9' | 'option9_1' | 'option9_2' | 'question10' | 'option10_1' | 'option10_2' | 'tips' | 'tipsSimple' | 'tipsComplex' | 'instructions' | 'mainPlate' | 'mainPlateDescription' | 'black' | 'crtGridDescription' | 'grayJpgDescription' | 'turnOffText' | 'distortionGrid' | 'gray' | 'refPlateDescription' | 'reference' | 'footerVersion' | 'footerYear' | 'debugInfoTitle' | 'support' | 'illumination' | 'chroma' | 'continue' | 'mainPlateAdditional' | 'restartButton' | 'trackPointsOutside' | 'trackPointsInside' | 'blackWithTrackPoints' | 'blackWithOutsideTrackPoints' | 'trackPointsTips' | 'trackPointsQuantity' | 'trackPointsSize' | 'rotoscopeTips' | 'mainPlateGray' | 'plateRefACRT' | 'plateRefAOther' | 'plateReflejo' | 'plateReflejoDescription' | 'mainPlateGrayWithTrack' | 'grayWithTrackPoints' | 'grayWithOutsideTrackPoints' | 'plateRefACRTWithMovement' | 'plateRefAOtherWithMovement' | 'mainPlateChroma' | 'green' | 'plateRefASemitransparent' | 'mainPlateChromaWithTrack' | 'greenWithTrackPoints' | 'greenWithOutsideTrackPoints' | 'plateRefASemitransparentWithMovement' | 'plateRefACRTWithMovementChroma' | 'plateRefAOtherWithMovementChroma' | 'mobileConsiderationsTitle' | 'mobileConsiderationsText' | 'mobileConsiderationsPreparedScreen' | 'mobileConsiderationsClicking' | 'question4Mobile' | 'altTrackPointsOutside' | 'altTrackPointsInside' | 'altDistortionGrid' | 'altGrayJpg' | 'altTurnedOff' | 'altReferenceImage' | 'altMainPlateTurnedOff' | 'altMainPlateGray' | 'altPlateReflejo' | 'altGreyTrackOutside' | 'altGreyTrack' | 'altMainPlateGreen' | 'altDistGridGlassA' | 'altDistGridGlassB' | 'altGreenTrackOutside' | 'altGreenTrack' | 'trackPointsPlacement' | 'refPlateCelular' | 'refPlateCelularSemitransparente' | 'altReferenceFinger' | 'altReferenceGlasses';
 
 type TranslationType = {
   [key in TranslationKeys]: string;
@@ -30,7 +30,7 @@ export const translations: { [key: string]: TranslationType } = {
     question7: "¿Hay un objeto semitransparente por delante de la pantalla? (por ejemplo un vaso)",
     option7_1: "Sí",
     option7_2: "No",
-    question8: "Complica bastante las cosas. ¿Se puede evitar poner?",
+    question8: "Usar un objeto semitransparente complica bastante las cosas. ¿Se puede evitar poner?",
     option8_1: "Sí",
     option8_2: "No",
     question9: "¿Hay algún reflejo en la pantalla que sea importante para la escena?",
@@ -68,7 +68,7 @@ export const translations: { [key: string]: TranslationType } = {
     blackWithOutsideTrackPoints: "Negro con puntos de track fuera",
     trackPointsTips: "Tips para puntos de track",
     trackPointsQuantity: "La cantidad de puntos a poner dependerá de cada plano. Cuantos menos se usen, mejor, teniendo en cuenta que siempre tiene que haber 4 puntos visibles en toma.",
-    trackPointsPlacement: "Idealmente, se utilizarán puntos de track lo más cercanos posible a los bordes de la pantalla (Margin 1), evitando puntos en el centro. Margin 2 se usará cuando los bordes de una TV CRT corten los puntos del JPG Margin 1. En casos donde algo cruce la pantalla y bloquee estos puntos, se colocarán puntos en el centro.",
+    trackPointsPlacement: "Idealmente, se utilizarán puntos de track lo más cercanos posible a los bordes de la pantalla evitando puntos en el centro. Margin 1 se usará siempre que los puntos de track no queden cortados/comidos por los bordes, sino se usarán los JPG Margin 2 (generalmente en TV CRT y celulares con pantallas redondeadas) En casos donde algo cruce la pantalla y bloquee estos puntos, se colocarán puntos en el centro.",
     trackPointsSize: "Cuanto más chicos sean los puntos, mejor. Simplemente tienen que verse en cámara, por lo tanto el tamaño dependerá de que tan grande se vea el {soporte} en cámara. Si es un primer plano, los puntos serán más chicos que en un plano general.",
     rotoscopeTips: "<br><p><strong>Complejos:</strong> Elementos que bloquean de forma continua la pantalla. Pelo, elementos fuera de foco, con movimiento rápido que generan motion blur, en contacto o muy cerca de la pantalla, o con semitransparencias.</p><br><p><strong>Simples:</strong> Elementos que cruzan y tapan la pantalla solo durante pocos frames. Si tapan la pantalla de forma continua, se consideran simples aquellos con bordes definidos, sin movimientos rápidos y sin semitransparencias.</p>",
     mainPlateGray: "Filmar el plano con un JPG gris. Usar el brillo del {soporte} para lograr un nivel adecuado sin sobreexponer. Tomar nota del nivel de brillo usado.",
@@ -111,6 +111,12 @@ export const translations: { [key: string]: TranslationType } = {
     altDistGridGlassB: "Plate Ref A: Grilla de distorsión sin objeto semitransparente",
     altGreenTrackOutside: "Plate Principal: JPG Verde con puntos de track en los bordes plásticos",
     altGreenTrack: "Plate Principal: JPG Verde con puntos de track",
+    refPlateCelular1: "Celular con contenido real de referencia, idealmente lo más parecido posible al material que se usará en postproducción (por ejemplo youtube, google, videollamada, etc).",
+    refPlateCelular2: "Hacer con los dedos la misma acción que se hacía en el plate principal.",
+    refPlateCelularSemitransparente1: "Celular con contenido real de referencia, idealmente lo más parecido posible al material que se usará en postproducción (por ejemplo youtube, google, videollamada, etc).",
+    refPlateCelularSemitransparente2: "Hacer con los dedos la misma acción que se hacía en el plate principal, además de poner el objeto semitransparente tapando la imagen como en el plate principal.",
+    altReferenceFinger: "Plate Ref B: Referencia con acción de dedos",
+    altReferenceGlasses: "Plate Ref B: Referencia con objeto semitransparente",
   },
   en: {
     question1: "How is the scene lit and what impact does the screen's light have on it?",
@@ -137,7 +143,7 @@ export const translations: { [key: string]: TranslationType } = {
     question7: "Is there a semi-transparent object in front of the screen? (e.g., a glass)",
     option7_1: "Yes",
     option7_2: "No",
-    question8: "This complicates things considerably. Can it be avoided?",
+    question8: "Using a semi-transparent object complicates things considerably. Can it be avoided?",
     option8_1: "Yes",
     option8_2: "No",
     question9: "Is there any reflection on the screen that is important for the scene?",
@@ -175,7 +181,7 @@ export const translations: { [key: string]: TranslationType } = {
     blackWithOutsideTrackPoints: "Black with external tracking points",
     trackPointsTips: "Tracking point tips",
     trackPointsQuantity: "The number of points to be placed will depend on each shot. The fewer used, the better, keeping in mind that there should always be 4 visible points in the shot.",
-    trackPointsPlacement: "Ideally, tracking points will be placed as close as possible to the screen edges (Margin 1), avoiding points in the center. Margin 2 will be used when the edges of a CRT TV cut off the Margin 1 JPG points. In cases where something crosses the screen and blocks these points, points will be placed in the center.",
+    trackPointsPlacement: "Ideally, tracking points will be placed as close as possible to the screen edges, avoiding points in the center. Margin 1 will be used whenever the tracking points are not cut off/eaten by the edges, otherwise JPG Margin 2 will be used (generally on CRT TVs and mobile phones with rounded screens). In cases where something crosses the screen and blocks these points, points will be placed in the center.",
     trackPointsSize: "The smaller the points, the better. They just need to be visible on camera, so size depends on how large the {soporte} appears. For close-ups, use smaller points than for wide shots.",
     rotoscopeTips: "<br><p><strong>Complex:</strong> Elements that continuously block the screen. Hair, out-of-focus elements, with rapid movement generating motion blur, in contact with or very close to the screen, or with semi-transparencies.</p><br><p><strong>Simple:</strong> Elements that cross and cover the screen only for a few frames. If they continuously cover the screen, those with defined edges, without rapid movements, and without semi-transparencies are considered simple.</p>",
     mainPlateGray: "Film the shot with a gray JPG. Adjust the {soporte}'s brightness to an appropriate level without overexposing. Take Note of the brightness level used.",
@@ -218,5 +224,11 @@ export const translations: { [key: string]: TranslationType } = {
     altDistGridGlassB: "Plate Ref A: Distortion grid without semi-transparent object",
     altGreenTrackOutside: "Main Plate: Green JPG with tracking points on plastic edges",
     altGreenTrack: "Main Plate: Green JPG with tracking points",
+    refPlateCelular1: "Mobile phone with real reference content, ideally as close as possible to the material that will be used in post-production (for example YouTube, Google, video call, etc).",
+    refPlateCelular2: "Perform the same action with the fingers as was done in the main plate.",
+    refPlateCelularSemitransparente1: "Mobile phone with real reference content, ideally as close as possible to the material that will be used in post-production (for example YouTube, Google, video call, etc).",
+    refPlateCelularSemitransparente2: "Perform the same action with the fingers as was done in the main plate, in addition to placing the semi-transparent object covering the image as in the main plate.",
+    altReferenceFinger: "Plate Ref B: Reference with finger action",
+    altReferenceGlasses: "Plate Ref B: Reference with semi-transparent object",
   }
 };
