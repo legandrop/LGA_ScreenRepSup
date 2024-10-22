@@ -363,6 +363,7 @@ function QuizContent() {
                 iluminacion={iluminacion}
                 tvOnOff={tvOnOff}
                 basePath="/ScreenRepSup"
+                lga_debug={lga_debug}  // Añade esta línea
               />
               {lga_debug && (
                 <AllVariables
