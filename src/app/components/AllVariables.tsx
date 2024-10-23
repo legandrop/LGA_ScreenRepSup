@@ -1,8 +1,9 @@
 import React from 'react';
+import { useTranslation } from '../../hooks/useTranslation';
 
 type AllVariablesProps = {
   cameraMovement: boolean;
-  soporte: string | null;
+  soporte: string;
   chroma: boolean;
   semitransparente: boolean;
   reflejoImportante: boolean | null;
@@ -19,7 +20,9 @@ const AllVariables: React.FC<AllVariablesProps> = ({
   iluminacion,
   tvOnOff
 }) => {
-  const getSpecificResultNumber = (): number => {
+  const { t } = useTranslation();
+
+  const getResultNumber = (): number => {
     if (iluminacion === 'alta' && !chroma && !cameraMovement) return 1;
     if (iluminacion === 'alta' && !chroma && cameraMovement) return 2;
     if ((iluminacion === 'media' || iluminacion === 'baja') && !chroma && !cameraMovement) return 3;
@@ -31,15 +34,16 @@ const AllVariables: React.FC<AllVariablesProps> = ({
 
   return (
     <div className="mt-8 p-4 bg-gray-100 rounded-lg">
-      <h3 className="text-lg font-bold mb-2">SpecificResult{getSpecificResultNumber()}</h3>
+      <h3 className="font-bold mb-2">{t('debugInfoTitle')}:</h3>
+      <p className="mb-2">SpecificResult{getResultNumber()}</p>
       <ul className="list-disc list-inside">
-        <li>Iluminación: {iluminacion}</li>
-        <li>Chroma: {chroma.toString()}</li>
+        <li>{t('support')}: {soporte}</li>
+        <li>{t('illumination')}: {iluminacion}</li>
+        <li>{t('chroma')}: {chroma.toString()}</li>
         <li>Camera Movement: {cameraMovement.toString()}</li>
-        <li className="mt-2">Reflejo Importante: {reflejoImportante?.toString()}</li>
-        <li>TV On/Off: {tvOnOff?.toString()}</li>
         <li>Semitransparente: {semitransparente.toString()}</li>
-        <li>Soporte: {soporte}</li>
+        <li>Reflejo Importante: {reflejoImportante?.toString() ?? 'null'}</li>
+        <li>TV On/Off: {tvOnOff?.toString() ?? 'null'}</li>
       </ul>
     </div>
   );

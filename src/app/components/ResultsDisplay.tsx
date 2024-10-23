@@ -4,7 +4,6 @@ import SpecificResult3 from './SpecificResult3';
 import SpecificResult4 from './SpecificResult4';
 import SpecificResult5 from './SpecificResult5';
 import SpecificResult6 from './SpecificResult6';
-import AllVariables from './AllVariables';
 import { useTranslation } from '../../hooks/useTranslation';
 
 type ResultsDisplayProps = {
@@ -67,17 +66,6 @@ export default function ResultsDisplay(props: ResultsDisplayProps) {
   return (
     <div>
       {renderResult()}
-      {lga_debug && (
-        <AllVariables
-          cameraMovement={cameraMovement}
-          soporte={soporte}
-          chroma={chroma}
-          semitransparente={semitransparente}
-          reflejoImportante={reflejoImportante}
-          iluminacion={iluminacion}
-          tvOnOff={tvOnOff}
-        />
-      )}
     </div>
   );
 }

@@ -55,7 +55,7 @@ export const translations: { [key: string]: TranslationType } = {
     reference: "Referencia",
     footerVersion: "Screen Replacement Supervisor v0.8",
     footerYear: "2024 | Lega Pugliese",
-    debugInfoTitle: "Información de depuración",
+    debugInfoTitle: "Debug Info",
     support: "Soporte",
     illumination: "Iluminación",
     chroma: "Chroma",
