@@ -1,4 +1,47 @@
-type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' | 'question2' | 'option2_1' | 'option2_2' | 'option2_3' | 'question3' | 'question3Mobile' | 'option3_1' | 'option3_2' | 'question4' | 'option4_1' | 'option4_2' | 'question5' | 'option5_1' | 'option5_2' | 'question6' | 'option6_1' | 'option6_2' | 'question7' | 'option7_1' | 'option7_2' | 'question8' | 'option8_1' | 'option8_2' | 'question9' | 'option9_1' | 'option9_2' | 'question10' | 'option10_1' | 'option10_2' | 'tips' | 'tipsSimple' | 'tipsComplex' | 'instructions' | 'mainPlate' | 'mainPlateDescription' | 'black' | 'crtGridDescription' | 'grayJpgDescription' | 'turnOffText' | 'distortionGrid' | 'gray' | 'refPlateDescription' | 'reference' | 'footerVersion' | 'footerYear' | 'debugInfoTitle' | 'support' | 'illumination' | 'chroma' | 'continue' | 'mainPlateAdditional' | 'restartButton' | 'trackPointsOutside' | 'trackPointsInside' | 'blackWithTrackPoints' | 'blackWithOutsideTrackPoints' | 'trackPointsTips' | 'trackPointsQuantity' | 'trackPointsSize' | 'rotoscopeTips' | 'mainPlateGray' | 'plateRefACRT' | 'plateRefAOther' | 'plateReflejo' | 'plateReflejoDescription' | 'mainPlateGrayWithTrack' | 'grayWithTrackPoints' | 'grayWithOutsideTrackPoints' | 'plateRefACRTWithMovement' | 'plateRefAOtherWithMovement' | 'mainPlateChroma' | 'green' | 'plateRefASemitransparent' | 'mainPlateChromaWithTrack' | 'greenWithTrackPoints' | 'greenWithOutsideTrackPoints' | 'plateRefASemitransparentWithMovement' | 'plateRefACRTWithMovementChroma' | 'plateRefAOtherWithMovementChroma' | 'mobileConsiderationsTitle' | 'mobileConsiderationsText' | 'mobileConsiderationsPreparedScreen' | 'mobileConsiderationsClicking' | 'question4Mobile' | 'altTrackPointsOutside' | 'altTrackPointsInside' | 'altDistortionGrid' | 'altGrayJpg' | 'altTurnedOff' | 'altReferenceImage' | 'altMainPlateTurnedOff' | 'altMainPlateGray' | 'altPlateReflejo' | 'altGreyTrackOutside' | 'altGreyTrack' | 'altMainPlateGreen' | 'altDistGridGlassA' | 'altDistGridGlassB' | 'altGreenTrackOutside' | 'altGreenTrack' | 'trackPointsPlacement' | 'refPlateCelular' | 'refPlateCelularSemitransparente' | 'altReferenceFinger' | 'altReferenceGlasses' | 'turnOffIfBlackJPG' | 'turnOffIfBlackJPG1' | 'turnOffIfBlackJPG2';
+type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' | 
+  'question2' | 'option2_1' | 'option2_2' | 'option2_3' | 
+  'question3' | 'question3Mobile' | 'option3_1' | 'option3_2' | 
+  'question4' | 'option4_1' | 'option4_2' | 
+  'question5' | 'option5_1' | 'option5_2' | 
+  'question6' | 'option6_1' | 'option6_2' | 
+  'question7' | 'option7_1' | 'option7_2' | 
+  'question8' | 'option8_1' | 'option8_2' | 
+  'question9' | 'option9_1' | 'option9_2' | 
+  'question10' | 'option10_1' | 'option10_2' | 
+  'tips' | 'tipsSimple' | 'tipsComplex' | 
+  'instructions' | 'mainPlate' | 'mainPlateDescription' | 
+  'black' | 'crtGridDescription' | 'grayJpgDescription' | 
+  'turnOffText' | 'distortionGrid' | 'gray' | 
+  'refPlateDescription' | 'reference' | 'footerVersion' | 
+  'footerYear' | 'debugInfoTitle' | 'support' | 
+  'illumination' | 'chroma' | 'continue' | 
+  'mainPlateAdditional' | 'restartButton' | 
+  'trackPointsOutside' | 'trackPointsInside' | 
+  'blackWithTrackPoints' | 'blackWithOutsideTrackPoints' | 
+  'trackPointsTips' | 'trackPointsQuantity' | 'trackPointsSize' | 
+  'rotoscopeTips' | 'mainPlateGray' | 'plateRefACRT' | 
+  'plateRefAOther' | 'plateReflejo' | 'plateReflejoDescription' | 
+  'mainPlateGrayWithTrack' | 'grayWithTrackPoints' | 
+  'grayWithOutsideTrackPoints' | 'plateRefACRTWithMovement' | 
+  'plateRefAOtherWithMovement' | 'mainPlateChroma' | 'green' | 
+  'plateRefASemitransparent' | 'mainPlateChromaWithTrack' | 
+  'greenWithTrackPoints' | 'greenWithOutsideTrackPoints' | 
+  'plateRefASemitransparentWithMovement' | 'plateRefACRTWithMovementChroma' | 
+  'plateRefAOtherWithMovementChroma' | 'mobileConsiderationsTitle' | 
+  'mobileConsiderationsText' | 'mobileConsiderationsPreparedScreen' | 
+  'mobileConsiderationsClicking' | 'question4Mobile' | 
+  'altTrackPointsOutside' | 'altTrackPointsInside' | 
+  'altDistortionGrid' | 'altGrayJpg' | 'altTurnedOff' | 
+  'altReferenceImage' | 'altMainPlateTurnedOff' | 
+  'altMainPlateGray' | 'altPlateReflejo' | 
+  'altGreyTrackOutside' | 'altGreyTrack' | 
+  'altMainPlateGreen' | 'altDistGridGlassA' | 
+  'altDistGridGlassB' | 'altGreenTrackOutside' | 
+  'altGreenTrack' | 'trackPointsPlacement' | 
+  'refPlateCelular1' | 'refPlateCelular2' | 
+  'refPlateCelularSemitransparente1' | 'refPlateCelularSemitransparente2' | 
+  'altReferenceFinger' | 'altReferenceGlasses' |
+  'turnOffIfBlackJPG1' | 'turnOffIfBlackJPG2';
 
 type TranslationType = {
   [key in TranslationKeys]: string;
@@ -117,7 +160,6 @@ export const translations: { [key: string]: TranslationType } = {
     refPlateCelularSemitransparente2: "Hacer con los dedos la misma acción que se hacía en el plate principal, además de poner el objeto semitransparente tapando la imagen como en el plate principal.",
     altReferenceFinger: "Plate Ref B: Referencia con acción de dedos",
     altReferenceGlasses: "Plate Ref B: Referencia con objeto semitransparente",
-    turnOffIfBlackJPG: "y luego apagar el {soporte} en toma si en el plate principal se usó JPG black con puntos de track",
     turnOffIfBlackJPG1: "JPG gris durante 1 segundo",
     turnOffIfBlackJPG2: "Si en el plate principal se usó JPG black con puntos de track en lugar de stickers por fuera de la pantalla, apagar el {soporte} en toma",
   },
@@ -233,7 +275,6 @@ export const translations: { [key: string]: TranslationType } = {
     refPlateCelularSemitransparente2: "Perform the same action with the fingers as was done in the main plate, in addition to placing the semi-transparent object covering the image as in the main plate.",
     altReferenceFinger: "Plate Ref B: Reference with finger action",
     altReferenceGlasses: "Plate Ref B: Reference with semi-transparent object",
-    turnOffIfBlackJPG: "and then turn off the {soporte} on camera if a black JPG with tracking points was used in the main plate",
     turnOffIfBlackJPG1: "Gray JPG for 1 second",
     turnOffIfBlackJPG2: "If a black JPG with tracking points was used in the main plate instead of stickers outside the screen, turn off the {soporte} on camera",
   }

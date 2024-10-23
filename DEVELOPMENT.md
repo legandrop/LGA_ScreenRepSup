@@ -51,14 +51,11 @@ Para ejecutar el proyecto localmente:
 <br />
 
 
-## Compilación para producción
-   ```
-   npm run build
-   ```
-   en realidad usar este para compilar el sitio estático:
+## Compilación para producción para sitio estático
    ```
    npm run export
    ```
+
 Los archivos compilados se generarán en la carpeta `out`.
 
 <br />
