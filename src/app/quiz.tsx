@@ -44,7 +44,7 @@ function QuizContent() {
 
   useEffect(() => {
     console.log('Current language:', language);
-    askIluminacion();
+    askSoporte(); // Cambiado de askIluminacion() a askSoporte()
   }, [language]);
 
   const showQuestion = useCallback((
@@ -241,17 +241,16 @@ function QuizContent() {
     console.log('Setting iluminacion to:', value);
     setIluminacion(value);
     console.log('Current state - iluminacion:', value, 'soporte:', soporte, 'chroma:', chroma);
-    setIsFirstQuestion(false);
-    askSoporte(value);
-  }, [askSoporte, soporte, chroma]);
+    askCameraMovement(value, soporte); // Ahora llama a askCameraMovement
+  }, [askCameraMovement, soporte, chroma]);
 
-  const handleSoporteResponse = useCallback((option: string, iluminacionValue: string) => {
+  const handleSoporteResponse = useCallback((option: string) => {
     console.log('Setting soporte to:', option);
     setSoporte(option);
-    console.log('Current state - iluminacion:', iluminacionValue, 'soporte:', option, 'chroma:', chroma);
-    console.log('Soporte set, calling askCameraMovement');
-    askCameraMovement(iluminacionValue, option);
-  }, [askCameraMovement, chroma]);
+    console.log('Current state - soporte:', option, 'chroma:', chroma);
+    setIsFirstQuestion(false);
+    askIluminacion(); // Ahora llama a askIluminacion en lugar de askCameraMovement
+  }, [chroma]);
 
   const handleCameraMovementResponse = useCallback((value: boolean, iluminacionValue: string, soporteValue: string) => {
     console.log('Setting cameraMovement to:', value);
@@ -289,8 +288,8 @@ function QuizContent() {
     setReflejoImportante(null);
     setIluminacion(null);
     setTvOnOff(null);
-    askIluminacion();
-  }, [askIluminacion]);
+    askSoporte(); // Cambiado de askIluminacion() a askSoporte()
+  }, [askSoporte]); // Cambiado de [askIluminacion] a [askSoporte]
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center p-4 space-y-4">
