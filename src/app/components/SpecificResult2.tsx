@@ -17,17 +17,25 @@ export default function SpecificResult2({ soporte, tvOnOff, basePath }: Specific
 
   const soporteShort = soporte.startsWith('Monitor/TV') ? 'Monitor/TV' : soporte;
   const translatedSoporteShort = language === 'en' && soporteShort === 'Celular' ? 'Mobile phone' : soporteShort;
-
-  const apagarTexto = tvOnOff ? t('turnOffText', { soporte: translatedSoporteShort }) : '';
   
-  const allImages = [
-    { src: "/images/LCD_Black_Track-Outside.jpg", alt: t('altTrackPointsOutside') },
-    { src: "/images/LCD_Black_Track-4.jpg", alt: t('altTrackPointsInside') },
-    ...(soporte === 'Monitor/TV CRT' ? [{ src: "/images/CRT_DistGrid.jpg", alt: t('altDistortionGrid') }] : []),
-    { src: "/images/LCD_Grey.jpg", alt: t('altGrayJpg') },
-    { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
-    { src: "/images/LCD_Ref.jpg", alt: t('altReferenceImage') },
-  ];
+  const isCelular = soporte === 'Celular';
+
+  const allImages = isCelular
+    ? [
+        { src: "/images/Cel_Black_Track-4.jpg", alt: t('altTrackPointsInside') },
+        { src: "/images/Cel_Grey.jpg", alt: t('altGrayJpg') },
+        { src: "/images/Cel_Off.jpg", alt: t('altTurnedOff') },
+        { src: "/images/Cel_Ref.jpg", alt: t('altReferenceImage') },
+        { src: "/images/Cel_Ref_Dedo.jpg", alt: t('altReferenceFinger') },
+      ]
+    : [
+        { src: "/images/LCD_Black_Track-Outside.jpg", alt: t('altTrackPointsOutside') },
+        { src: "/images/LCD_Black_Track-4.jpg", alt: t('altTrackPointsInside') },
+        ...(soporte === 'Monitor/TV CRT' ? [{ src: "/images/CRT_DistGrid.jpg", alt: t('altDistortionGrid') }] : []),
+        { src: "/images/LCD_Grey.jpg", alt: t('altGrayJpg') },
+        { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
+        { src: "/images/LCD_Ref.jpg", alt: t('altReferenceImage') },
+      ];
 
   return (
     <div className="standard-results w-full">
@@ -38,12 +46,22 @@ export default function SpecificResult2({ soporte, tvOnOff, basePath }: Specific
             <strong>{t('mainPlate')}:</strong> <br />
             {t('mainPlateDescription', { soporte: translatedSoporteShort })} <br />
             {t('mainPlateAdditional', { soporte: translatedSoporteShort })} <br />
-            {t('trackPointsOutside', { soporte: translatedSoporteShort })} <br />
-            {t('trackPointsInside', { soporte: translatedSoporteShort })}
+            {isCelular ? t('trackPointsInside', { soporte: translatedSoporteShort }) : (
+              <>
+                {t('trackPointsOutside', { soporte: translatedSoporteShort })} <br />
+                {t('trackPointsInside', { soporte: translatedSoporteShort })}
+              </>
+            )}
           </p>
           <div className="mb-4 flex space-x-4">
-            <ImageViewer images={allImages} initialIndex={0} width={100} height={100} basePath={basePath} />
-            <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
+            {isCelular ? (
+              <ImageViewer images={allImages} initialIndex={0} width={100} height={100} basePath={basePath} />
+            ) : (
+              <>
+                <ImageViewer images={allImages} initialIndex={0} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
+              </>
+            )}
           </div>
           <div className="tips mt-4">
             <p className="font-bold mb-2">{t('trackPointsTips')}:</p>
@@ -58,27 +76,74 @@ export default function SpecificResult2({ soporte, tvOnOff, basePath }: Specific
         <li>
           <p className="mb-2 -mt-1">
             <strong>Plate Ref A: </strong> 
-            {soporte === 'Monitor/TV CRT' && t('crtGridDescription')}
-            {t('grayJpgDescription')} {apagarTexto}
+          </p>
+          <p className="mb-2">
+            {isCelular
+              ? (
+                <>
+                  {t('turnOffIfBlackJPG1')}
+                  <br />
+                  {t('turnOffIfBlackJPG2', { soporte: translatedSoporteShort })}
+                </>
+              )
+              : (
+                <>
+                  {soporte === 'Monitor/TV CRT' && t('crtGridDescription')}
+                  {tvOnOff
+                    ? `${t('turnOffIfBlackJPG1')} ${t('turnOffText', { soporte: translatedSoporteShort })}`
+                    : (
+                      <>
+                        {t('turnOffIfBlackJPG1')}
+                        <br />
+                        {t('turnOffIfBlackJPG2', { soporte: translatedSoporteShort })}
+                      </>
+                    )
+                  }
+                </>
+              )
+            }
           </p>
           <div className="mb-4 flex space-x-4">
-            {soporte === 'Monitor/TV CRT' && (
-              <ImageViewer images={allImages} initialIndex={2} width={100} height={100} basePath={basePath} />
+            {isCelular ? (
+              <>
+                <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={2} width={100} height={100} basePath={basePath} />
+              </>
+            ) : (
+              <>
+                {soporte === 'Monitor/TV CRT' && (
+                  <ImageViewer images={allImages} initialIndex={2} width={100} height={100} basePath={basePath} />
+                )}
+                <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 3 : 2} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 4 : 3} width={100} height={100} basePath={basePath} />
+              </>
             )}
-            <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 3 : 2} width={100} height={100} basePath={basePath} />
-            <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 4 : 3} width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
         <li>
-          <p className="mb-2 -mt-1"><strong>Plate Ref B:</strong> {t('refPlateDescription', { soporte: translatedSoporteShort })}</p>
-          <div className="mb-4">
-            <ImageViewer images={allImages} initialIndex={allImages.length - 1} width={100} height={100} basePath={basePath} />
+          <p className="mb-2 -mt-1"><strong>Plate Ref B:</strong><br />
+            {isCelular ? (
+              <>
+                {t('refPlateCelular1')}
+                <br />
+                {t('refPlateCelular2')}
+              </>
+            ) : t('refPlateDescription', { soporte: translatedSoporteShort })}
+          </p>
+          <div className="mb-4 flex space-x-4">
+            {isCelular ? (
+              <>
+                <ImageViewer images={allImages} initialIndex={3} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={4} width={100} height={100} basePath={basePath} />
+              </>
+            ) : (
+              <ImageViewer images={allImages} initialIndex={allImages.length - 1} width={100} height={100} basePath={basePath} />
+            )}
           </div>
         </li>
       </ol>
       
-      {/* Pie de página con texto más pequeño */}
       <footer className="mt-8 pt-4 border-t text-xs text-gray-500">
         <p>{t('footerVersion')}</p>
         <p>{t('footerYear')}</p>

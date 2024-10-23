@@ -21,13 +21,23 @@ export default function SpecificResult3({ soporte, tvOnOff, reflejoImportante, b
 
   const apagarTexto = tvOnOff ? t('turnOffText', { soporte: translatedSoporteShort }) : '';
 
-  const allImages = [
-    { src: "/images/LCD_Grey.jpg", alt: t('altMainPlateGray') },
-    ...(soporte === 'Monitor/TV CRT' ? [{ src: "/images/CRT_DistGrid.jpg", alt: t('altDistortionGrid') }] : []),
-    { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
-    { src: "/images/LCD_Ref.jpg", alt: t('altReferenceImage') },
-    ...(reflejoImportante ? [{ src: "/images/LCD_Off.jpg", alt: t('altPlateReflejo') }] : []),
-  ];
+  const isCelular = soporte === 'Celular';
+
+  const allImages = isCelular
+    ? [
+        { src: "/images/Cel_Grey.jpg", alt: t('altMainPlateGray') },
+        { src: "/images/Cel_Off.jpg", alt: t('altTurnedOff') },
+        { src: "/images/Cel_Ref.jpg", alt: t('altReferenceImage') },
+        { src: "/images/Cel_Ref_Dedo.jpg", alt: t('altReferenceFinger') },
+        ...(reflejoImportante ? [{ src: "/images/Cel_Off.jpg", alt: t('altPlateReflejo') }] : []),
+      ]
+    : [
+        { src: "/images/LCD_Grey.jpg", alt: t('altMainPlateGray') },
+        ...(soporte === 'Monitor/TV CRT' ? [{ src: "/images/CRT_DistGrid.jpg", alt: t('altDistortionGrid') }] : []),
+        { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
+        { src: "/images/LCD_Ref.jpg", alt: t('altReferenceImage') },
+        ...(reflejoImportante ? [{ src: "/images/LCD_Off.jpg", alt: t('altPlateReflejo') }] : []),
+      ];
   
   return (
     <div className="standard-results w-full">
@@ -46,24 +56,45 @@ export default function SpecificResult3({ soporte, tvOnOff, reflejoImportante, b
         <li>
           <p className="mb-2 -mt-1">
             <strong>Plate Ref A: </strong><br />
-            {soporte === 'Monitor/TV CRT'
-              ? t('plateRefACRT')
-              : t('plateRefAOther', { soporte: translatedSoporteShort })}
+            {isCelular
+              ? t('plateRefAOther', { soporte: translatedSoporteShort })
+              : soporte === 'Monitor/TV CRT'
+                ? t('plateRefACRT')
+                : t('plateRefAOther', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4 flex space-x-4">
-            {soporte === 'Monitor/TV CRT' && (
+            {isCelular ? (
               <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
+            ) : (
+              <>
+                {soporte === 'Monitor/TV CRT' && (
+                  <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
+                )}
+                <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 2 : 1} width={100} height={100} basePath={basePath} />
+              </>
             )}
-            <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 2 : 1} width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
         <li>
           <p className="mb-2 -mt-1"><strong>Plate Ref B:</strong> <br />
-            {t('refPlateDescription', { soporte: translatedSoporteShort })}
+            {isCelular ? (
+              <>
+                {t('refPlateCelular1')}
+                <br />
+                {t('refPlateCelular2')}
+              </>
+            ) : t('refPlateDescription', { soporte: translatedSoporteShort })}
           </p>
-          <div className="mb-4">
-            <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 3 : 2} width={100} height={100} basePath={basePath} />
+          <div className="mb-4 flex space-x-4">
+            {isCelular ? (
+              <>
+                <ImageViewer images={allImages} initialIndex={2} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={3} width={100} height={100} basePath={basePath} />
+              </>
+            ) : (
+              <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 3 : 2} width={100} height={100} basePath={basePath} />
+            )}
           </div>
         </li>
 

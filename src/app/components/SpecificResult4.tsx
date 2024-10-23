@@ -19,15 +19,26 @@ export default function SpecificResult4({ soporte, tvOnOff, reflejoImportante, b
   const soporteShort = soporte.startsWith('Monitor/TV') ? 'Monitor/TV' : soporte;
   const translatedSoporteShort = language === 'en' && soporteShort === 'Celular' ? 'Mobile phone' : soporteShort;
 
-  const allImages = [
-    { src: "/images/LCD_Grey_Track-Outside.jpg", alt: t('altGreyTrackOutside') },
-    { src: "/images/LCD_Grey_Track-4.jpg", alt: t('altGreyTrack') },
-    ...(soporte === 'Monitor/TV CRT' ? [{ src: "/images/CRT_DistGrid.jpg", alt: t('altDistortionGrid') }] : []),
-    { src: "/images/LCD_Grey.jpg", alt: t('altGrayJpg') },
-    { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
-    { src: "/images/LCD_Ref.jpg", alt: t('altReferenceImage') },
-    ...(reflejoImportante ? [{ src: "/images/LCD_Off.jpg", alt: t('altPlateReflejo') }] : []),
-  ];
+  const isCelular = soporte === 'Celular';
+
+  const allImages = isCelular
+    ? [
+        { src: "/images/Cel_Grey_Track-4.jpg", alt: t('altGreyTrack') },
+        { src: "/images/Cel_Grey.jpg", alt: t('altGrayJpg') },
+        { src: "/images/Cel_Off.jpg", alt: t('altTurnedOff') },
+        { src: "/images/Cel_Ref.jpg", alt: t('altReferenceImage') },
+        { src: "/images/Cel_Ref_Dedo.jpg", alt: t('altReferenceFinger') },
+        ...(reflejoImportante ? [{ src: "/images/Cel_Off.jpg", alt: t('altPlateReflejo') }] : []),
+      ]
+    : [
+        { src: "/images/LCD_Grey_Track-Outside.jpg", alt: t('altGreyTrackOutside') },
+        { src: "/images/LCD_Grey_Track-4.jpg", alt: t('altGreyTrack') },
+        ...(soporte === 'Monitor/TV CRT' ? [{ src: "/images/CRT_DistGrid.jpg", alt: t('altDistortionGrid') }] : []),
+        { src: "/images/LCD_Grey.jpg", alt: t('altGrayJpg') },
+        { src: "/images/LCD_Off.jpg", alt: t('altTurnedOff') },
+        { src: "/images/LCD_Ref.jpg", alt: t('altReferenceImage') },
+        ...(reflejoImportante ? [{ src: "/images/LCD_Off.jpg", alt: t('altPlateReflejo') }] : []),
+      ];
 
   return (
     <div className="standard-results w-full">
@@ -39,8 +50,14 @@ export default function SpecificResult4({ soporte, tvOnOff, reflejoImportante, b
             {t('mainPlateGrayWithTrack', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4 flex space-x-4">
-            <ImageViewer images={allImages} initialIndex={0} width={100} height={100} basePath={basePath} />
-            <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
+            {isCelular ? (
+              <ImageViewer images={allImages} initialIndex={0} width={100} height={100} basePath={basePath} />
+            ) : (
+              <>
+                <ImageViewer images={allImages} initialIndex={0} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
+              </>
+            )}
           </div>
           <div className="tips mt-4">
             <p className="font-bold mb-2">{t('trackPointsTips')}:</p>
@@ -55,25 +72,49 @@ export default function SpecificResult4({ soporte, tvOnOff, reflejoImportante, b
         <li>
           <p className="mb-2 -mt-1">
             <strong>Plate Ref A: </strong> <br />
-            {soporte === 'Monitor/TV CRT' 
-              ? t('plateRefACRTWithMovement')
-              : t('plateRefAOtherWithMovement', { soporte: translatedSoporteShort })}
+            {isCelular
+              ? t('plateRefAOther', { soporte: translatedSoporteShort })
+              : soporte === 'Monitor/TV CRT' 
+                ? t('plateRefACRTWithMovement')
+                : t('plateRefAOtherWithMovement', { soporte: translatedSoporteShort })}
           </p>
           <div className="mb-4 flex space-x-4">
-            {soporte === 'Monitor/TV CRT' && (
-              <ImageViewer images={allImages} initialIndex={2} width={100} height={100} basePath={basePath} />
+            {isCelular ? (
+              <>
+                <ImageViewer images={allImages} initialIndex={1} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={2} width={100} height={100} basePath={basePath} />
+              </>
+            ) : (
+              <>
+                {soporte === 'Monitor/TV CRT' && (
+                  <ImageViewer images={allImages} initialIndex={2} width={100} height={100} basePath={basePath} />
+                )}
+                <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 3 : 2} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 4 : 3} width={100} height={100} basePath={basePath} />
+              </>
             )}
-            <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 3 : 2} width={100} height={100} basePath={basePath} />
-            <ImageViewer images={allImages} initialIndex={soporte === 'Monitor/TV CRT' ? 4 : 3} width={100} height={100} basePath={basePath} />
           </div>
         </li>
 
         <li>
           <p className="mb-2 -mt-1"><strong>Plate Ref B:</strong><br /> 
-            {t('refPlateDescription', { soporte: translatedSoporteShort })}
+            {isCelular ? (
+              <>
+                {t('refPlateCelular1')}
+                <br />
+                {t('refPlateCelular2')}
+              </>
+            ) : t('refPlateDescription', { soporte: translatedSoporteShort })}
           </p>
-          <div className="mb-4">
-            <ImageViewer images={allImages} initialIndex={allImages.length - 2} width={100} height={100} basePath={basePath} />
+          <div className="mb-4 flex space-x-4">
+            {isCelular ? (
+              <>
+                <ImageViewer images={allImages} initialIndex={3} width={100} height={100} basePath={basePath} />
+                <ImageViewer images={allImages} initialIndex={4} width={100} height={100} basePath={basePath} />
+              </>
+            ) : (
+              <ImageViewer images={allImages} initialIndex={allImages.length - 2} width={100} height={100} basePath={basePath} />
+            )}
           </div>
         </li>
         
