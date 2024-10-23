@@ -23,7 +23,7 @@ function QuizContent() {
   const [reflejoImportante, setReflejoImportante] = useState<boolean | null>(null);
   const [iluminacion, setIluminacion] = useState<string | null>(null);
   const [tvOnOff, setTvOnOff] = useState<boolean | null>(null);
-  const [lga_debug, setLga_debug] = useState(true); // Variable para debug
+  const [lga_debug, setLga_debug] = useState(false); // Variable para debug
 
   const logState = () => {
     console.log('Current state:', {
@@ -362,8 +362,8 @@ function QuizContent() {
                 reflejoImportante={reflejoImportante}
                 iluminacion={iluminacion}
                 tvOnOff={tvOnOff}
-                basePath="/ScreenRepSup"
-                lga_debug={lga_debug}  // Añade esta línea
+                basePath="/screenrs"
+                lga_debug={lga_debug}  
               />
               {lga_debug && (
                 <AllVariables
