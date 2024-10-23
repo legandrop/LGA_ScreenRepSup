@@ -185,24 +185,24 @@ function QuizContent() {
     console.log('askIluminacion called');
     logState();
     console.log('Asking illumination question');
-    setIsFirstQuestion(true);
+    setIsFirstQuestion(false);
     showQuestion(
       'question1',
       [
-        { text: 'option1_1', handler: () => handleIluminacionResponse('alta') },
-        { text: 'option1_2', handler: () => handleIluminacionResponse('media') },
-        { text: 'option1_3', handler: () => handleIluminacionResponse('baja') }
+        { text: 'option1_1', handler: () => handleIluminacionResponse('alta', soporte) },
+        { text: 'option1_2', handler: () => handleIluminacionResponse('media', soporte) },
+        { text: 'option1_3', handler: () => handleIluminacionResponse('baja', soporte) }
       ]
     );
-  }, [showQuestion]);
+  }, [showQuestion, soporte]);
 
-  const askSoporte = useCallback((iluminacionValue: string) => {
+  const askSoporte = useCallback(() => {
     console.log('askSoporte called');
     logState();
     showQuestion('question2', [
-      { text: 'option2_1', handler: () => handleSoporteResponse('Monitor/TV LCD', iluminacionValue) },
-      { text: 'option2_2', handler: () => handleSoporteResponse('Monitor/TV CRT', iluminacionValue) },
-      { text: 'option2_3', handler: () => handleSoporteResponse('Celular', iluminacionValue) },
+      { text: 'option2_1', handler: () => handleSoporteResponse('Monitor/TV LCD') },
+      { text: 'option2_2', handler: () => handleSoporteResponse('Monitor/TV CRT') },
+      { text: 'option2_3', handler: () => handleSoporteResponse('Celular') },
     ]);
   }, [showQuestion]);
 
@@ -237,20 +237,20 @@ function QuizContent() {
     ]);
   }, [showQuestion, handleOverlapResponse]);
 
-  const handleIluminacionResponse = useCallback((value: string) => {
+  const handleIluminacionResponse = useCallback((value: string, soporteValue: string) => {
     console.log('Setting iluminacion to:', value);
     setIluminacion(value);
-    console.log('Current state - iluminacion:', value, 'soporte:', soporte, 'chroma:', chroma);
-    askCameraMovement(value, soporte); // Ahora llama a askCameraMovement
-  }, [askCameraMovement, soporte, chroma]);
+    console.log('Current state - iluminacion:', value, 'soporte:', soporteValue, 'chroma:', chroma);
+    askCameraMovement(value, soporteValue);
+  }, [askCameraMovement, chroma]);
 
   const handleSoporteResponse = useCallback((option: string) => {
     console.log('Setting soporte to:', option);
     setSoporte(option);
     console.log('Current state - soporte:', option, 'chroma:', chroma);
     setIsFirstQuestion(false);
-    askIluminacion(); // Ahora llama a askIluminacion en lugar de askCameraMovement
-  }, [chroma]);
+    askIluminacion();
+  }, [askIluminacion, chroma]);
 
   const handleCameraMovementResponse = useCallback((value: boolean, iluminacionValue: string, soporteValue: string) => {
     console.log('Setting cameraMovement to:', value);
