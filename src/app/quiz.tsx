@@ -291,6 +291,23 @@ function QuizContent() {
     askSoporte(); // Cambiado de askIluminacion() a askSoporte()
   }, [askSoporte]); // Cambiado de [askIluminacion] a [askSoporte]
 
+  const renderIlluminationConsiderations = (soporte: string | null) => {
+    const soporteConsiderationKey = soporte !== 'Celular' ? 'nonCelular' : 'celular';
+    const soporteConsiderationText = t('soporteConsideration')[soporteConsiderationKey];
+    
+    return (
+      <div>
+        <br /> {/* Línea en blanco antes del título */}
+        <p><strong>{t('considerationsTitle')}</strong></p>
+        <ul>
+          <li>
+            <div dangerouslySetInnerHTML={{ __html: t('illuminationConsiderations', { soporteConsideration: soporteConsiderationText }) }} />
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center p-4 space-y-4">
       {isFirstQuestion && !showResults && (
@@ -345,6 +362,7 @@ function QuizContent() {
                   </button>
                 ))}
               </div>
+              {currentQuestion === 'question1' && renderIlluminationConsiderations(soporte)}
               {additionalContent && (
                 <div className="mt-4">
                   <div dangerouslySetInnerHTML={{ __html: t(additionalContent) }} />

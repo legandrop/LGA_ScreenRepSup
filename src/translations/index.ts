@@ -41,10 +41,11 @@ type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' |
   'refPlateCelular1' | 'refPlateCelular2' | 
   'refPlateCelularSemitransparente1' | 'refPlateCelularSemitransparente2' | 
   'altReferenceFinger' | 'altReferenceGlasses' |
-  'turnOffIfBlackJPG1' | 'turnOffIfBlackJPG2';
+  'turnOffIfBlackJPG1' | 'turnOffIfBlackJPG2' | 
+  'considerationsTitle' | 'illuminationConsiderations' | 'soporteConsideration';
 
 type TranslationType = {
-  [key in TranslationKeys]: string;
+  [key in TranslationKeys]: string | { nonCelular: string; celular: string };
 };
 
 export const translations: { [key: string]: TranslationType } = {
@@ -162,6 +163,28 @@ export const translations: { [key: string]: TranslationType } = {
     altReferenceGlasses: "Plate Ref B: Referencia con objeto semitransparente",
     turnOffIfBlackJPG1: "JPG gris durante 1 segundo",
     turnOffIfBlackJPG2: "Si en el plate principal se usó JPG black con puntos de track en lugar de stickers por fuera de la pantalla, apagar el {soporte} en toma",
+    considerationsTitle: "Consideraciones:",
+    illuminationConsiderations: `
+      <br>
+      • <strong>Escena luminosa o media:</strong> La influencia de la luz de la pantalla no solo depende de la iluminación general, sino también de la proximidad de otros elementos a la pantalla. {soporteConsideration}
+      <br><br>
+      • <strong>Escena oscura:</strong> En estas escenas la luz de la pantalla se vuelve un factor crucial. y el contenido que aparece en la pantalla influye en cómo se ilumina el entorno.
+      <br>&nbsp;&nbsp;&nbsp;Si el contenido es una imagen fija (como una búsqueda en Google o un presentador en un noticiero), la luz será más constante y estable.
+      <br>&nbsp;&nbsp;&nbsp;En cambio, si se proyecta una película, cada transición entre planos puede modificar considerablemente la cantidad de luz emitida, lo que a veces requiere en postproducción elegir opciones que coincidan con los tiempos del video utilizado en el set para mantener el sincro y que los cambios de luz sean coherentes con el contenido de la pantalla.
+      <br>&nbsp;&nbsp;&nbsp;Por eso, es clave en estos casos utilizar una imagen o video de referencia que se alinee con lo que se integrará en postproducción.
+    `,
+    soporteConsideration: {
+      nonCelular: "<br>&nbsp;&nbsp;&nbsp;Si una persona está cerca de la pantalla, incluso en una escena luminosa, hay que evaluar si la luz afecta a la persona. Si es así, seleccionar 'Impacto moderado'.",
+      celular: "<br>&nbsp;&nbsp;&nbsp;Si los dedos cubren la pantalla, hay que analizar si la luz de la pantalla afecta a los dedos, incluso en una escena luminosa. Si es así, seleccionar 'Impacto moderado'."
+    },
+    turnOffIfBlackJPG1: "JPG gris durante 1 segundo",
+    turnOffIfBlackJPG2: "Si en el plate principal se usó JPG black con puntos de track en lugar de stickers por fuera de la pantalla, apagar el {soporte} en toma",
+    altReferenceFinger: "Plate Ref B: Referencia con acción de dedos",
+    altReferenceGlasses: "Plate Ref B: Referencia con objeto semitransparente",
+    refPlateCelular1: "Celular con contenido real de referencia, idealmente lo más parecido posible al material que se usará en postproducción (por ejemplo youtube, google, videollamada, etc).",
+    refPlateCelular2: "Hacer con los dedos la misma acción que se hacía en el plate principal.",
+    refPlateCelularSemitransparente1: "Celular con contenido real de referencia, idealmente lo más parecido posible al material que se usará en postproducción (por ejemplo youtube, google, videollamada, etc).",
+    refPlateCelularSemitransparente2: "Hacer con los dedos la misma acción que se hacía en el plate principal, además de poner el objeto semitransparente tapando la imagen como en el plate principal.",
   },
   en: {
     question1: "How is the scene lit and what impact does the screen's light have on it?",
@@ -277,5 +300,27 @@ export const translations: { [key: string]: TranslationType } = {
     altReferenceGlasses: "Plate Ref B: Reference with semi-transparent object",
     turnOffIfBlackJPG1: "Gray JPG for 1 second",
     turnOffIfBlackJPG2: "If a black JPG with tracking points was used in the main plate instead of stickers outside the screen, turn off the {soporte} on camera",
+    considerationsTitle: "Considerations:",
+    illuminationConsiderations: `
+      <br>
+      • <strong>Bright or medium lighting:</strong> The influence of the screen's light depends not only on the general lighting but also on the proximity of other elements to the screen. {soporteConsideration}
+      <br><br>
+      • <strong>Dark scene:</strong> In these scenes, the screen's light becomes a crucial factor, and the content displayed on the screen influences how the environment is lit.
+      <br>&nbsp;&nbsp;&nbsp;If the content is a static image (like a Google search or a news presenter), the light will be more constant and stable.
+      <br>&nbsp;&nbsp;&nbsp;However, if a movie is projected, each transition between shots can significantly change the amount of light emitted, sometimes requiring post-production choices that match the timing of the video used on set to maintain sync and ensure light changes are consistent with the screen content.
+      <br>&nbsp;&nbsp;&nbsp;Therefore, it is crucial in these cases to use a reference image or video that aligns with what will be integrated in post-production.
+    `,
+    soporteConsideration: {
+      nonCelular: "<br>&nbsp;&nbsp;&nbsp;If a person is near the screen, even in bright scenes, evaluate if the light affects them. If so, select 'Moderate impact'.",
+      celular: "<br>&nbsp;&nbsp;&nbsp;If fingers cover the screen, analyze if the screen's light affects them. If so, select 'Moderate impact'."
+    },
+    turnOffIfBlackJPG1: "Gray JPG for 1 second",
+    turnOffIfBlackJPG2: "If a black JPG with tracking points was used in the main plate instead of stickers outside the screen, turn off the {soporte} on camera",
+    altReferenceFinger: "Plate Ref B: Reference with finger action",
+    altReferenceGlasses: "Plate Ref B: Reference with semi-transparent object",
+    refPlateCelular1: "Mobile phone with real reference content, ideally as close as possible to the material that will be used in post-production (for example YouTube, Google, video call, etc).",
+    refPlateCelular2: "Perform the same action with the fingers as was done in the main plate.",
+    refPlateCelularSemitransparente1: "Mobile phone with real reference content, ideally as close as possible to the material that will be used in post-production (for example YouTube, Google, video call, etc).",
+    refPlateCelularSemitransparente2: "Perform the same action with the fingers as was done in the main plate, in addition to placing the semi-transparent object covering the image as in the main plate.",
   }
 };
