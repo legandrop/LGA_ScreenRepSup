@@ -177,14 +177,6 @@ export const translations: { [key: string]: TranslationType } = {
       nonCelular: "<br>&nbsp;&nbsp;&nbsp;Si una persona está cerca de la pantalla, incluso en una escena luminosa, hay que evaluar si la luz afecta a la persona. Si es así, seleccionar 'Impacto moderado'.",
       celular: "<br>&nbsp;&nbsp;&nbsp;Si los dedos cubren la pantalla, hay que analizar si la luz de la pantalla afecta a los dedos, incluso en una escena luminosa. Si es así, seleccionar 'Impacto moderado'."
     },
-    turnOffIfBlackJPG1: "JPG gris durante 1 segundo",
-    turnOffIfBlackJPG2: "Si en el plate principal se usó JPG black con puntos de track en lugar de stickers por fuera de la pantalla, apagar el {soporte} en toma",
-    altReferenceFinger: "Plate Ref B: Referencia con acción de dedos",
-    altReferenceGlasses: "Plate Ref B: Referencia con objeto semitransparente",
-    refPlateCelular1: "Celular con contenido real de referencia, idealmente lo más parecido posible al material que se usará en postproducción (por ejemplo youtube, google, videollamada, etc).",
-    refPlateCelular2: "Hacer con los dedos la misma acción que se hacía en el plate principal.",
-    refPlateCelularSemitransparente1: "Celular con contenido real de referencia, idealmente lo más parecido posible al material que se usará en postproducción (por ejemplo youtube, google, videollamada, etc).",
-    refPlateCelularSemitransparente2: "Hacer con los dedos la misma acción que se hacía en el plate principal, además de poner el objeto semitransparente tapando la imagen como en el plate principal.",
   },
   en: {
     question1: "How is the scene lit and what impact does the screen's light have on it?",
@@ -314,13 +306,5 @@ export const translations: { [key: string]: TranslationType } = {
       nonCelular: "<br>&nbsp;&nbsp;&nbsp;If a person is near the screen, even in bright scenes, evaluate if the light affects them. If so, select 'Moderate impact'.",
       celular: "<br>&nbsp;&nbsp;&nbsp;If fingers cover the screen, analyze if the screen's light affects them. If so, select 'Moderate impact'."
     },
-    turnOffIfBlackJPG1: "Gray JPG for 1 second",
-    turnOffIfBlackJPG2: "If a black JPG with tracking points was used in the main plate instead of stickers outside the screen, turn off the {soporte} on camera",
-    altReferenceFinger: "Plate Ref B: Reference with finger action",
-    altReferenceGlasses: "Plate Ref B: Reference with semi-transparent object",
-    refPlateCelular1: "Mobile phone with real reference content, ideally as close as possible to the material that will be used in post-production (for example YouTube, Google, video call, etc).",
-    refPlateCelular2: "Perform the same action with the fingers as was done in the main plate.",
-    refPlateCelularSemitransparente1: "Mobile phone with real reference content, ideally as close as possible to the material that will be used in post-production (for example YouTube, Google, video call, etc).",
-    refPlateCelularSemitransparente2: "Perform the same action with the fingers as was done in the main plate, in addition to placing the semi-transparent object covering the image as in the main plate.",
   }
 };
