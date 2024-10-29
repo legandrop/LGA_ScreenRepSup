@@ -2,6 +2,24 @@
 
 ## Configuración del proyecto
 
+### Scripts de automatización
+
+El proyecto incluye scripts para automatizar tareas comunes:
+
+**Reiniciar_Proyecto.bat**: Limpia e inicia el entorno de desarrollo
+- Elimina las carpetas node_modules y .next
+- Reinstala las dependencias
+- Inicia el servidor de desarrollo
+
+**Compilacion_Out.bat**: Limpia y compila el proyecto
+- Elimina las carpetas node_modules, .next y out
+- Reinstala las dependencias
+- Compila el proyecto para producción
+
+Para usar estos scripts, simplemente haz doble clic en el archivo .bat correspondiente.
+
+### Configuración manual
+
 Para ejecutar el proyecto localmente:
 
 **1a.** Iniciar el servidor de desarrollo:
