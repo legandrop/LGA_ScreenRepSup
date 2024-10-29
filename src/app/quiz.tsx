@@ -161,7 +161,12 @@ function QuizContent() {
   }, [showQuestion, handleSemitransparenteResponse]);
 
   const handleRotoscopeComplexityResponse = useCallback((complexity: string, iluminacionValue: string, soporteValue: string, cameraMovementValue: boolean) => {
-    console.log('handleRotoscopeComplexityResponse called with complexity:', complexity);
+    console.log('🔍 handleRotoscopeComplexityResponse DEBUGGING:');
+    console.log('   complexity:', complexity);
+    console.log('   iluminacionValue:', iluminacionValue);
+    console.log('   soporteValue:', soporteValue);
+    console.log('   cameraMovementValue:', cameraMovementValue);
+
     if (complexity === 'simple') {
       console.log('Rotoscope is simple. Setting chroma to false and proceeding.');
       setChroma(false);
@@ -174,27 +179,31 @@ function QuizContent() {
   }, [setChroma, handleSemitransparenteResponse, askSemitransparente]);
 
   const askChromaOverlap = useCallback((iluminacionValue: string, soporteValue: string, cameraMovementValue: boolean) => {
-    console.log('askChromaOverlap called with soporte:', soporteValue);
+    console.log('🔍 askChromaOverlap DEBUGGING:');
+    console.log('   iluminacionValue:', iluminacionValue);
+    console.log('   soporteValue:', soporteValue);
+    console.log('   cameraMovementValue:', cameraMovementValue);
+    
+    const additionalContent = iluminacionValue === 'baja' ? 'rotoscopeTipsWithDarkScene' : 'rotoscopeTips';
+    
     showQuestion('question6', [
       { text: 'option6_1', handler: () => handleRotoscopeComplexityResponse('simple', iluminacionValue, soporteValue, cameraMovementValue) },
       { text: 'option6_2', handler: () => handleRotoscopeComplexityResponse('complejo', iluminacionValue, soporteValue, cameraMovementValue) },
-    ], 'rotoscopeTips');
+    ], additionalContent);
   }, [showQuestion, handleRotoscopeComplexityResponse]);
 
-  const askIluminacion = useCallback(() => {
-    console.log('askIluminacion called');
-    logState();
-    console.log('Asking illumination question');
+  const askIluminacion = useCallback((soporteValue: string) => {
+    console.log('🔍 askIluminacion - received soporteValue:', soporteValue);
     setIsFirstQuestion(false);
     showQuestion(
       'question1',
       [
-        { text: 'option1_1', handler: () => handleIluminacionResponse('alta', soporte) },
-        { text: 'option1_2', handler: () => handleIluminacionResponse('media', soporte) },
-        { text: 'option1_3', handler: () => handleIluminacionResponse('baja', soporte) }
+        { text: 'option1_1', handler: () => handleIluminacionResponse('alta', soporteValue) },
+        { text: 'option1_2', handler: () => handleIluminacionResponse('media', soporteValue) },
+        { text: 'option1_3', handler: () => handleIluminacionResponse('baja', soporteValue) }
       ]
     );
-  }, [showQuestion, soporte]);
+  }, [showQuestion]);
 
   const askSoporte = useCallback(() => {
     console.log('askSoporte called');
@@ -207,7 +216,10 @@ function QuizContent() {
   }, [showQuestion]);
 
   const askCameraMovement = useCallback((iluminacionValue: string, soporteValue: string) => {
-    console.log('askCameraMovement called with soporte:', soporteValue);
+    console.log('🔍 askCameraMovement DEBUGGING:');
+    console.log('   soporteValue:', soporteValue);
+    console.log('   questionKey:', soporteValue === 'Celular' ? 'question3Mobile' : 'question3');
+    
     const questionKey = soporteValue === 'Celular' ? 'question3Mobile' : 'question3';
     showQuestion(
       questionKey,
@@ -238,19 +250,17 @@ function QuizContent() {
   }, [showQuestion, handleOverlapResponse]);
 
   const handleIluminacionResponse = useCallback((value: string, soporteValue: string) => {
-    console.log('Setting iluminacion to:', value);
+    console.log('🔍 handleIluminacionResponse - received soporteValue:', soporteValue);
     setIluminacion(value);
-    console.log('Current state - iluminacion:', value, 'soporte:', soporteValue, 'chroma:', chroma);
     askCameraMovement(value, soporteValue);
-  }, [askCameraMovement, chroma]);
+  }, [askCameraMovement]);
 
   const handleSoporteResponse = useCallback((option: string) => {
-    console.log('Setting soporte to:', option);
+    console.log('🔍 handleSoporteResponse - option:', option);
     setSoporte(option);
-    console.log('Current state - soporte:', option, 'chroma:', chroma);
     setIsFirstQuestion(false);
-    askIluminacion();
-  }, [askIluminacion, chroma]);
+    askIluminacion(option);
+  }, [askIluminacion]);
 
   const handleCameraMovementResponse = useCallback((value: boolean, iluminacionValue: string, soporteValue: string) => {
     console.log('Setting cameraMovement to:', value);

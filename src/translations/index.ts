@@ -42,7 +42,8 @@ type TranslationKeys = 'question1' | 'option1_1' | 'option1_2' | 'option1_3' |
   'refPlateCelularSemitransparente1' | 'refPlateCelularSemitransparente2' | 
   'altReferenceFinger' | 'altReferenceGlasses' |
   'turnOffIfBlackJPG1' | 'turnOffIfBlackJPG2' | 
-  'considerationsTitle' | 'illuminationConsiderations' | 'soporteConsideration';
+  'considerationsTitle' | 'illuminationConsiderations' | 'soporteConsideration' | 
+  'rotoscopeTips' | 'rotoscopeTipsWithDarkScene';
 
 type TranslationType = {
   [key in TranslationKeys]: string | { nonCelular: string; celular: string };
@@ -97,7 +98,7 @@ export const translations: { [key: string]: TranslationType } = {
     gray: "Gris",
     refPlateDescription: "{soporte} con contenido real de referencia, idealmente lo más parecido posible al material que se usará en postproducción.",
     reference: "Referencia",
-    footerVersion: "Screen Replacement Supervisor v0.99",
+    footerVersion: "Screen Replacement Supervisor v1.0",
     footerYear: "2024 | Lega Pugliese",
     debugInfoTitle: "Debug Info",
     support: "Soporte",
@@ -115,6 +116,11 @@ export const translations: { [key: string]: TranslationType } = {
     trackPointsPlacement: "Idealmente, se utilizarán puntos de track lo más cercanos posible a los bordes de la pantalla evitando puntos en el centro. Margin 1 se usará siempre que los puntos de track no queden cortados/comidos por los bordes, sino se usarán los JPG Margin 2 (generalmente en TV CRT y celulares con pantallas redondeadas) En casos donde algo cruce la pantalla y bloquee estos puntos, se colocarán puntos en el centro.",
     trackPointsSize: "Cuanto más chicos sean los puntos, mejor. Simplemente tienen que verse en cámara, por lo tanto el tamaño dependerá de que tan grande se vea el {soporte} en cámara. Si es un primer plano, los puntos serán más chicos que en un plano general.",
     rotoscopeTips: "<br><p><strong>Complejos:</strong> Elementos que bloquean de forma continua la pantalla. Pelo, elementos fuera de foco, con movimiento rápido que generan motion blur, en contacto o muy cerca de la pantalla, o con semitransparencias.</p><br><p><strong>Simples:</strong> Elementos que cruzan y tapan la pantalla solo durante pocos frames. Si tapan la pantalla de forma continua, se consideran simples aquellos con bordes definidos, sin movimientos rápidos y sin semitransparencias.</p>",
+    rotoscopeTipsWithDarkScene: `<br><p><strong>Complejos:</strong> Elementos que bloquean de forma continua la pantalla. Pelo, elementos fuera de foco, con movimiento rápido que generan motion blur, en contacto o muy cerca de la pantalla, o con semitransparencias.</p><br><p><strong>Simples:</strong> Elementos que cruzan y tapan la pantalla solo durante pocos frames. Si tapan la pantalla de forma continua, se consideran simples aquellos con bordes definidos, sin movimientos rápidos y sin semitransparencias.</p>
+      <br><p><strong>Consideraciones para escena oscura:</strong></p>
+      En estas escenas, la luz de la pantalla tiene una gran incidencia sobre la iluminación del entorno. Por lo tanto, es clave que la iluminación de la pantalla coincida con el contenido que se insertará en postproducción.
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Contenido estático:</strong> Si el contenido es una imagen fija (como una búsqueda en Google o un presentador en un noticiero), la luz será más constante y estable. En estos casos, podemos utilizar un JPG verde/azul en la pantalla para facilitar el recorte mediante chroma key.
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Contenido dinámico:</strong> En cambio, si se proyecta una película, cada transición entre planos puede modificar considerablemente la cantidad de luz emitida. Esto a veces requiere, en postproducción, elegir opciones que coincidan con los tiempos del video utilizado en el set para mantener la sincronización y que los cambios de luz sean coherentes con el contenido de la pantalla. El uso de un JPG que emite una luz constante no va a ser adecuado en estos casos.`,
     mainPlateGray: "Filmar el plano con un JPG gris. Usar el brillo del {soporte} para lograr un nivel adecuado sin sobreexponer. Tomar nota del nivel de brillo usado.",
     plateRefACRT: "JPG con grilla de distorsión durante un 1 segundo, luego apagar el Monitor/TV en toma",
     plateRefAOther: "Apagar el {soporte} en toma",
@@ -168,11 +174,10 @@ export const translations: { [key: string]: TranslationType } = {
       <br>
       • <strong>Escena luminosa o media:</strong> La influencia de la luz de la pantalla no solo depende de la iluminación general, sino también de la proximidad de otros elementos a la pantalla. {soporteConsideration}
       <br><br>
-      • <strong>Escena oscura:</strong> En estas escenas la luz de la pantalla se vuelve un factor crucial. y el contenido que aparece en la pantalla influye en cómo se ilumina el entorno.
-      <br>&nbsp;&nbsp;&nbsp;Si el contenido es una imagen fija (como una búsqueda en Google o un presentador en un noticiero), la luz será más constante y estable.
-      <br>&nbsp;&nbsp;&nbsp;En cambio, si se proyecta una película, cada transición entre planos puede modificar considerablemente la cantidad de luz emitida, lo que a veces requiere en postproducción elegir opciones que coincidan con los tiempos del video utilizado en el set para mantener el sincro y que los cambios de luz sean coherentes con el contenido de la pantalla.
-      <br>&nbsp;&nbsp;&nbsp;Por eso, es clave en estos casos utilizar una imagen o video de referencia que se alinee con lo que se integrará en postproducción.
-    `,
+      • <strong>Escena oscura:</strong> En estas escenas, la luz de la pantalla influye significativamente en la iluminación del entorno. Por lo tanto, es fundamental que la iluminación de la pantalla se alinee con el contenido que se utilizará en postproducción para proyectarse en ella:
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Contenido estático:</strong> Cuando el contenido es una imagen fija (como una búsqueda en Google o un presentador en un noticiero), la luz será más constante y estable.
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Contenido dinámico:</strong> Si se proyecta una película, cada transición entre planos puede modificar considerablemente la cantidad de luz emitida. Esto puede requerir en postproducción elegir opciones que coincidan con los tiempos del video utilizado en el set para mantener la sincronización y que los cambios de luz sean coherentes.
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por este motivo, este tipo de contenido con esta iluminación no es un candidato fácil. Es clave en estos casos utilizar una video de referencia que se ajuste lo más posible con el contenido que se aplicará en postproducción.`,
     soporteConsideration: {
       nonCelular: "<br>&nbsp;&nbsp;&nbsp;Si una persona está cerca de la pantalla, incluso en una escena luminosa, hay que evaluar si la luz afecta a la persona. Si es así, seleccionar 'Impacto moderado'.",
       celular: "<br>&nbsp;&nbsp;&nbsp;Si los dedos cubren la pantalla, hay que analizar si la luz de la pantalla afecta a los dedos, incluso en una escena luminosa. Si es así, seleccionar 'Impacto moderado'."
@@ -226,7 +231,7 @@ export const translations: { [key: string]: TranslationType } = {
     gray: "Gray",
     refPlateDescription: "{soporte} with real reference content. The more similar to the content planned for post-production, the better.",
     reference: "Reference",
-    footerVersion: "Screen Replacement Supervisor v0.99",
+    footerVersion: "Screen Replacement Supervisor v1.0",
     footerYear: "2024 | Lega Pugliese",
     debugInfoTitle: "Debug Information",
     support: "Support",
@@ -244,6 +249,11 @@ export const translations: { [key: string]: TranslationType } = {
     trackPointsPlacement: "Ideally, tracking points will be placed as close as possible to the screen edges, avoiding points in the center. Margin 1 will be used whenever the tracking points are not cut off/eaten by the edges, otherwise JPG Margin 2 will be used (generally on CRT TVs and mobile phones with rounded screens). In cases where something crosses the screen and blocks these points, points will be placed in the center.",
     trackPointsSize: "The smaller the points, the better. They just need to be visible on camera, so size depends on how large the {soporte} appears. For close-ups, use smaller points than for wide shots.",
     rotoscopeTips: "<br><p><strong>Complex:</strong> Elements that continuously block the screen. Hair, out-of-focus elements, with rapid movement generating motion blur, in contact with or very close to the screen, or with semi-transparencies.</p><br><p><strong>Simple:</strong> Elements that cross and cover the screen only for a few frames. If they continuously cover the screen, those with defined edges, without rapid movements, and without semi-transparencies are considered simple.</p>",
+    rotoscopeTipsWithDarkScene: `<br><p><strong>Complex:</strong> Elements that continuously block the screen. Hair, out-of-focus elements, with rapid movement generating motion blur, in contact with or very close to the screen, or with semi-transparencies.</p><br><p><strong>Simple:</strong> Elements that cross and cover the screen only for a few frames. If they continuously cover the screen, those with defined edges, without rapid movements, and without semi-transparencies are considered simple.</p>
+      <br><p><strong>Considerations for dark scene:</strong></p>
+      In these scenes, the screen's light has a significant impact on the environment's lighting. Therefore, it is crucial that the screen's lighting matches the content that will be inserted in post-production.
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Static content:</strong> If the content is a static image (like a Google search or a news presenter), the light will be more constant and stable. In these cases, we can use a green/blue JPG on the screen to facilitate chroma key removal.
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Dynamic content:</strong> However, if a movie is projected, each transition between shots can significantly change the amount of light emitted. This sometimes requires, in post-production, choosing options that match the timing of the video used on set to maintain synchronization and ensure light changes are consistent with the screen content. Using a JPG that emits constant light will not be suitable in these cases.`,
     mainPlateGray: "Film the shot with a gray JPG. Adjust the {soporte}'s brightness to an appropriate level without overexposing. Take Note of the brightness level used.",
     plateRefACRT: "JPG with distortion grid for 1 second, then turn off the Monitor/TV on camera",
     plateRefAOther: "Turn off the {soporte} on camera",
@@ -297,11 +307,10 @@ export const translations: { [key: string]: TranslationType } = {
       <br>
       • <strong>Bright or medium lighting:</strong> The influence of the screen's light depends not only on the general lighting but also on the proximity of other elements to the screen. {soporteConsideration}
       <br><br>
-      • <strong>Dark scene:</strong> In these scenes, the screen's light becomes a crucial factor, and the content displayed on the screen influences how the environment is lit.
-      <br>&nbsp;&nbsp;&nbsp;If the content is a static image (like a Google search or a news presenter), the light will be more constant and stable.
-      <br>&nbsp;&nbsp;&nbsp;However, if a movie is projected, each transition between shots can significantly change the amount of light emitted, sometimes requiring post-production choices that match the timing of the video used on set to maintain sync and ensure light changes are consistent with the screen content.
-      <br>&nbsp;&nbsp;&nbsp;Therefore, it is crucial in these cases to use a reference image or video that aligns with what will be integrated in post-production.
-    `,
+      • <strong>Dark scene:</strong> In these scenes, the screen's light significantly influences the environment's lighting. Therefore, it is essential that the screen's lighting aligns with the content that will be used in post-production to be projected on it:
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Static content:</strong> When the content is a static image (like a Google search or a news presenter), the light will be more constant and stable.
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Dynamic content:</strong> If a movie is projected, each transition between shots can significantly modify the amount of light emitted. This may require choosing options in post-production that match the timing of the video used on set to maintain synchronization and ensure light changes are coherent.
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For this reason, this type of content with this lighting is not an easy candidate. It is crucial in these cases to use a reference video that matches as closely as possible with the content that will be applied in post-production.`,
     soporteConsideration: {
       nonCelular: "<br>&nbsp;&nbsp;&nbsp;If a person is near the screen, even in bright scenes, evaluate if the light affects them. If so, select 'Moderate impact'.",
       celular: "<br>&nbsp;&nbsp;&nbsp;If fingers cover the screen, analyze if the screen's light affects them. If so, select 'Moderate impact'."
